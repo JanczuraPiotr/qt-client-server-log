@@ -4,15 +4,15 @@
 
 #include <QCoreApplication>
 #include <iostream>
-#include <server/model/LogTable.h>
+#include <common/model/LogTable.h>
 
 #include "config.h"
 
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
 
-    sp9pj::model::LogTable logTable;
-    sp9pj::model::LogTable::Map all = logTable.getAll();
+    model::LogTable logTable;
+    model::LogTable::Map all = logTable.getAll();
 
     std::cout << "server" << std::endl;
     return 0;

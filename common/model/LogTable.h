@@ -11,22 +11,22 @@
 #include <QSqlDatabase>
 
 #include "common/def.h"
-#include "server/model/db/Driver.h"
-#include "server/model/Log.h"
+#include "common/model/db/Driver.h"
+#include "Log.h"
 
-namespace sp9pj::model {
+namespace model {
 
 
 class LogTable {
 public:
-    typedef std::map<sp9pj::conf::AutoId, sp9pj::model::Log::ptr> Map;
+    typedef std::map<model::def::AutoId, model::Log::ptr> Map;
 
     LogTable();
 
     Map getAll();
 
 private:
-    sp9pj::model::db::Driver &dbDriver;
+    model::db::Driver &dbDriver;
 };
 
 }

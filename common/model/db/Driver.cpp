@@ -6,11 +6,11 @@
 #include <QtCore/QString>
 #include "server/config.h"
 
-namespace sp9pj::model::db {
+namespace model::db {
 
 Driver &Driver::i() {
-    static Driver instance(sp9pj::Config::dbHost(), sp9pj::Config::dbName(), sp9pj::Config::dbUser(), sp9pj::Config::dbPassword());
-    return instance;x
+    static Driver instance(Config::dbHost(), Config::dbName(), Config::dbUser(), Config::dbPassword());
+    return instance;
 }
 
 Driver::Driver(const QString &host, const QString &dbName, const QString &dbUser, const QString &dbPassword)

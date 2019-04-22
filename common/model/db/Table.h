@@ -7,15 +7,15 @@
 
 #include "Driver.h"
 
-namespace sp9pj::model::db {
+namespace model::db {
 
 
 class Table {
 public:
-    explicit Table(sp9pj::model::db::Driver &driver);
+    explicit Table(model::db::Driver &driver);
     virtual ~Table() = default;
 private:
-    sp9pj::model::db::Driver &dbDriver;
+    model::db::Driver &dbDriver;
 };
 
 

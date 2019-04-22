@@ -7,7 +7,7 @@
 
 #include <QSqlRecord>
 
-namespace sp9pj::model::db {
+namespace model::db {
 
 
 class Record {

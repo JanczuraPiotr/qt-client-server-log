@@ -5,7 +5,7 @@
 #ifndef QT_LOG_PULL_H
 #define QT_LOG_PULL_H
 
-namespace sp9pj::transport {
+namespace transport {
 
 class Pull {
 public:

@@ -4,6 +4,6 @@
 
 #include "Log.h"
 
-namespace sp9pj::model {
+namespace model {
 
 }

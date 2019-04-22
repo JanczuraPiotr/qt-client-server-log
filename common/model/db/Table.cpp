@@ -4,10 +4,10 @@
 
 #include "Table.h"
 
-namespace sp9pj::model::db {
+namespace model::db {
 
 
-Table::Table(sp9pj::model::db::Driver &dbDriver)
+Table::Table(model::db::Driver &dbDriver)
     : dbDriver(dbDriver)
 {
 }

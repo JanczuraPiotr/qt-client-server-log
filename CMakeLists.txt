@@ -15,9 +15,9 @@ add_executable(qt-client-server-log-client
         client/main.cpp
         common/transport/Push.cpp           common/transport/Push.h
         common/transport/Pull.cpp           common/transport/Pull.h
-        server/model/Log.cpp                server/model/Log.h
+        common/model/Log.cpp common/model/Log.h
                                             common/def.h
-        server/model/def.h)
+        common/model/def.h)
 
 target_link_libraries(qt-client-server-log-client Qt5::Widgets)
 
@@ -30,9 +30,9 @@ add_executable(qt-client-server-log-server
                                             server/config.h
         common/transport/Push.cpp           common/transport/Push.h
         common/transport/Pull.cpp           common/transport/Pull.h
-        server/model/db/Driver.cpp          server/model/db/Driver.h
-        server/model/LogTable.cpp           server/model/LogTable.h
-        server/model/db/Record.cpp server/model/db/Record.h server/model/db/Table.cpp server/model/db/Table.h)
+        common/model/db/Driver.cpp common/model/db/Driver.h
+        common/model/LogTable.cpp common/model/LogTable.h
+        common/model/db/Record.cpp common/model/db/Record.h common/model/db/Table.cpp common/model/db/Table.h)
 
 target_link_libraries(qt-client-server-log-server
         Qt5::Sql

@@ -4,11 +4,11 @@
 
 #include "LogTable.h"
 
-namespace sp9pj::model {
+namespace model {
 
 
 LogTable::LogTable()
-    : dbDriver(sp9pj::model::db::Driver::i())
+    : dbDriver(model::db::Driver::i())
 {
 
 }

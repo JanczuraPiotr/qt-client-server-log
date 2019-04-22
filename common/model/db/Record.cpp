@@ -5,7 +5,7 @@
 #include "Record.h"
 
 
-namespace sp9pj::model::db {
+namespace model::db {
 
 
 Record::Record(const QSqlRecord &rec)

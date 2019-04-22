@@ -6,9 +6,9 @@
 #define QT_LOG_LOG_H
 
 #include <memory>
-#include "server/model/def.h"
+#include "def.h"
 
-namespace sp9pj::model {
+namespace model {
 
 class Log {
 public:
@@ -17,7 +17,7 @@ public:
 
 
 private:
-    sp9pj::model::def::AutoId id;
+    model::def::AutoId id;
 
 };
 
