@@ -5,7 +5,7 @@
 #ifndef QT_LOG_PUSH_H
 #define QT_LOG_PUSH_H
 
-namespace sp9pj::transport {
+namespace transport {
 
 class Push {
 public:
