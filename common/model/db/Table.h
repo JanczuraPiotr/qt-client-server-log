@@ -5,16 +5,21 @@
 #ifndef QT_LOG_TABLE_H
 #define QT_LOG_TABLE_H
 
-#include "Driver.h"
+#include "model/db/Driver.h"
+#include "model/db/Record.h"
+#include "model/db/def.h"
 
 namespace model::db {
 
+class Record;
 
 class Table {
 public:
+
     explicit Table(model::db::Driver &driver);
     virtual ~Table() = default;
-private:
+
+protected:
     model::db::Driver &dbDriver;
 };
 

@@ -17,16 +17,13 @@
 namespace model {
 
 
-class LogTable {
+class LogTable : public model::db::Table{
 public:
-    typedef std::map<model::def::AutoId, model::Log::ptr> Map;
 
-    LogTable();
+    explicit LogTable(db::Driver &driver);
 
-    Map getAll();
+    //db::Map getAll();
 
-private:
-    model::db::Driver &dbDriver;
 };
 
 }

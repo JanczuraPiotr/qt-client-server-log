@@ -6,18 +6,17 @@
 #define QT_LOG_LOG_H
 
 #include <memory>
-#include "def.h"
+#include "common/model/db/def.h"
+#include "model/db/Record.h"
 
 namespace model {
 
-class Log {
+class Log : public model::db::Record {
 public:
-    typedef std::unique_ptr<Log> ptr;
-    Log();
+    typedef std::shared_ptr<Log> ptr;
+    typedef std::map<model::def::AutoId, ptr> map;
 
-
-private:
-    model::def::AutoId id;
+    ~Log() override = default;
 
 };
 

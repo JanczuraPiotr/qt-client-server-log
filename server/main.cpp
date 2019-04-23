@@ -11,13 +11,12 @@
 int main(int argc, char **argv) {
     QCoreApplication app(argc, argv);
 
-    model::LogTable logTable;
-    model::LogTable::Map all = logTable.getAll();
+//    model::LogTable logTable;
+//    model::LogTable::Map all = logTable.getAll();
 
     std::cout << "server" << std::endl;
     return 0;
 }
 
 
-// @task model class Record, Table
 // @task server socket

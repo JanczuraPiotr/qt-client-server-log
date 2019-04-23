@@ -17,7 +17,7 @@ add_executable(qt-client-server-log-client
         common/transport/Pull.cpp           common/transport/Pull.h
         common/model/Log.cpp common/model/Log.h
                                             common/def.h
-        common/model/def.h)
+        common/model/db/def.h)
 
 target_link_libraries(qt-client-server-log-client Qt5::Widgets)
 

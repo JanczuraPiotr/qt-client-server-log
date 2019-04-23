@@ -8,9 +8,13 @@
 namespace model::db {
 
 
-Record::Record(const QSqlRecord &rec)
+Record::Record(QSqlRecord &rec)
     : rec(rec)
 {
+}
+
+QSqlRecord &Record::generic() {
+    return rec;
 }
 
 }
