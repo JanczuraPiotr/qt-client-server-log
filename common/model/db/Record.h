@@ -7,27 +7,26 @@
 
 #include <memory>
 #include <map>
+
 #include <QSqlRecord>
-#include "model/db/def.h"
-#include "model/db/Table.h"
+
+#include "common/model/db/def.h"
+#include "common/model/db/Table.h"
 
 namespace model::db {
 
-class Table;
-
 class Record {
-    friend model::db::Table;
 
 public:
 
     virtual ~Record() = default;
-
     QSqlRecord &generic();
 
-private:
+protected:
     explicit Record(QSqlRecord &rec);
+    QSqlRecord rec;
 
-    QSqlRecord &rec;
+
 };
 
 }

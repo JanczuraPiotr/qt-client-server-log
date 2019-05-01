@@ -12,17 +12,17 @@
 
 #include "common/def.h"
 #include "common/model/db/Driver.h"
-#include "Log.h"
+#include "common/model/db/Table.h"
+#include "common/model/Log.h"
 
 namespace model {
 
 
-class LogTable : public model::db::Table{
+class LogTable : public model::db::Table {
 public:
 
-    explicit LogTable(db::Driver &driver);
-
-    //db::Map getAll();
+    explicit LogTable(model::db::Driver &driver);
+    model::Log::map getAll();
 
 };
 

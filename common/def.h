@@ -5,8 +5,10 @@
 #ifndef QT_LOG_COMMON_DEF_H
 #define QT_LOG_COMMON_DEF_H
 
-namespace common::def {
+namespace common {
 
+    typedef int LogPriority;
+    typedef QString LogMsg;
 }
 
 #endif //QT_LOG_COMMON_DEF_H

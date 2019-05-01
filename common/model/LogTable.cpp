@@ -4,6 +4,11 @@
 
 #include "LogTable.h"
 
+#include <memory>
+#include <map>
+
+#include "common/model/Log.h"
+
 namespace model {
 
 
@@ -12,22 +17,22 @@ LogTable::LogTable(model::db::Driver &driver)
 {
 }
 
-//
-//LogTable::Map LogTable::getAll() {
-//    Map all;
-//    QSqlQuery query;
-//
-//    qDebug() << query.exec("SELECT * FROM log");
-//    QSqlRecord rec = query.record();
-//
-//    while (query.next()) {
-//        qDebug() << "id "           << query.value(0);
-//        qDebug() << "timestamp "    << query.value(1).toString();
-//        qDebug() << "priority "     << query.value(2).toString();
-//        qDebug() << "text "         << query.value(3).toString();
-//    }
-//
-//    return all;
-//}
+
+model::Log::map LogTable::getAll() {
+    model::Log::map all;
+
+    QSqlQuery query;
+    query.exec("SELECT * FROM log");
+
+    while (query.next()) {
+        auto rec = query.record();
+        all.insert(
+                std::make_pair(
+                        query.value(0).toUInt()
+                        , std::make_shared<model::Log>(rec)));
+    }
+
+    return all;
+}
 
 }

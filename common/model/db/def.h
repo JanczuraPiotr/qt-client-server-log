@@ -5,7 +5,7 @@
 #ifndef QT_LOG_MODEL_DEF_H
 #define QT_LOG_MODEL_DEF_H
 
-namespace model::def {
+namespace model {
 
 typedef unsigned int AutoId;
 
