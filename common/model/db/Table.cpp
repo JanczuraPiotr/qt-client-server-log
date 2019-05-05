@@ -12,5 +12,13 @@ Table::Table(model::db::Driver &dbDriver)
 {
 }
 
+//model::AutoId Table::add(QSqlRecord &record) {
+//    model::AutoId id = 0;
+////    QSqlQuery query;
+////    QSqlQueryModel *model= new QSqlQueryModel();
+////
+////    log->generic();
+//    return id;
+//}
 
 }

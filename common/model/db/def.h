@@ -8,6 +8,7 @@
 namespace model {
 
 typedef unsigned int AutoId;
+typedef std::shared_ptr<QSqlRecord> GenericRec;
 
 }
 

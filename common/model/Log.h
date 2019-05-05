@@ -23,25 +23,24 @@ public:
     typedef std::shared_ptr<Log> ptr;
     typedef std::map<model::AutoId, ptr> map;
 
-    explicit Log(QSqlRecord &rec);
+    Log(QSqlRecord &rec);
+    Log(const QDateTime &dateTime, common::LogPriority logPriority, const common::LogMsg &logMsg);
     ~Log() override = default;
+
+    void setDateTime(const QDateTime &dateTime);
+    void setLogPriority(common::LogPriority logPriority);
+    void setText(const common::LogMsg &logMsg);
 
     QDateTime getDateTime();
     common::LogPriority getPriority();
     common::LogMsg getText();
 
+protected:
 private:
-
+    Log() = default;
 };
 
 
-
-
-
-
-
 }
-
-
 
 #endif //QT_LOG_LOG_H

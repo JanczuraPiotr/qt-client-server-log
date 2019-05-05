@@ -22,7 +22,8 @@ class LogTable : public model::db::Table {
 public:
 
     explicit LogTable(model::db::Driver &driver);
-    model::Log::map getAll();
+//    model::AutoId add(model::Log::ptr log);
+    static model::Log::map getAll();
 
 };
 

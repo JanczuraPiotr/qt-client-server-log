@@ -17,6 +17,9 @@ LogTable::LogTable(model::db::Driver &driver)
 {
 }
 
+//model::AutoId LogTable::add(model::Log::ptr log) {
+//    Table::add(log->generic());
+//}
 
 model::Log::map LogTable::getAll() {
     model::Log::map all;

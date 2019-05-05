@@ -7,6 +7,10 @@
 
 namespace model::db {
 
+Record::Record()
+    : rec()
+{
+}
 
 Record::Record(QSqlRecord &rec)
     : rec(rec)

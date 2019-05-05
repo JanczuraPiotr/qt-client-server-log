@@ -7,8 +7,15 @@
 
 namespace common {
 
-    typedef int LogPriority;
-    typedef QString LogMsg;
+enum class LogPriority {
+    ok,
+    info,
+    warning,
+    error
+};
+
+typedef QString LogMsg;
+
 }
 
 #endif //QT_LOG_COMMON_DEF_H

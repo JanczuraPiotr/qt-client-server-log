@@ -27,10 +27,6 @@ Driver::Driver(const QString &host, const QString &dbName, const QString &dbUser
     }
 }
 
-QSqlDatabase &Driver::res() {
-    return db;
-}
-
 Driver::~Driver() = default;
 
 }

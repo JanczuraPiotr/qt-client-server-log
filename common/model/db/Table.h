@@ -5,6 +5,8 @@
 #ifndef QT_LOG_TABLE_H
 #define QT_LOG_TABLE_H
 
+#include <memory>
+
 #include "common/model/db/Driver.h"
 #include "common/model/db/Record.h"
 #include "common/model/db/def.h"
@@ -16,6 +18,8 @@ public:
 
     explicit Table(model::db::Driver &driver);
     virtual ~Table() = default;
+
+//    static model::AutoId add(QSqlRecord &record);
 
 protected:
     model::db::Driver &dbDriver;

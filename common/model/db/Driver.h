@@ -16,8 +16,6 @@ public:
     static Driver& i();
     virtual ~Driver();
 
-    QSqlDatabase &res();
-
 private:
     Driver(const QString& host, const QString& dbName, const QString& dbUser, const QString& dbPassword);
 

@@ -23,8 +23,11 @@ public:
     QSqlRecord &generic();
 
 protected:
+
     explicit Record(QSqlRecord &rec);
-    QSqlRecord rec;
+    Record();
+
+    QSqlRecord rec; // @task > std::shared_ptr<QSglRecord>
 
 
 };
