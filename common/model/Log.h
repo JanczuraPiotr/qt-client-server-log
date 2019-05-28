@@ -9,7 +9,9 @@
 
 #include <QSqlQuery>
 #include <QSqlRecord>
-#include <common/def.h>
+#include <QDateTime>
+
+#include "common/def.h"
 
 #include "common/model/db/def.h"
 #include "common/model/db/Record.h"

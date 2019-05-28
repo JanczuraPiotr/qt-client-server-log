@@ -17,7 +17,7 @@ Record::Record(QSqlRecord &rec)
 {
 }
 
-QSqlRecord &Record::generic() {
+QSqlRecord Record::qSqlRecord() {
     return rec;
 }
 

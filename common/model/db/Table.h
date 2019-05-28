@@ -19,7 +19,7 @@ public:
     explicit Table(model::db::Driver &driver);
     virtual ~Table() = default;
 
-//    static model::AutoId add(QSqlRecord &record);
+    static model::AutoId add(QSqlRecord record);
 
 protected:
     model::db::Driver &dbDriver;

@@ -27,9 +27,9 @@ int main(int argc, char **argv) {
             , common::LogPriority::ok
             , msg);
 
-    // @work all.add(log);
 
     model::Log::map all = logTable.getAll();
+    logTable.add(log);
 
     for (const auto& it : all) {
         std::cout << it.first << " -> "

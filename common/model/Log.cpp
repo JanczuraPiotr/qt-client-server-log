@@ -3,14 +3,16 @@
 //
 #include "Log.h"
 
-#include <QSqlQuery>
-#include <QSqlRecord>
+#include <iostream>
 
 namespace model {
 
 Log::Log(QSqlRecord &rec)
     : model::db::Record(rec)
 {
+    rec.insert(1, QSqlField("timestamp", QVariant::DateTime));
+    rec.insert(2, QSqlField("priority",  QVariant::Int));
+    rec.insert(3, QSqlField("text",      QVariant::TextFormat));
 }
 
 Log::Log(const QDateTime &dateTime, common::LogPriority logPriority, const common::LogMsg &logMsg)
@@ -21,8 +23,9 @@ Log::Log(const QDateTime &dateTime, common::LogPriority logPriority, const commo
     setText(logMsg);
 }
 
-void Log::setDateTime(const QDateTime &dateTime) {
-    rec.setValue(1,dateTime);
+void Log::setDateTime(const QDateTime &dateTime)
+{
+    rec.setValue(1, dateTime);
 }
 
 void Log::setLogPriority(common::LogPriority logPriority) {

@@ -7,8 +7,6 @@
 #include <memory>
 #include <map>
 
-#include "common/model/Log.h"
-
 namespace model {
 
 
@@ -17,9 +15,9 @@ LogTable::LogTable(model::db::Driver &driver)
 {
 }
 
-//model::AutoId LogTable::add(model::Log::ptr log) {
-//    Table::add(log->generic());
-//}
+model::AutoId LogTable::add(model::Log::ptr log) {
+    return Table::add(log->qSqlRecord());
+}
 
 model::Log::map LogTable::getAll() {
     model::Log::map all;

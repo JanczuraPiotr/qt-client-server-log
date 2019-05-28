@@ -11,23 +11,25 @@
 #include <QSqlRecord>
 
 #include "common/model/db/def.h"
-#include "common/model/db/Table.h"
+#include "common/model/db/Table.h" // ?
 
 namespace model::db {
 
 class Record {
 
 public:
+    typedef std::shared_ptr<Record> ptr;
+    typedef std::map<model::AutoId, ptr> map;
 
     virtual ~Record() = default;
-    QSqlRecord &generic();
+    QSqlRecord qSqlRecord();
 
 protected:
 
     explicit Record(QSqlRecord &rec);
     Record();
 
-    QSqlRecord rec; // @task > std::shared_ptr<QSglRecord>
+    QSqlRecord rec;
 
 
 };
