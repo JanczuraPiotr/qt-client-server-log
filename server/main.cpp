@@ -4,7 +4,7 @@
 
 #include <QCoreApplication>
 #include <iostream>
-#include <common/model/LogTable.h>
+//#include <common/model/LogTable.h>
 
 #include "config.h"
 
