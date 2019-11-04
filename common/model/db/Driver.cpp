@@ -4,7 +4,7 @@
 #include "Driver.h"
 
 #include <QtCore/QString>
-#include "server/config.h"
+#include "server/ConfigFile.h"
 
 namespace model::db {
 

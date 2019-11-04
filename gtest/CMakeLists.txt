@@ -3,8 +3,6 @@ add_subdirectory(gtest-lib/googletest)
 include_directories(${gtest-lib/googletest/googlemock/include/gmock/gmock.h}/include ${gtest_SOURCE_DIR})
 include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
-set(CMAKE_PREFIX_PATH "/opt/Qt5.12.4/5.12.4/gcc_64")
-
 add_executable(gtest_run main.cpp
         )
 
