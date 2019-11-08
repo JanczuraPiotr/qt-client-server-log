@@ -19,9 +19,6 @@ public:
 
     void initStructure();
 
-    virtual Params logParams() = 0;
-    virtual QSqlRecord logRecord() = 0;
-
 protected:
 
     virtual bool isLog() = 0;

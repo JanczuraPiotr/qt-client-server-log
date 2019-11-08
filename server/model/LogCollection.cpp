@@ -2,15 +2,30 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#include "LogTable.h"
+#include "LogCollection.h"
 
 namespace model {
 
-
-LogTable::LogTable(model::db::Driver &driver)
-    : Table(driver)
+LogCollection::LogCollection()
+    : Collection()
 {
+
 }
+
+QSqlRecord LogCollection::genericRecord()
+{
+    QSqlRecord rec;
+    rec.append(QSqlField("timestamp",  QVariant::DateTime));
+    rec.append(QSqlField("priority",   QVariant::Int));
+    rec.append(QSqlField("text",       QVariant::TextFormat));
+    return rec;
+}
+
+LogRecord::ptr LogCollection::get()
+{
+    return model::LogRecord::makeShared(genericRecord());
+}
+
 
 //
 //LogTable::Map LogTable::getAll() {

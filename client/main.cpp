@@ -7,10 +7,6 @@
 #include <QDebug>
 
 int main(int argc, char **argv) {
-    QCoreApplication app(argc, argv);
-    qDebug() << "client ";
-    std::cout << "client" << std::endl;
-    return 0;
 }
 
 // @task main window

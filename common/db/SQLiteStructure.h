@@ -17,10 +17,6 @@ public:
     SQLiteStructure() = default;
     ~SQLiteStructure() override = default;
 
-    Params logParams() override;
-    QSqlRecord logRecord() override ;
-
-
 protected: // methods
     bool isLog() override;
     void initLog() override;

@@ -34,23 +34,4 @@ void SQLiteStructure::initLog()
     );
 }
 
-cm::Params SQLiteStructure::logParams()
-{
-    cm::Params params = {
-            {"timestamp",""},
-            {"priority",""},
-            {"text",""},
-    };
-    return params;
-}
-
-QSqlRecord SQLiteStructure::logRecord()
-{
-    QSqlRecord rec;
-    rec.append(QSqlField("timestamp",  QVariant::DateTime));
-    rec.append(QSqlField("priority",   QVariant::Int));
-    rec.append(QSqlField("text",       QVariant::TextFormat));
-    return rec;
-}
-
 }

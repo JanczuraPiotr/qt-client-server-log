@@ -43,26 +43,24 @@ bool Db::init(
     }
 }
 
-Db::~Db() {
+Db::~Db()
+{
     Db::close();
 }
 
-void Db::close() {
-//    if (Db::conn) {
-//        Db::conn->close();
-//
-//        delete Db::conn;
-//        delete Db::comm;
-//        delete Db::def;
-//        Db::conn = nullptr;
-//    }
+void Db::close()
+{
+    if (Db::connection_) {
+        Db::connection()->close();
+        delete Db::connection_;
+        Db::connection_ = nullptr;
+    }
 }
 
 Connection *Db::connection()
 {
     return Db::connection_;
 }
-
 
 Structure *Db::structure()
 {
