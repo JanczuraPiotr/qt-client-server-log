@@ -7,13 +7,6 @@
 #include <QDebug>
 
 int main(int argc, char **argv) {
+    std::ignore = argc;
+    std::ignore = argv;
 }
-
-// @task main window
-// @task table
-// @task table add
-// @task table update
-// @task table delete
-// @task table search
-// @task client socket
-// @task common push-pull transporter (serializacja ?)

@@ -8,12 +8,12 @@
 
 namespace cm::db {
 
-Collection::Collection()
+Collection::Collection() noexcept
     : connection(Db::connection())
 {
 }
 
-AutoId Collection::lastInsertId()
+AutoId Collection::lastInsertId() noexcept
 {
     return connection->lastInsertId();
 }

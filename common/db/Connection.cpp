@@ -15,6 +15,9 @@ Connection::Connection(
         , const QString &dbPass)
         : database_(database)
         , dbName_(dbName)
+        , lastInsertId_(0)
+        , sqlError_(0)
+
 {
     database.setDatabaseName(dbName);
     database.setHostName(dbHost);
@@ -24,7 +27,8 @@ Connection::Connection(
     database.open();
 }
 
-void Connection::close() {
+void Connection::close() noexcept
+{
     database_.close();
     QSqlDatabase::removeDatabase(dbName_);
 }

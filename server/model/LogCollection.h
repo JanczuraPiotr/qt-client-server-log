@@ -20,11 +20,11 @@ class LogRecord;
 class LogCollection : public cm::db::Collection {
 public:
     std::map<cm::AutoId, model::LogRecord::ptr> map;
-    explicit LogCollection();
+    explicit LogCollection() noexcept ;
 
-    QSqlRecord genericRecord() override;
+    [[nodiscard]] QSqlRecord genericRecord() noexcept override;
 
-    LogRecord::ptr get();
+    [[nodiscard]] LogRecord::ptr get() noexcept ;
 
 
     //db::Map getAll();

@@ -23,8 +23,8 @@ public:
             , const QString &dbUser
             , const QString &dbPass);
 
-    QSqlQuery execute(const QString &command) override;
-    cm::AutoId lastInsertId() override;
+    [[nodiscard]] QSqlQuery execute(const QString &command) override;
+    [[nodiscard]] cm::AutoId lastInsertId() override;
 
 public: // lock
 

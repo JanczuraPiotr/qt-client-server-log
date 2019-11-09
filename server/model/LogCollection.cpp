@@ -1,18 +1,20 @@
 //
 // Created by piotr@janczura.pl on 2019.04.18
 //
-
+#include <iostream>
+#include <common/exception/general.h>
 #include "LogCollection.h"
 
 namespace model {
 
-LogCollection::LogCollection()
+LogCollection::LogCollection() noexcept
     : Collection()
+    , map()
 {
 
 }
 
-QSqlRecord LogCollection::genericRecord()
+QSqlRecord LogCollection::genericRecord() noexcept
 {
     QSqlRecord rec;
     rec.append(QSqlField("timestamp",  QVariant::DateTime));
@@ -21,8 +23,9 @@ QSqlRecord LogCollection::genericRecord()
     return rec;
 }
 
-LogRecord::ptr LogCollection::get()
+LogRecord::ptr LogCollection::get() noexcept
 {
+    genericRecord();
     return model::LogRecord::makeShared(genericRecord());
 }
 

@@ -31,7 +31,7 @@ QSqlQuery SQLiteConnection::execute(const QString &command)
         lastInsertId_ = 0;
     } else {
         if (query.lastInsertId().isValid()) {
-            lastInsertId_ = query.lastInsertId().toULongLong();
+            lastInsertId_ = query.lastInsertId().toUInt();
         }
     }
     return query;

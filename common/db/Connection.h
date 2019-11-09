@@ -17,27 +17,28 @@ namespace cm::db {
 class Connection {
 public:
 
-    explicit Connection(
-            QSqlDatabase database
-            , const QString &dbHost
-            , cm::TCPPort dbPort
-            , const QString &dbName
-            , const QString &dbUser
-            , const QString &dbPass);
+explicit Connection(
+        QSqlDatabase database
+        , const QString &dbHost
+        , cm::TCPPort dbPort
+        , const QString &dbName
+        , const QString &dbUser
+        , const QString &dbPass);
 
-    virtual ~Connection() = default;
+virtual ~Connection() = default;
 
-    virtual QSqlQuery execute(const QString &command) = 0;
-    virtual cm::AutoId lastInsertId() = 0;
-    void close();
+[[nodiscard]] virtual QSqlQuery execute(const QString &command) = 0;
+[[nodiscard]] virtual cm::AutoId lastInsertId() = 0;
+void close() noexcept ;
 
-    protected: // attributes
+protected: // attributes
 
-        QSqlDatabase database_;
-        cm::AutoId lastInsertId_ = 0;
-        QSqlError sqlError_;
-        QString dbName_;
+    QSqlDatabase database_;
+    QString dbName_;
+    cm::AutoId lastInsertId_ = 0;
+    QSqlError sqlError_;
 
-    };
+};
+
 }
 #endif //QT_CLIENT_SERVER_LOG_CONNECTION_H

@@ -11,6 +11,19 @@
 
 namespace server {
 
+ConfigFile::ConfigFile()
+    : configDir("")
+    , settings(nullptr)
+    , dbHost("")
+    , dbPort(0)
+    , dbType("")
+    , dbName("")
+    , dbUser("")
+    , dbPass("")
+{
+
+}
+
 ConfigFile *ConfigFile::instance()
 {
     static ConfigFile &&configFile = ConfigFile::instanceInit();
@@ -60,7 +73,7 @@ void ConfigFile::initFolderForConfigFile()
 {
     setConfigDir(getDefaultConfigDir());
     createConfigDir();
-    setSettings(new QSettings(getPathFileIni(), QSettings::IniFormat, this));
+    setSettings(new QSettings(getPathFileIni(), QSettings::IniFormat));
 }
 
 void ConfigFile::setConfigDir(const QString &configDir)

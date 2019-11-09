@@ -25,12 +25,6 @@ protected: // methods
     LogRecord();
     explicit LogRecord(const QSqlRecord& rec);
 
-private: // locks
-
-    LogRecord(const LogRecord &other) = default;
-    LogRecord(LogRecord &&other) = default;
-    LogRecord& operator = (const LogRecord& other) = default;
-    LogRecord& operator = (LogRecord&& other) = default;
 };
 
 }

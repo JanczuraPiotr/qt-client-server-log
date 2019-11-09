@@ -13,13 +13,12 @@ namespace cm::db {
 class Collection {
 public:
 
-    explicit Collection();
+    explicit Collection() noexcept ;
     virtual ~Collection() = default;
 
-    virtual Params params() = 0;
-    virtual QSqlRecord genericRecord() = 0;
-
-    virtual cm::AutoId lastInsertId();
+    [[nodiscard]] virtual Params params() = 0;
+    [[nodiscard]] virtual QSqlRecord genericRecord() = 0;
+    [[nodiscard]] virtual cm::AutoId lastInsertId() noexcept ;
 
 protected:
 

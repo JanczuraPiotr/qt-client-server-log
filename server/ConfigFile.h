@@ -12,8 +12,7 @@
 
 namespace server {
 
-class ConfigFile : public QObject {
-    Q_OBJECT
+class ConfigFile {
 public:
     static ConfigFile *instance();
     virtual ~ConfigFile() = default;
@@ -27,7 +26,7 @@ public:
 
 private: // methods
 
-    ConfigFile() = default;
+    ConfigFile();
     static ConfigFile && instanceInit();
     void createConfigDir();
     QString getDefaultConfigDir();
@@ -54,7 +53,15 @@ private: // config
     QString dbName;
     QString dbUser;
     QString dbPass;
+
+private: // locks
+
+    ConfigFile(const ConfigFile &other) = default;
+    ConfigFile(ConfigFile &&other) = default;
+    ConfigFile& operator = (const ConfigFile& other) = default;
+    ConfigFile& operator = (ConfigFile&& other) = default;
 };
+
 }
 
 
