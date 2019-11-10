@@ -29,7 +29,7 @@ void SQLiteStructure::initLog()
             "  id           INTEGER   PRIMARY KEY AUTOINCREMENT, "
             "  timestamp    DATETIME  DEFAULT  CURRENT_TIMESTAMP,"
             "  priority     SMALLINT  DEFAULT  0,"
-            "  text         TEXT      NOT NULL"
+            "  message      TEXT      NOT NULL"
             ")"
     );
 }

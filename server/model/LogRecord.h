@@ -2,10 +2,13 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef QT_LOG_COLLECTION_H
-#define QT_LOG_COLLECTION_H
+#ifndef QT_LOG_RECORD_H
+#define QT_LOG_RECORD_H
 
 #include <memory>
+
+#include <QDateTime>
+
 #include "common/db/Record.h"
 
 namespace model {
@@ -19,10 +22,17 @@ public:
 
     ~LogRecord() override = default;
 
+    void timestamp(const QDateTime &dateTime);
+    void priority(cm::LogPriority logPriority);
+    void message(const cm::Message &message);
+
+    QDateTime timestamp();
+    cm::LogPriority priority();
+    cm::Message message();
+
 protected: // methods
 
     static ptr makeShared(const QSqlRecord& rec);
-    LogRecord();
     explicit LogRecord(const QSqlRecord& rec);
 
 };
@@ -31,4 +41,4 @@ protected: // methods
 
 
 
-#endif //QT_LOG_COLLECTION_H
+#endif

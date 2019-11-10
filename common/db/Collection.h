@@ -16,7 +16,6 @@ public:
     explicit Collection() noexcept ;
     virtual ~Collection() = default;
 
-    [[nodiscard]] virtual Params params() = 0;
     [[nodiscard]] virtual QSqlRecord genericRecord() = 0;
     [[nodiscard]] virtual cm::AutoId lastInsertId() noexcept ;
 
@@ -25,7 +24,6 @@ protected:
     Connection *connection;
 
 private: // locks
-
     Collection(const Collection &other) noexcept = default;
     Collection(Collection &&other) noexcept = default;
     Collection& operator = (const Collection& other) noexcept = default;

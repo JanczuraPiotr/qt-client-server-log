@@ -6,11 +6,6 @@
 
 namespace cm::db {
 
-Record::Record()
-    : rec()
-{
-}
-
 Record::Record(const QSqlRecord &rec)
     : rec(rec)
 {

@@ -1,8 +1,7 @@
 //
 // Created by piotr@janczura.pl on 2019.04.18
 //
-#include <iostream>
-#include <common/exception/general.h>
+
 #include "LogCollection.h"
 
 namespace model {
@@ -19,16 +18,21 @@ QSqlRecord LogCollection::genericRecord() noexcept
     QSqlRecord rec;
     rec.append(QSqlField("timestamp",  QVariant::DateTime));
     rec.append(QSqlField("priority",   QVariant::Int));
-    rec.append(QSqlField("text",       QVariant::TextFormat));
+    rec.append(QSqlField("message",    QVariant::TextFormat));
     return rec;
 }
 
-LogRecord::ptr LogCollection::get() noexcept
+LogRecord::ptr LogCollection::get(cm::AutoId autoId) noexcept
 {
-    genericRecord();
+    std::ignore = autoId;
     return model::LogRecord::makeShared(genericRecord());
 }
 
+cm::AutoId LogCollection::insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message)
+{
+    qDebug() << timestamp << priority << message;
+    return 0;
+}
 
 //
 //LogTable::Map LogTable::getAll() {

@@ -4,7 +4,7 @@ project(${SERVER})
 
 add_executable(${SERVER}
         main.cpp
-        ConfigFile.cpp                  ConfigFile.h
+        ConfigFile.cpp                      ConfigFile.h
         ../common/exception/general.cpp     ../common/exception/general.h
 
         ../common/db/Db.cpp                 ../common/db/Db.h
@@ -17,7 +17,7 @@ add_executable(${SERVER}
 
         model/LogCollection.cpp             model/LogCollection.h
         model/LogRecord.cpp                 model/LogRecord.h
-        )
+        FakeEvent.cpp FakeEvent.h)
 
 target_link_libraries(${SERVER}
         Qt5::Core

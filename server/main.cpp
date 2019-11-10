@@ -10,6 +10,7 @@
 #include "common/exception/general.h"
 
 #include "ConfigFile.h"
+#include "FakeEvent.h"
 
 int main(int argc, char **argv) {
     try {
@@ -23,6 +24,8 @@ int main(int argc, char **argv) {
                 , config->getDbName()
                 , config->getDbUser()
                 , config->getDbPass());
+
+        server::FakeEvent::instance().start();
 
     //    model::LogTable logTable;
     //    model::LogTable::Map all = logTable.getAll();

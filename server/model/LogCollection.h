@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef QT_LOG_LOG_COLLECTION_H
-#define QT_LOG_LOG_COLLECTION_H
+#ifndef QT_LOG_LOG_LogCollection_H
+#define QT_LOG_LOG_LogCollection_H
 
 #include <map>
 
@@ -22,9 +22,10 @@ public:
     std::map<cm::AutoId, model::LogRecord::ptr> map;
     explicit LogCollection() noexcept ;
 
-    [[nodiscard]] QSqlRecord genericRecord() noexcept override;
+    cm::AutoId insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message);
 
-    [[nodiscard]] LogRecord::ptr get() noexcept ;
+    [[nodiscard]] QSqlRecord genericRecord() noexcept override;
+    [[nodiscard]] LogRecord::ptr get(cm::AutoId autoId) noexcept ;
 
 
     //db::Map getAll();
@@ -35,4 +36,4 @@ public:
 
 
 
-#endif //QT_LOG_LOG_COLLECTION_H
+#endif //QT_LOG_LOG_LogCollection_H

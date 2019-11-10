@@ -30,7 +30,6 @@ public:
 
 protected: // methods
 
-    Record();
     explicit Record(const QSqlRecord &rec);
 
 protected: // attributes
@@ -39,6 +38,7 @@ protected: // attributes
 
 private: // locks
 
+    Record() = default;
     Record(const Record &other) = default;
     Record(Record &&other) = default;
     Record& operator = (const Record& other) = default;
