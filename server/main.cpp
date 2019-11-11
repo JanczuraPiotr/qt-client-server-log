@@ -9,7 +9,7 @@
 #include "common/db/Db.h"
 #include "common/exception/general.h"
 
-#include "ConfigFile.h"
+#include "server/app/ConfigFile.h"
 #include "FakeEvent.h"
 
 int main(int argc, char **argv) {
@@ -26,11 +26,6 @@ int main(int argc, char **argv) {
                 , config->getDbPass());
 
         server::FakeEvent::instance().start();
-
-    //    model::LogTable logTable;
-    //    model::LogTable::Map all = logTable.getAll();
-
-        std::cout << "server" << std::endl;
         return app.exec();
 
     } catch (ex::General &ex) {

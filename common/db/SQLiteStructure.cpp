@@ -7,6 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlField>
 #include <QVariant>
+#include <QDebug>
 
 namespace cm::db {
 
@@ -25,7 +26,7 @@ void SQLiteStructure::initLog()
 {
     QSqlQuery query;
     query.exec(
-            "create table config ( "
+            "create table log ( "
             "  id           INTEGER   PRIMARY KEY AUTOINCREMENT, "
             "  timestamp    DATETIME  DEFAULT  CURRENT_TIMESTAMP,"
             "  priority     SMALLINT  DEFAULT  0,"

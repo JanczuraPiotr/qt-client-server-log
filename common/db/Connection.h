@@ -27,9 +27,14 @@ explicit Connection(
 
 virtual ~Connection() = default;
 
-[[nodiscard]] virtual QSqlQuery execute(const QString &command) = 0;
-[[nodiscard]] virtual cm::AutoId lastInsertId() = 0;
+virtual cm::AutoId insert(const QString &command, const cm::Params &params) = 0;
+[[nodiscard]] virtual cm::AutoId lastInsertId();
+
 void close() noexcept ;
+
+protected: // methods
+
+    virtual void lastInsertId(cm::AutoId lastInsertId);
 
 protected: // attributes
 

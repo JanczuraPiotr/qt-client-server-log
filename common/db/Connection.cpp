@@ -33,4 +33,14 @@ void Connection::close() noexcept
     QSqlDatabase::removeDatabase(dbName_);
 }
 
+cm::AutoId Connection::lastInsertId()
+{
+    return lastInsertId_;
+}
+
+void Connection::lastInsertId(cm::AutoId lastInsertId)
+{
+     lastInsertId_ = lastInsertId;
+}
+
 }

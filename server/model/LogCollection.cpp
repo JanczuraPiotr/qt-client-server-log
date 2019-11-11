@@ -10,7 +10,6 @@ LogCollection::LogCollection() noexcept
     : Collection()
     , map()
 {
-
 }
 
 QSqlRecord LogCollection::genericRecord() noexcept
@@ -30,8 +29,13 @@ LogRecord::ptr LogCollection::get(cm::AutoId autoId) noexcept
 
 cm::AutoId LogCollection::insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message)
 {
-    qDebug() << timestamp << priority << message;
-    return 0;
+    QString query = "INSERT INTO log (timestamp, priority, message) VALUES (:timestamp,:priority,:message)";
+    cm::Params params = {
+            {":timestamp", timestamp},
+            {":priority", priority},
+            {":message", message}
+    };
+    return connection->insert(query, params);
 }
 
 //

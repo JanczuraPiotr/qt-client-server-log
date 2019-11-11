@@ -12,7 +12,7 @@
 
 #include "common/def.h"
 #include "common/db/Collection.h"
-#include "LogRecord.h"
+#include "server/model/LogRecord.h"
 
 namespace model {
 
@@ -29,6 +29,10 @@ public:
 
 
     //db::Map getAll();
+
+private: // attributes
+
+    server::SignalBus &signalBus;
 
 };
 
