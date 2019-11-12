@@ -5,12 +5,14 @@
 #include <iostream>
 
 #include <QCoreApplication>
+#include <QObject>
 
 #include "common/db/Db.h"
 #include "common/exception/general.h"
 
 #include "server/app/ConfigFile.h"
-#include "FakeEvent.h"
+#include "server/service/NetConnection.h"
+#include "server/FakeEvent.h"
 
 int main(int argc, char **argv) {
     try {
@@ -25,10 +27,20 @@ int main(int argc, char **argv) {
                 , config->getDbUser()
                 , config->getDbPass());
 
-        server::FakeEvent::instance().start();
+        auto &fakeEvent = server::FakeEvent::instance();
+        auto &netConnection = server::service::NetConnection::instance();
+
+        QObject::connect(&fakeEvent
+                , &server::FakeEvent::insertedLog
+                , &netConnection
+                , &server::service::NetConnection::insertedLog);
+
+        fakeEvent.start();
+        netConnection.start();
+
         return app.exec();
 
-    } catch (ex::General &ex) {
+    } catch (cm::ex::General &ex) {
         std::cerr << (ex.type() + " | " + ex.msg()).toStdString();
     } catch (std::exception &ex) {
         std::cerr << ex.what();
@@ -36,6 +48,3 @@ int main(int argc, char **argv) {
         std::cerr << "Unknown exception";
     }
 }
-
-
-// @task server socket

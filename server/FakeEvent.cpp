@@ -4,8 +4,12 @@
 
 #include "FakeEvent.h"
 
+#include <iostream>
+
 #include <QRandomGenerator>
 #include <QString>
+#include <server/action/InsertLog.h>
+#include <common/db/exception.h>
 
 namespace server {
 
@@ -17,7 +21,7 @@ FakeEvent &FakeEvent::instance()
 
 FakeEvent::FakeEvent()
     : secTimer()
-    , logCollection()
+    , insertLog()
 {}
 
 void FakeEvent::start()
@@ -30,11 +34,27 @@ void FakeEvent::start()
 void FakeEvent::cron1sec()
 {
     QDateTime timestamp = QDateTime::currentDateTime();
-    auto logPriority = static_cast<cm::LogPriority>(QRandomGenerator::global()->bounded(0, 10));
+    auto logPriority = static_cast<cm::LogPriority>(QRandomGenerator::global()->bounded(0, 3));
     cm::Message message = "msg-" + timestamp.toString("yyyyMMddhhmmss") + "/" + QString::number(static_cast<short>(logPriority));
-//    qDebug() << message;
-//    kolekcje obsłużyć za pomocą servisu
-//    logCollection.insert(timestamp, logPriority, message);
+
+    try {
+
+        insertLog.timestamp(timestamp);
+        insertLog.logPriority(logPriority);
+        insertLog.message(message);
+        insertLog.make();
+
+        emit insertedLog(
+                insertLog.id()
+                , insertLog.timestamp()
+                , insertLog.logPriority()
+                , insertLog.message()
+                );
+
+    } catch (cm::db::ex::General &ex) {
+        std::cerr << ex.msg().toStdString();
+    }
+
 }
 
 }

@@ -4,11 +4,13 @@
 
 #include "general.h"
 
-namespace ex {
+#include <utility>
 
-General::General(const QString &msg)
+namespace cm::ex {
+
+General::General(QString msg)
     : exception()
-    , msg_(msg)
+    , msg_(std::move(msg))
 {
 }
 

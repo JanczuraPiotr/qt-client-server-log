@@ -16,7 +16,7 @@ class SQLiteConnection : public Connection {
 public:
 
     explicit SQLiteConnection(
-            QSqlDatabase database
+            const QSqlDatabase& database
             , const QString &dbHost
             , cm::TCPPort dbPort
             , const QString &dbName

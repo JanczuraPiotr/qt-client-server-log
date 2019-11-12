@@ -8,13 +8,13 @@
 #include <exception>
 #include <QString>
 
-namespace ex {
+namespace cm::ex {
 
 class General : public std::exception {
 
 public:
 
-    explicit General(const QString &msg);
+    explicit General(QString msg);
     ~General() override = default;
     [[nodiscard]] QString msg() const;
     [[nodiscard]] virtual QString type() const;
