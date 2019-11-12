@@ -8,7 +8,7 @@
 #include <QTimer>
 #include <QObject>
 
-#include "model/LogCollection.h"
+#include "server/action/InsertLog.h"
 
 namespace server {
 
@@ -16,7 +16,7 @@ class FakeEvent : public QObject {
     Q_OBJECT
 public:
     static FakeEvent &instance();
-    virtual ~FakeEvent() = default;
+    ~FakeEvent() override = default;
 
     void start();
 
@@ -24,14 +24,29 @@ public slots:
 
     void cron1sec();
 
+signals:
+
+    void insertedLog(
+            cm::AutoId id
+            , const QDateTime &dateTime
+            , cm::LogPriority logPriority
+            , const cm::Message &message);
+
 private: // methods
 
     explicit FakeEvent();
 
+
 private: // attributes
 
     QTimer secTimer;
-    model::LogCollection logCollection;
+    server::action::InsertLog insertLog;
+
+public: // lock
+    FakeEvent(const FakeEvent &) = delete;
+    FakeEvent(FakeEvent &&) = delete;
+    FakeEvent &operator = (const FakeEvent&) = delete;
+    FakeEvent &operator = (FakeEvent &&) = delete;
 
 };
 

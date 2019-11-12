@@ -41,7 +41,6 @@ protected: // attributes
     QSqlDatabase database_;
     QString dbName_;
     cm::AutoId lastInsertId_ = 0;
-    QSqlError sqlError_;
 
 };
 

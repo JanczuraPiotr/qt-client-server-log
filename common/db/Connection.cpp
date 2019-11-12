@@ -16,7 +16,6 @@ Connection::Connection(
         : database_(database)
         , dbName_(dbName)
         , lastInsertId_(0)
-        , sqlError_(0)
 
 {
     database.setDatabaseName(dbName);

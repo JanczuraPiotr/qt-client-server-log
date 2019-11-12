@@ -5,13 +5,14 @@
 #include "SQLiteConnection.h"
 
 #include <QSqlQuery>
-#include <QSqlError>
 #include <QDebug>
+
+#include "common/db/exception.h"
 
 namespace cm::db {
 
 SQLiteConnection::SQLiteConnection(
-        QSqlDatabase database
+        const QSqlDatabase& database
         , const QString &dbHost
         , cm::TCPPort dbPort
         , const QString &dbName
@@ -24,15 +25,14 @@ SQLiteConnection::SQLiteConnection(
 
 cm::AutoId SQLiteConnection::insert(const QString &command, const cm::Params &params)
 {
-    sqlError_.setType(QSqlError::NoError);
     QSqlQuery query;
     query.prepare(command);
     for(auto &param : params) {
         query.bindValue(param.first, param.second);
     }
     if ( ! query.exec()) {
-        sqlError_ = query.lastError();
         lastInsertId(0);
+        throw cm::db::ex::General(query.lastError().text());
     } else {
         if (query.lastInsertId().isValid()) {
             lastInsertId(query.lastInsertId().toUInt());

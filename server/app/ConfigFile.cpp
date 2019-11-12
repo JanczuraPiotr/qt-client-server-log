@@ -44,7 +44,7 @@ void ConfigFile::createConfigDir()
     QDir dir(getConfigDir());
     if (!dir.exists()) {
         if (!dir.mkdir(getConfigDir()) ){
-            throw ex::DirNoExist(getConfigDir());
+            throw cm::ex::DirNoExist(getConfigDir());
         }
     }
 }
