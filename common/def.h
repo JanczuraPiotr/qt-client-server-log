@@ -17,6 +17,14 @@ typedef std::map<ColumnName, QVariant> Params;
 typedef short LogPriority;
 typedef QString Message;
 
+enum class LogPriority {
+    ok,
+    info,
+    warning,
+    error
+};
+
+
 }
 
 #endif //QT_LOG_COMMON_DEF_H
