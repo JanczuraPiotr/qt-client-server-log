@@ -6,41 +6,35 @@
 
 #include <QCoreApplication>
 
-#include "config.h"
-#include "common/def.h"
-#include "common/model/Log.h"
-#include "common/model/LogTable.h"
+#include "common/db/Db.h"
+#include "common/exception/general.h"
 
+#include "server/app/ConfigFile.h"
+#include "FakeEvent.h"
 
 int main(int argc, char **argv) {
-    QCoreApplication app(argc, argv);
+    try {
 
-    model::LogTable logTable(model::db::Driver::i());
-    QDateTime dateTime = QDateTime::currentDateTime();
-    common::LogMsg msg("test " + dateTime.toString("yyyy-MM-dd hh:mm:ss"));
+        QCoreApplication app(argc, argv);
+        server::ConfigFile *config = server::ConfigFile::instance();
+        cm::db::Db::init(
+                config->getDbHost()
+                , config->getDbPort()
+                , config->getDbType()
+                , config->getDbName()
+                , config->getDbUser()
+                , config->getDbPass());
 
-    std::cout << dateTime.toString("yyyy-MM-dd hh:mm:ss").toStdString() << std::endl;
-    std::cout << msg.toStdString() << std::endl;
+        server::FakeEvent::instance().start();
+        return app.exec();
 
-    model::Log::ptr log = std::make_shared<model::Log>(
-            dateTime
-            , common::LogPriority::ok
-            , msg);
-
-
-    model::Log::map all = logTable.getAll();
-    logTable.add(log);
-
-    for (const auto& it : all) {
-        std::cout << it.first << " -> "
-                << it.second->getDateTime().toString("yyyy-MM-dd hh:mm:ss").toStdString() << " "
-                << static_cast<int>(it.second->getPriority()) << " "
-                << it.second->getText().toStdString()
-                << std::endl;
+    } catch (ex::General &ex) {
+        std::cerr << (ex.type() + " | " + ex.msg()).toStdString();
+    } catch (std::exception &ex) {
+        std::cerr << ex.what();
+    } catch (...) {
+        std::cerr << "Unknown exception";
     }
-
-    std::cout << "server" << std::endl;
-    return 0;
 }
 
 
