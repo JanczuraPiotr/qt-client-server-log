@@ -32,7 +32,7 @@ cm::AutoId LogCollection::insert(QDateTime timestamp, cm::LogPriority priority, 
     QString query = "INSERT INTO log (timestamp, priority, message) VALUES (:timestamp,:priority,:message)";
     cm::Params params = {
             {":timestamp", timestamp},
-            {":priority", priority},
+            {":priority", static_cast<short>(priority)},
             {":message", message}
     };
     return connection->insert(query, params);

@@ -24,7 +24,7 @@ void LogRecord::timestamp(const QDateTime &dateTime)
 
 void LogRecord::priority(cm::LogPriority logPriority)
 {
-    rec.setValue("priority", logPriority);
+    rec.setValue("priority", static_cast<short>(logPriority));
 }
 
 void LogRecord::message(const cm::Message &message)

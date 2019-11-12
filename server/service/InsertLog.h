@@ -12,8 +12,8 @@ class InsertLog : public QObject {
     Q_OBJECT
 public:
 
-    kolekcje obsługiwać z poziomu servisu
-    w servisie wykonać dodatkowe prace związane z zmianami na modelu
+//    kolekcje obsługiwać z poziomu servisu
+//    w servisie wykonać dodatkowe prace związane z zmianami na modelu
 
 };
 

@@ -5,6 +5,7 @@
 #include "FakeEvent.h"
 
 #include <QRandomGenerator>
+#include <QString>
 
 namespace server {
 
@@ -30,10 +31,10 @@ void FakeEvent::cron1sec()
 {
     QDateTime timestamp = QDateTime::currentDateTime();
     auto logPriority = static_cast<cm::LogPriority>(QRandomGenerator::global()->bounded(0, 10));
-    cm::Message message = "msg-" + timestamp.toString("yyyyMMddhhmmss") + "/" + QString::number(logPriority);
-
-    kolekcje obsłużyć za pomocą servisu
-    logCollection.insert(timestamp, logPriority, message);
+    cm::Message message = "msg-" + timestamp.toString("yyyyMMddhhmmss") + "/" + QString::number(static_cast<short>(logPriority));
+//    qDebug() << message;
+//    kolekcje obsłużyć za pomocą servisu
+//    logCollection.insert(timestamp, logPriority, message);
 }
 
 }

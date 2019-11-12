@@ -14,7 +14,6 @@ typedef unsigned AutoId;
 typedef int TCPPort;
 typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
-typedef short LogPriority;
 typedef QString Message;
 
 enum class LogPriority {
