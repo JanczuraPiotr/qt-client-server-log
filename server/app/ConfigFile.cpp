@@ -14,6 +14,7 @@ namespace server {
 ConfigFile::ConfigFile()
     : configDir("")
     , settings(nullptr)
+    , webSocketPort(20000)
     , dbHost("")
     , dbPort(0)
     , dbType("")
@@ -86,6 +87,11 @@ void ConfigFile::setSettings(QSettings *settings)
     this->settings = settings;
 }
 
+cm::TCPPort ConfigFile::getWebSocketPort()
+{
+    return static_cast<cm::TCPPort >(webSocketPort);
+}
+
 QString ConfigFile::getDbHost()
 {
     return dbHost;
@@ -93,7 +99,7 @@ QString ConfigFile::getDbHost()
 
 cm::TCPPort ConfigFile::getDbPort()
 {
-    return dbPort;
+    return static_cast<cm::TCPPort >(dbPort);
 }
 
 QString ConfigFile::getDbType()

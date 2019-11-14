@@ -11,7 +11,7 @@
 namespace cm {
 
 typedef unsigned AutoId;
-typedef int TCPPort;
+typedef quint16 TCPPort;
 typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;

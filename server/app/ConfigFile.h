@@ -17,6 +17,7 @@ public:
     static ConfigFile *instance();
     virtual ~ConfigFile() = default;
 
+    cm::TCPPort getWebSocketPort();
     QString getDbHost();
     cm::TCPPort getDbPort();
     QString getDbType();
@@ -47,8 +48,9 @@ private: // config
 
     QSettings *settings;
 
+    int webSocketPort;
     QString dbHost;
-    cm::TCPPort dbPort;
+    int dbPort;
     QString dbType;
     QString dbName;
     QString dbUser;

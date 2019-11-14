@@ -2,19 +2,23 @@
 // Created by piotr@janczura.pl on 2019.11.12
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_NETCONNECTION_H
-#define QT_CLIENT_SERVER_LOG_NETCONNECTION_H
+#ifndef QT_CLIENT_NetConnection_LOG_NETCONNECTION_H
+#define QT_CLIENT_NetConnection_LOG_NETCONNECTION_H
 
-#include <QtCore/QObject>
-
+#include <QObject>
+#include <QtWebSockets>
+#include <QMap>
 #include "common/def.h"
 
 namespace server::service {
 
-class NetConnection : public QObject{
-Q_OBJECT
+class NetConnection : public QObject {
+    Q_OBJECT
+    Q_DISABLE_COPY(NetConnection)
 public:
+
     static NetConnection &instance();
+    ~NetConnection() override;
 
     void start();
 
@@ -26,12 +30,33 @@ void insertedLog(
         , cm::LogPriority logPriority
         , const cm::Message &message);
 
-private:
+private: // typedef
+
+    typedef QMap<cm::TCPPort, QWebSocket *> SocketList;
+
+private: // methods
 
     explicit NetConnection();
+    QString initialMessage();
+
+public slots:
+    // for external signals
+    void broadcastToNet(const QString &msg);
+
+private slots:
+    // for internal signals
+    void onNewConnection();
+    void processMessage(const QString &message);
+    void socketDisconnected();
+
+private:
+
+    QWebSocketServer *socketServer;
+    SocketList socketsClients;
+
 };
 
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_NETCONNECTION_H
+#endif //QT_CLIENT_NetConnection_LOG_NETCONNECTION_H

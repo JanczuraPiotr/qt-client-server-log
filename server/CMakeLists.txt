@@ -22,9 +22,16 @@ add_executable(${SERVER}
         action/InsertLog.cpp                action/InsertLog.h
         FakeEvent.cpp                       FakeEvent.h
 
-        service/NetConnection.cpp service/NetConnection.h)
+        service/NetConnection.cpp           service/NetConnection.h
+        )
 
-target_link_libraries(${SERVER}
-        Qt5::Core
-        Qt5::Sql
+#target_link_libraries(${SERVER}
+
+#        )
+
+qt5_use_modules(${SERVER}
+        Core
+        Network
+        WebSockets
+        Sql
         )
