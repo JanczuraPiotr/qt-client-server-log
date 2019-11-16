@@ -5,7 +5,24 @@
 #ifndef QT_LOG_COMMON_DEF_H
 #define QT_LOG_COMMON_DEF_H
 
-namespace common::def {
+#include <map>
+#include <QVariant>
+
+namespace cm {
+
+typedef unsigned AutoId;
+typedef quint16 TCPPort;
+typedef QString ColumnName;
+typedef std::map<ColumnName, QVariant> Params;
+typedef QString Message;
+
+enum class LogPriority {
+    ok,
+    info,
+    warning,
+    error
+};
+
 
 }
 
