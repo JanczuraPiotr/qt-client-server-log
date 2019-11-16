@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.04
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_SQLITECONNECTION_H
-#define QT_CLIENT_SERVER_LOG_SQLITECONNECTION_H
+#ifndef COMMON_DB_SQLITECONNECTION_H
+#define COMMON_DB_SQLITECONNECTION_H
 
 #include "Connection.h"
 
@@ -36,4 +36,4 @@ public: // lock
 
 }
 
-#endif //QT_CLIENT_SERVER_LOG_SQLITECONNECTION_H
+#endif //COMMON_DB_SQLITECONNECTION_H

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.12
 //
 
-#ifndef QT_CLIENT_NetConnection_LOG_NETCONNECTION_H
-#define QT_CLIENT_NetConnection_LOG_NETCONNECTION_H
+#ifndef SERVICE_NETCONNECTION_H
+#define SERVICE_NETCONNECTION_H
 
 #include <QObject>
 #include <QtWebSockets>
@@ -59,4 +59,4 @@ private:
 }
 
 
-#endif //QT_CLIENT_NetConnection_LOG_NETCONNECTION_H
+#endif //SERVICE_NETCONNECTION_H

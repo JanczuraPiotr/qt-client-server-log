@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef QT_LOG_LOG_LogCollection_H
-#define QT_LOG_LOG_LogCollection_H
+#ifndef MODEL_LOGCOLLECTION_H
+#define MODEL_LOGCOLLECTION_H
 
 #include <map>
 
@@ -40,4 +40,4 @@ private: // attributes
 
 
 
-#endif //QT_LOG_LOG_LogCollection_H
+#endif //MODEL_LOGCOLLECTION_H

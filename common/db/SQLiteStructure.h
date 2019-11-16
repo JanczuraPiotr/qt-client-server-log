@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.04
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_SQLITESTRUCTURE_H
-#define QT_CLIENT_SERVER_LOG_SQLITESTRUCTURE_H
+#ifndef COMMON_DB_SQLITESTRUCTURE_H
+#define COMMON_DB_SQLITESTRUCTURE_H
 
 #include <QSqlRecord>
 
@@ -25,4 +25,4 @@ protected: // methods
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_SQLITESTRUCTURE_H
+#endif //COMMON_DB_SQLITESTRUCTURE_H

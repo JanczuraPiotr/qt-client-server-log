@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.04
 //
 
-#ifndef EXCEPTION_GENERAL_H
-#define EXCEPTION_GENERAL_H
+#ifndef COMMON_EXCEPTION_GENERAL_H
+#define COMMON_EXCEPTION_GENERAL_H
 
 #include <exception>
 #include <QString>
@@ -40,4 +40,4 @@ public:
 }
 
 
-#endif //EXCEPTION_GENERAL_H
+#endif //COMMON_EXCEPTION_GENERAL_H

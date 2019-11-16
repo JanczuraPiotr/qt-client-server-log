@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.05
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_COLLECTION_H
-#define QT_CLIENT_SERVER_LOG_COLLECTION_H
+#ifndef SERVER_COLLECTION_H
+#define SERVER_COLLECTION_H
 
 #include "common/def.h"
 #include "common/db/Connection.h"
@@ -33,4 +33,4 @@ private: // locks
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_COLLECTION_H
+#endif //SERVER_COLLECTION_H

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef QT_LOG_RECORD_H
-#define QT_LOG_RECORD_H
+#ifndef MODEL_RECORD_H
+#define MODEL_RECORD_H
 
 #include <memory>
 

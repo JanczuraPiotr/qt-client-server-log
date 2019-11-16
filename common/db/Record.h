@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.07.23
 //
 
-#ifndef WRAPPER_RECORD_H
-#define WRAPPER_RECORD_H
+#ifndef COMMON_DB_RECORD_H
+#define COMMON_DB_RECORD_H
 
 #include <memory>
 #include <map>
@@ -48,4 +48,4 @@ private: // locks
 }
 
 
-#endif //WRAPPER_RECORD_H
+#endif //COMMON_DB_RECORD_H
