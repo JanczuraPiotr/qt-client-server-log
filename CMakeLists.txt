@@ -30,4 +30,4 @@ include_directories(server)
 
 add_subdirectory(client)
 add_subdirectory(server)
-add_subdirectory(gtest)
+#add_subdirectory(gtest)

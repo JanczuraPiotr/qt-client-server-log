@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.04
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_CONNECTION_H
-#define QT_CLIENT_SERVER_LOG_CONNECTION_H
+#ifndef SERVER_DB_CONNECTION_H
+#define SERVER_DB_CONNECTION_H
 
 #include <QSqlQuery>
 #include <QSqlError>
@@ -45,4 +45,4 @@ protected: // attributes
 };
 
 }
-#endif //QT_CLIENT_SERVER_LOG_CONNECTION_H
+#endif //COMMON_DB_CONNECTION_H

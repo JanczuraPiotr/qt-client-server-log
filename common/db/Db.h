@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.07.06
 //
 
-#ifndef CM_DB_DB_H
-#define CM_DB_DB_H
+#ifndef COMMON_DB_DB_H
+#define COMMON_DB_DB_H
 
 #include <QString>
 #include <QSqlDatabase>
@@ -44,4 +44,4 @@ private:
 }
 
 
-#endif //CM_DB_DB_H
+#endif //COMMON_DB_DB_H

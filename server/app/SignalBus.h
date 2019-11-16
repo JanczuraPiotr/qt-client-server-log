@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.11
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_SIGNALBUS_H
-#define QT_CLIENT_SERVER_LOG_SIGNALBUS_H
+#ifndef SERVER_SIGNALBUS_H
+#define SERVER_SIGNALBUS_H
 
 
 #include <QMap>
@@ -86,4 +86,4 @@ private: // Lock
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_SIGNALBUS_H
+#endif //SERVER_SIGNALBUS_H

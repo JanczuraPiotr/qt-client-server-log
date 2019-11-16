@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 10.11.2019.
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_FAKEEVENT_H
-#define QT_CLIENT_SERVER_LOG_FAKEEVENT_H
+#ifndef SERVER_FAKEEVENT_H
+#define SERVER_FAKEEVENT_H
 
 #include <QTimer>
 #include <QObject>
@@ -54,4 +54,4 @@ public: // lock
 
 
 
-#endif //QT_CLIENT_SERVER_LOG_FAKEEVENT_H
+#endif //SERVER_FAKEEVENT_H

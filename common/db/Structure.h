@@ -2,11 +2,12 @@
 // Created by piotr@janczura.pl on 2019.11.03
 //
 
-#ifndef LOG_STRUCTURE_H
-#define LOG_STRUCTURE_H
+#ifndef COMMON_DB_STRUCTURE_H
+#define COMMON_DB_STRUCTURE_H
+
+#include <QSqlRecord>
 
 #include "common/def.h"
-#include <QSqlRecord>
 
 namespace cm::db {
 

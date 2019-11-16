@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.12
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_EXCEPTION_H
-#define QT_CLIENT_SERVER_LOG_EXCEPTION_H
+#ifndef COMMON_DB_EXCEPTION_H
+#define COMMON_DB_EXCEPTION_H
 
 #include "common/exception/general.h"
 
@@ -20,4 +20,4 @@ public:
 
 
 
-#endif //QT_CLIENT_SERVER_LOG_EXCEPTION_H
+#endif //COMMON_DB_EXCEPTION_H
