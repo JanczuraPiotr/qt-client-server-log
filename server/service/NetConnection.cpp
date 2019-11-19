@@ -6,6 +6,7 @@
 
 #include <QDebug>
 #include <QString>
+#include <server/output/Log.h>
 
 #include "server/app/ConfigFile.h"
 
@@ -47,13 +48,8 @@ void NetConnection::insertedLog(
             , cm::LogPriority logPriority
             , const cm::Message &message)
 {
-    QString netMessage = QString::number(id) + " "
-            + dateTime.toString("yyyyMMddhhmmss") + " "
-            + QString::number(static_cast<short>(logPriority)) + " "
-            + message;
-
-    qDebug() << "new log :" << netMessage;
-    broadcastToNet(netMessage);
+    output::Log log;
+    broadcastToNet(log.json(id, dateTime, logPriority, message));
 }
 
 void NetConnection::broadcastToNet(const QString &msg)
