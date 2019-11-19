@@ -15,6 +15,7 @@ typedef quint16 TCPPort;
 typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
+typedef QString JsonString;
 
 enum class LogPriority {
     ok,

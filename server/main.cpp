@@ -12,7 +12,7 @@
 
 #include "server/app/ConfigFile.h"
 #include "server/service/NetConnection.h"
-#include "server/FakeEvent.h"
+#include "server/service/FakeEvent.h"
 
 int main(int argc, char **argv) {
     try {
