@@ -10,7 +10,7 @@
 
 #include "server/action/InsertLog.h"
 
-namespace server {
+namespace sv {
 
 class FakeEvent : public QObject {
     Q_OBJECT
@@ -40,7 +40,7 @@ private: // methods
 private: // attributes
 
     QTimer secTimer;
-    server::action::InsertLog insertLog;
+    sv::action::InsertLog insertLog;
 
 public: // lock
     FakeEvent(const FakeEvent &) = delete;

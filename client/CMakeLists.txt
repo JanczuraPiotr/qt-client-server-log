@@ -4,8 +4,14 @@ project(${CLIENT})
 
 add_executable(${CLIENT}
         main.cpp
+        ../common/exception/general.cpp     ../common/exception/general.h
+        ../server/app/ConfigFile.cpp        ../server/app/ConfigFile.h
+        controller/Net.cpp                  controller/Net.h
         )
 
-target_link_libraries(${CLIENT}
-        Qt5::Core
+qt5_use_modules(${CLIENT}
+        Core
+        Network
+        WebSockets
+        Sql
         )

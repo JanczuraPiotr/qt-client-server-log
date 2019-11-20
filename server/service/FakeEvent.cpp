@@ -11,7 +11,7 @@
 #include <server/action/InsertLog.h>
 #include <common/db/exception.h>
 
-namespace server {
+namespace sv {
 
 FakeEvent &FakeEvent::instance()
 {

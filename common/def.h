@@ -24,6 +24,8 @@ enum class LogPriority {
     error
 };
 
+const int RECONNECT_TIME_IN_MILLISECONDS = 3000;
+const int MAX_RECONNECT_ATTEMPTS = 3;
 
 }
 

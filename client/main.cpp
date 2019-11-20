@@ -5,8 +5,29 @@
 #include <QCoreApplication>
 #include <iostream>
 #include <QDebug>
+#include <server/app/ConfigFile.h>
+
+#include "common/exception/general.h"
+#include "client/controller/Net.h"
+
 
 int main(int argc, char **argv) {
     std::ignore = argc;
     std::ignore = argv;
+
+    try {
+        QCoreApplication app(argc, argv);
+
+        sv::ConfigFile *configFile = sv::ConfigFile::instance(); // TODO client powinien mieć swój plik konfiguracyjny
+        cl::controller::Net net(configFile->getServerUrl(), configFile->getServerPort());
+
+        return app.exec();
+
+    } catch (cm::ex::General &ex) {
+        std::cerr << (ex.type() + " | " + ex.msg()).toStdString();
+    } catch (std::exception &ex) {
+        std::cerr << ex.what();
+    } catch (...) {
+        std::cerr << "Unknown exception";
+    }
 }

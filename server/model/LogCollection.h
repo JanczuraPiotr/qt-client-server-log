@@ -32,7 +32,7 @@ public:
 
 private: // attributes
 
-//    server::SignalBus &signalBus;
+//    sv::SignalBus &signalBus;
 
 };
 

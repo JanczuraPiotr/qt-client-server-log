@@ -20,14 +20,10 @@ add_executable(${SERVER}
         model/LogCollection.cpp             model/LogCollection.h
         model/LogRecord.cpp                 model/LogRecord.h
         action/InsertLog.cpp                action/InsertLog.h
-        service/FakeEvent.cpp service/FakeEvent.h
+        service/FakeEvent.cpp               service/FakeEvent.h
 
         service/NetConnection.cpp           service/NetConnection.h
         output/Log.cpp output/Log.h)
-
-#target_link_libraries(${SERVER}
-
-#        )
 
 qt5_use_modules(${SERVER}
         Core

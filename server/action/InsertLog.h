@@ -11,7 +11,7 @@
 #include "common/def.h"
 #include "model/LogCollection.h"
 
-namespace server::action {
+namespace sv::action {
 
 class InsertLog {
 public:

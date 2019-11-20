@@ -4,7 +4,7 @@
 
 #include "InsertLog.h"
 
-namespace server::action {
+namespace sv::action {
 
 InsertLog::InsertLog()
     : timestamp_()
