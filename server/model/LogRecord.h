@@ -26,9 +26,9 @@ public:
     void priority(cm::LogPriority logPriority);
     void message(const cm::Message &message);
 
-    QDateTime timestamp();
-    cm::LogPriority priority();
-    cm::Message message();
+    [[nodiscard]] QDateTime timestamp();
+    [[nodiscard]] cm::LogPriority priority();
+    [[nodiscard]] cm::Message message();
 
 protected: // methods
 
