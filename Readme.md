@@ -28,3 +28,43 @@ Analiza danych wejściowych. Sprawdzenie ich poprawności pod względem bezpiecz
 
 ### Wyjście
 Przygotowuje dane do wysłania na zewnątrz aplikacji.
+
+## Komunikacja 
+Serwer rozsyła powiadomienia w postaci tekstowej.
+Format wiadomości zależy od jej typu, domyślnie jest to json. 
+Server wysyła wiadomości i odpowiedzi. Wiadomości wysyłane są do wszystkich podłączonych klientów. Odpowiedzi tylko do nadawcy zapytania.
+### Wiadomości automatycznie generowane przez server
+Każda wiadomość poprzedzona jest nazwą typu wiadomości oddzielony znakiem "|". Typ wiadomości pozwala odbiorcy przekierować odebraną wiadomość do właściwego obiektu gdzie nastąpi właściwa analiza.
+Struktura :
+```
+"type|{data}"
+
+```
+Cały komunikat może składać się tylko z tokenów oddzielonych znakiem "|". Pierwszy token to zawsze jest nazwą typu wiadomości a pozostałe i ich ilość zależą od typu :
+```
+"type|parametr0|parametr1|parametr..."
+
+```
+### Odpowiedzi na komunikaty i żądania.
+Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez server ale typ odpowiedzi ma tą samą nazwę co zapytanie:
+żądanie:
+```
+"getTime"
+```
+odpowiedź
+```
+"getTime|2019-11-11 11-11-11"
+```
+
+żądanie:
+```
+"setTime|2019-11-11 11-11-11"
+```
+odpowiedź:
+```
+"setTime|success"
+```
+a do wszystkich klientów może zostać wysłane powiadomienie:
+```
+"currentTime|2019-11-11 11-11-11"
+```

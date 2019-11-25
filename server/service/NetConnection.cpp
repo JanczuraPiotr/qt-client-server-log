@@ -49,7 +49,7 @@ void NetConnection::insertedLog(
             , const cm::Message &message)
 {
     output::Log log;
-    broadcastToNet(log.json(id, dateTime, logPriority, message));
+    broadcastToNet("log|" + log.json(id, dateTime, logPriority, message));
 }
 
 void NetConnection::broadcastToNet(const QString &msg)
