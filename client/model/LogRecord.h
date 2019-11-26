@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.24
 //
 
-#ifndef QT_CLIENT_SERVER_LogRecord_LogRecord_H
-#define QT_CLIENT_SERVER_LogRecord_LogRecord_H
+#ifndef CLIENT_MODEL_LOGRECORD_H
+#define CLIENT_MODEL_LOGRECORD_H
 
 #include <memory>
 
@@ -13,24 +13,36 @@
 
 namespace cl::model {
 
-
 class LogRecord {
+    friend class LogCollection;
 public:
     typedef std::shared_ptr<LogRecord> ptr;
     typedef std::map<cm::AutoId, ptr> map;
 
-    explicit LogRecord(QDateTime timestamp, cm::LogPriority LopPriority, cm::Message message);
     virtual ~LogRecord() = default;
 
-public: // methods
-    [[nodiscard]] QDateTime timestamp();
-    [[nodiscard]] cm::LogPriority LogRecordPriority();
-    [[nodiscard]] cm::Message message();
+    [[nodiscard]] QDateTime getTmestamp();
+    [[nodiscard]] cm::AutoId getAutoId();
+    [[nodiscard]] cm::LogPriority getLogRecordPriority();
+    [[nodiscard]] cm::Message getMessage();
+
+protected: // methods
+    static ptr makeShared(
+            const QDateTime &timestamp
+            , cm::AutoId logId
+            , cm::LogPriority logPriority
+            , const cm::Message &message);
+    explicit LogRecord(
+            QDateTime timestamp
+            , cm::AutoId logId
+            , cm::LogPriority lopPriority
+            , cm::Message message);
 
 private: // attributes
-    QDateTime timestamp_;
-    cm::LogPriority LogPriority_;
-    cm::Message message_;
+    QDateTime timestamp;
+    cm::AutoId logId;
+    cm::LogPriority logPriority;
+    cm::Message message;
 
 public: // lock
     LogRecord(const LogRecord &) = delete;

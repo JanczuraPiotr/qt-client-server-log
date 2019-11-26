@@ -4,7 +4,7 @@
 
 #include "LogCollection.h"
 
-namespace model {
+namespace sv::model {
 
 LogCollection::LogCollection() noexcept
     : Collection()

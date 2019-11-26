@@ -10,6 +10,8 @@
 #include "common/exception/general.h"
 #include "client/controller/Net.h"
 
+// @task dodać mechanizm usuwania starych logów zgromadzonych w kolekcji
+// @task main.cpp powinien być zastąpiony przez service::Main
 
 int main(int argc, char **argv) {
     std::ignore = argc;

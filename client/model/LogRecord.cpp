@@ -4,30 +4,43 @@
 
 #include "LogRecord.h"
 
-#include <utility>
-
 namespace cl::model{
 
-LogRecord::LogRecord(QDateTime timestamp, cm::LogPriority LogPriority, cm::Message message)
-    : timestamp_(std::move(timestamp))
-    , LogPriority_(LogPriority)
-    , message_(std::move(message))
+LogRecord::ptr LogRecord::makeShared(
+        const QDateTime &timestamp
+        , cm::AutoId logId
+        , cm::LogPriority logPriority
+        , const cm::Message &message)
+{
+    return std::shared_ptr<LogRecord>(new LogRecord(timestamp, logId, logPriority, message));
+}
+
+LogRecord::LogRecord(QDateTime timestamp, cm::AutoId logId, cm::LogPriority logPriority, cm::Message message)
+    : timestamp(std::move(timestamp))
+    , logId(logId)
+    , logPriority(logPriority)
+    , message(std::move(message))
 {
 }
 
-QDateTime LogRecord::timestamp()
+QDateTime LogRecord::getTmestamp()
 {
-    return timestamp_;
+    return timestamp;
 }
 
-cm::LogPriority LogRecord::LogRecordPriority()
+cm::AutoId LogRecord::getAutoId()
 {
-    return LogPriority_;
+    return logId;
 }
 
-cm::Message LogRecord::message()
+cm::LogPriority LogRecord::getLogRecordPriority()
 {
-    return message_;
+    return logPriority;
+}
+
+cm::Message LogRecord::getMessage()
+{
+    return message;
 }
 
 

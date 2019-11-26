@@ -16,6 +16,7 @@ typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
 typedef QString JsonString;
+typedef QString NetCommand;
 
 enum class LogPriority {
     ok,

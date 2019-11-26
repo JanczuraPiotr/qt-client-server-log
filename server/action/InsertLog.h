@@ -9,7 +9,7 @@
 #include <QtCore/QDateTime>
 
 #include "common/def.h"
-#include "model/LogCollection.h"
+#include "server/model/LogCollection.h"
 
 namespace sv::action {
 
@@ -37,7 +37,7 @@ private: // methods
     cm::Message message_;
     cm::AutoId id_;
 
-    model::LogCollection logCollection_;
+    sv::model::LogCollection logCollection_;
 
 public: // lock
     InsertLog(const InsertLog &) noexcept = delete;

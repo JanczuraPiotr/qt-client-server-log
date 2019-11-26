@@ -2,6 +2,9 @@
 // Created by piotr@janczura.pl on 2019.11.20
 //
 
+#include <client/model/LogCollection.h>
+#include "common/output/ErrorMessage.h"
+#include "client/input/Log.h"
 #include "Net.h"
 
 namespace cl::controller {
@@ -64,7 +67,26 @@ void Net::openSocket()
 
 void Net::onTextMessageReceived(const QString &msg)
 {
-    qDebug() << __FILE__ << __LINE__ << msg;
+    QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
+    QStringList tokens = msg.split("|");
+    cm::NetCommand netCommand  = tokens[0];
+
+    //cm::TCPPort port = pSender->peerPort();
+
+    if (netCommand == "log") {
+        cl::input::Log log;
+        log.parse(tokens[1]);
+        cl::model::LogCollection logCollection;
+        logCollection.insert(
+                log.getTimestamp()
+                , log.getLogId()
+                , log.getLogPriority()
+                , log.getMessage()
+                );
+    } else{
+        pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(netCommand));
+    }
+
     // rozpoznaj komendę
 }
 

@@ -33,7 +33,7 @@ void InsertLog::message(const cm::Message &message)
 
 void InsertLog::make()
 {
-    id_ = logCollection_.insert(timestamp(), logPriority(), message());
+     id_ = logCollection_.insert(timestamp(), logPriority(), message());
 }
 
 QDateTime InsertLog::timestamp() const

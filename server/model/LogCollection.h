@@ -14,12 +14,12 @@
 #include "common/db/Collection.h"
 #include "server/model/LogRecord.h"
 
-namespace model {
+namespace sv::model {
 
 class LogRecord;
 class LogCollection : public cm::db::Collection {
 public:
-    std::map<cm::AutoId, model::LogRecord::ptr> map;
+    std::map<cm::AutoId, LogRecord::ptr> map;
     explicit LogCollection() noexcept ;
 
     cm::AutoId insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message);
