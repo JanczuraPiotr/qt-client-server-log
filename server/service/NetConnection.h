@@ -10,7 +10,9 @@
 #include <QMap>
 #include "common/def.h"
 
-namespace server::service {
+namespace sv::service {
+
+// TODO dostosować do założonej architektury
 
 class NetConnection : public QObject {
     Q_OBJECT

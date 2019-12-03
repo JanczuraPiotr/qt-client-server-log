@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     try {
 
         QCoreApplication app(argc, argv);
-        server::ConfigFile *config = server::ConfigFile::instance();
+        sv::ConfigFile *config = sv::ConfigFile::instance();
         cm::db::Db::init(
                 config->getDbHost()
                 , config->getDbPort()
@@ -27,13 +27,13 @@ int main(int argc, char **argv) {
                 , config->getDbUser()
                 , config->getDbPass());
 
-        auto &fakeEvent = server::FakeEvent::instance();
-        auto &netConnection = server::service::NetConnection::instance();
+        auto &fakeEvent = sv::FakeEvent::instance();
+        auto &netConnection = sv::service::NetConnection::instance();
 
         QObject::connect(&fakeEvent
-                , &server::FakeEvent::insertedLog
+                , &sv::FakeEvent::insertedLog
                 , &netConnection
-                , &server::service::NetConnection::insertedLog);
+                , &sv::service::NetConnection::insertedLog);
 
         fakeEvent.start();
         netConnection.start();
