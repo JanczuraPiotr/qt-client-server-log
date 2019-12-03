@@ -14,7 +14,7 @@
 #include <QVector>
 
 
-namespace server {
+namespace sv {
 
 
 class SignalBus : public QObject {

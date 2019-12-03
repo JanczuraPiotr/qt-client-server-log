@@ -16,6 +16,7 @@ typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
 typedef QString JsonString;
+typedef QString NetCommand;
 
 enum class LogPriority {
     ok,
@@ -24,6 +25,8 @@ enum class LogPriority {
     error
 };
 
+const int RECONNECT_TIME_IN_MILLISECONDS = 3000;
+const int MAX_RECONNECT_ATTEMPTS = 3;
 
 }
 

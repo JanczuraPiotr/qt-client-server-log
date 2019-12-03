@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef MODEL_RECORD_H
-#define MODEL_RECORD_H
+#ifndef SERVER_MODEL_LOGRECORD_H
+#define SERVER_MODEL_LOGRECORD_H
 
 #include <memory>
 
@@ -11,7 +11,7 @@
 
 #include "common/db/Record.h"
 
-namespace model {
+namespace sv::model {
 
 class LogRecord : public cm::db::Record {
 friend class LogCollection;
@@ -26,9 +26,9 @@ public:
     void priority(cm::LogPriority logPriority);
     void message(const cm::Message &message);
 
-    QDateTime timestamp();
-    cm::LogPriority priority();
-    cm::Message message();
+    [[nodiscard]] QDateTime timestamp();
+    [[nodiscard]] cm::LogPriority priority();
+    [[nodiscard]] cm::Message message();
 
 protected: // methods
 

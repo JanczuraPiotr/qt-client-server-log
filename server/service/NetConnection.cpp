@@ -10,7 +10,7 @@
 
 #include "server/app/ConfigFile.h"
 
-namespace server::service {
+namespace sv::service {
 
 NetConnection &NetConnection::instance()
 {
@@ -25,7 +25,7 @@ NetConnection::NetConnection()
                                         this))
     , socketsClients()
 {
-    cm::TCPPort port = ConfigFile::instance()->getWebSocketPort();
+    cm::TCPPort port = ConfigFile::instance()->getServerPort();
     if (socketServer->listen(QHostAddress::Any, port)) {
         connect(socketServer, &QWebSocketServer::newConnection, this, &NetConnection::onNewConnection);
     }
@@ -49,7 +49,7 @@ void NetConnection::insertedLog(
             , const cm::Message &message)
 {
     output::Log log;
-    broadcastToNet(log.json(id, dateTime, logPriority, message));
+    broadcastToNet("log|" + log.json(id, dateTime, logPriority, message));
 }
 
 void NetConnection::broadcastToNet(const QString &msg)

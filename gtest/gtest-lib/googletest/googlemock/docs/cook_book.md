@@ -2969,14 +2969,14 @@ TEST(MyServerTest, ProcessesRequest) {
   EXPECT_CALL(*foo, ...)...;
   // ... other expectations ...
 
-  // server now owns foo.
-  MyServer server(foo);
-  server.ProcessRequest(...);
+  // sv now owns foo.
+  MyServer sv(foo);
+  sv.ProcessRequest(...);
 
-  // In case that server's destructor will forget to delete foo,
+  // In case that sv's destructor will forget to delete foo,
   // this will verify the expectations anyway.
   Mock::VerifyAndClearExpectations(foo);
-}  // server is destroyed when it goes out of scope here.
+}  // sv is destroyed when it goes out of scope here.
 ```
 
 **Tip:** The `Mock::VerifyAndClearExpectations()` function returns a `bool` to

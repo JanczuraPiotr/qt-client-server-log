@@ -4,7 +4,7 @@
 
 #include "InsertLog.h"
 
-namespace server::action {
+namespace sv::action {
 
 InsertLog::InsertLog()
     : timestamp_()
@@ -33,7 +33,7 @@ void InsertLog::message(const cm::Message &message)
 
 void InsertLog::make()
 {
-    id_ = logCollection_.insert(timestamp(), logPriority(), message());
+     id_ = logCollection_.insert(timestamp(), logPriority(), message());
 }
 
 QDateTime InsertLog::timestamp() const

@@ -9,12 +9,13 @@
 
 #include "common/exception/general.h"
 
-namespace server {
+namespace sv {
 
 ConfigFile::ConfigFile()
     : configDir("")
     , settings(nullptr)
-    , webSocketPort(20000)
+    , serverPort(20000)
+    , serverUrl("ws://localhost")
     , dbHost("")
     , dbPort(0)
     , dbType("")
@@ -87,9 +88,14 @@ void ConfigFile::setSettings(QSettings *settings)
     this->settings = settings;
 }
 
-cm::TCPPort ConfigFile::getWebSocketPort()
+cm::TCPPort ConfigFile::getServerPort()
 {
-    return static_cast<cm::TCPPort >(webSocketPort);
+    return static_cast<cm::TCPPort >(serverPort);
+}
+
+QString ConfigFile::getServerUrl()
+{
+    return serverUrl;
 }
 
 QString ConfigFile::getDbHost()
@@ -126,6 +132,11 @@ QString ConfigFile::getDbPass(){
 
 void ConfigFile::readConfig()
 {
+    settings->beginGroup("network");
+    serverPort = settings->value("serverPort", 20000).toInt();
+    serverUrl = settings->value("serverUrl", "ws://localhost").toString();
+    settings->endGroup();
+
     settings->beginGroup("database");
     dbHost = settings->value("dbHost","localhost").toString();
     dbPort = settings->value("dbPort", 0).toInt();
@@ -138,6 +149,11 @@ void ConfigFile::readConfig()
 
 void ConfigFile::writeConfig()
 {
+    settings->beginGroup("network");
+    settings->setValue("serverPort", serverPort);
+    settings->setValue("serverUrl", serverUrl);
+    settings->endGroup();
+
     settings->beginGroup("database");
     settings->setValue("dbHost", dbHost);
     settings->setValue("dbPort", dbPort);

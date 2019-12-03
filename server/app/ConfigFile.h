@@ -10,14 +10,15 @@
 #include <QSettings>
 #include <common/def.h>
 
-namespace server {
+namespace sv {
 
 class ConfigFile {
 public:
     static ConfigFile *instance();
     virtual ~ConfigFile() = default;
 
-    cm::TCPPort getWebSocketPort();
+    cm::TCPPort getServerPort();
+    QString getServerUrl();
     QString getDbHost();
     cm::TCPPort getDbPort();
     QString getDbType();
@@ -48,7 +49,8 @@ private: // config
 
     QSettings *settings;
 
-    int webSocketPort;
+    int serverPort;
+    QString serverUrl;
     QString dbHost;
     int dbPort;
     QString dbType;
