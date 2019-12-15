@@ -12,37 +12,52 @@ class Main {
         this.commandText = document.getElementById("commandText");
         this.commandButton = document.getElementById("commandButton");
 
-        this.buttonConnect.onclick = this.buttonConnectOnClick;
-        this.buttonDisconnect.onclick = this.buttonDisconnectOnClick;
-        this.commandButton.onclick = this.commandButtonOnClick;
+        this.commandButton.disabled = true;
+        this.buttonConnect.disabled = false;
+        this.buttonDisconnect.disabled = true;
 
-        document.addEventListener('evSocketConnected', this.onSocketConnected);
+        this.buttonConnect.onclick = this.buttonConnectOnClick();
+        this.buttonDisconnect.onclick = this.buttonDisconnectOnClick();
+        this.commandButton.onclick = this.commandButtonOnClick();
+
+        document.addEventListener('evSocketConnected', this.onSocketConnected());
+        document.addEventListener('evSocketDisconnected', this.onSocketDisconnected());
     }
 
     buttonConnectOnClick() {
-        console.log("Main.buttonConnect.onclick");
-        this.socket = new Socket();
-        this.socket.init();
+        let obj = this;
+        return (function() {
+            console.log("Main.buttonConnect.onclick");
+            obj.socket = new Socket();
+            obj.socket.init();
+        });
     }
 
     buttonDisconnectOnClick() {
-        console.log("Main.buttonDisconnect.onclick");
-        if (this.socket) {
-            this.socket.Close();
-            this.socket = null;
-        }
+        let obj = this;
+        return (function () {
+            console.log("Main.buttonDisconnect.onclick");
+            if (obj.socket) {
+                obj.socket.close();
+                obj.socket = null;
+            }
+        })
     }
 
     commandButtonOnClick() {
-        console.log("Main.commandButton.onclick");
+        let obj = this;
+        return (function(){
+            console.log("Main.commandButton.onclick");
+            obj.sendMessage(obj.commandText.value);
+            obj.commandText.value = "";
+        });
     };
 
-    sendMessage() {
+    sendMessage(strToSend) {
         var msg = this.commandText.value;
-        if ( this.websocket != null )
+        if ( this.socket != null )
         {
-            //document.getElementById("inputText").value = "";
-            this.websocket.send( msg );
+            this.socket.send( msg );
             console.log( "string sent :", '"'+strToSend+'"' );
             this.debug(strToSend);
         }
@@ -54,10 +69,22 @@ class Main {
     }
 
     onSocketConnected() {
-        console.log("event : socketConnected");
-        this.buttonConnect.disabled = true;
-        this.buttonDisconnect.disabled = false;
-        //document.getElementById("buttonConnect").disabled = true;
+        let obj = this;
+        return (function () {
+            console.log("event : socketConnected");
+            obj.buttonConnect.disabled = true;
+            obj.buttonDisconnect.disabled = false;
+            obj.commandButton.disabled = false;
+        });
+    }
+
+    onSocketDisconnected() {
+        let obj = this;
+        return (function () {
+            console.log("event : socketDisconnected");
+            obj.buttonConnect.disabled = false;
+            obj.buttonDisconnect.disabled = true;
+            obj.commandButton.disabled = true;
+        });
     }
 }
-

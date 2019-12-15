@@ -6,7 +6,7 @@
 
 #include <QDebug>
 #include <QString>
-#include <server/output/Log.h>
+#include "server/output/Log.h"
 
 #include "server/app/ConfigFile.h"
 
@@ -66,6 +66,7 @@ QString NetConnection::initialMessage()
 
 void NetConnection::onNewConnection()
 {
+    qDebug() << __FILE__ << __LINE__ << "NetConnection::onNewConnection()";
     auto pSocket = socketServer->nextPendingConnection();
     pSocket->setParent(this);
 
@@ -80,12 +81,23 @@ void NetConnection::onNewConnection()
 void NetConnection::processMessage(const QString &msg)
 {
     qDebug() << __FILE__ << __LINE__ << msg;
-//    QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
-//    QStringList tokens = msg.split("|");
+
+    //QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
+    QStringList tokens = msg.split("|");
+
+    if (tokens[0] == "getLogsAfter") {
+    } else if (tokens[0] == "getLogsBefore") {
+    } else if (tokens[0] == "getLogsBetween") {
+    } else if (tokens[0] == "stopPushingLogs") {
+    } else if (tokens[0] == "startPushingLogs") {
+    } else {
+
+    }
 }
 
 void NetConnection::socketDisconnected()
 {
+    qDebug() << __FILE__ << __LINE__ << "NetConnection::socketDisconnected()";
     auto *pClient = qobject_cast<QWebSocket *>(sender());
     if (pClient) {
         socketsClients.remove(pClient->peerPort());

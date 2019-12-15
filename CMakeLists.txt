@@ -4,7 +4,7 @@ set(PROJECT  qt-client-server-log)
 project(${PROJECT})
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wpedantic -Wextra -Werror -Wconversion -pedantic-errors -Weffc++ -MMD -MP -MF")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wpedantic -Wextra -Werror -Wconversion -pedantic-errors -Weffc++ -MMD -MP -MF")
 set(CMAKE_CXX_COMPILER_LOADED "${CMAKE_CXX_COMPILER_LOADED} -lz -lm -lrt -ldl")
 
 set(CMAKE_PREFIX_PATH "/opt/Qt5.12.4/5.12.4/gcc_64")
@@ -30,4 +30,4 @@ include_directories(server)
 
 add_subdirectory(client)
 add_subdirectory(server)
-#add_subdirectory(gtest)
+add_subdirectory(gtest)

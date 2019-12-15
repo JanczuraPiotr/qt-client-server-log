@@ -10,7 +10,7 @@
 #include "common/def.h"
 
 
-namespace output {
+namespace sv::output {
 
 class Log {
 public:

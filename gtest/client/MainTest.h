@@ -5,7 +5,7 @@
 #ifndef QT_LOG_MAINTEST_H
 #define QT_LOG_MAINTEST_H
 
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 
 class MainTest  : public ::testing::Test {
 public:

@@ -7,7 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-namespace output {
+namespace sv::output {
 
 cm::JsonString Log::json(
         cm::AutoId id

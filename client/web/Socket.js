@@ -1,6 +1,7 @@
 "use strict";
 
 let evSocketConnected = new CustomEvent('evSocketConnected');
+let evSocketDisconnected = new CustomEvent('evSocketDisconnected');
 
 class Socket {
     constructor() {
@@ -28,7 +29,12 @@ class Socket {
         }
     }
 
+    send(strToSend) {
+        this.websocket.send(strToSend)
+    }
+
     close() {
+        console.log("Socket::close()");
         if (this.websocket) {
             this.websocket.close();
         }
@@ -41,6 +47,7 @@ class Socket {
 
     onclose(evt) {
         console.log("DISCONNECTED");
+        document.dispatchEvent(evSocketDisconnected);
     };
 
     onmessage(evt) {
