@@ -34,7 +34,8 @@ private: // methods
     explicit NetConnection();
     QString initialMessage();
 
-signals:
+public :
+    signals:
 
     void getLogsAfter(const QDateTime &borderMoment, cm::TCPPort clientsPort);
     void getLogsBefore(const QDateTime &borderMoment, cm::TCPPort clientsPort);

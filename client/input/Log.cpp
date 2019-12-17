@@ -28,10 +28,10 @@ void Log::parse(const cm::JsonString &log)
 
     if ( ! root.empty()) {
 
-        if (root["dateTime"].isUndefined() || root["dateTime"].isNull()) {
-            // @task wyjątek na brak log.dateTime
+        if (root["borderMoment"].isUndefined() || root["borderMoment"].isNull()) {
+            // @task wyjątek na brak log.borderMoment
         }
-        timestamp.fromString(root["dateTime"].toString(), "yyyy-MM-dd HH:mm:ss");
+        timestamp.fromString(root["borderMoment"].toString(), "yyyy-MM-dd HH:mm:ss");
 
         if (root["logId"].isUndefined() || root["logId"].isNull()) {
             // @task wyjątek na brak log.logId

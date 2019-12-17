@@ -4,7 +4,7 @@
 
 #include "GetLogsAfter.h"
 
-#include <QDebug>
+#include "common/def.h"
 
 namespace sv::input {
 
@@ -16,12 +16,22 @@ GetLogsAfter::GetLogsAfter(const QString &input, int lim)
 
 bool GetLogsAfter::parse()
 {
-    return false;
+    // "getLogsAfter|".length() = 13
+    if (input.length() - cm::DATE_TIME_TEMPLATE.length() != 13) {
+        return false;
+    }
+
+    borderMoment = QDateTime::fromString(input.mid(lim + 1) , cm::DATE_TIME_TEMPLATE.c_str());
+    if(!borderMoment.isValid()) {
+        return false;
+    }
+
+    return true;
 }
 
 QDateTime GetLogsAfter::getBorderMoment()
 {
-    return QDateTime();
+    return borderMoment;
 }
 
 }

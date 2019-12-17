@@ -28,6 +28,7 @@ enum class LogPriority {
 const int RECONNECT_TIME_IN_MILLISECONDS = 3000;
 const int MAX_RECONNECT_ATTEMPTS = 3;
 
+const std::string DATE_TIME_TEMPLATE = "yyyy-MM-dd hh:mm:ss";
 }
 
 #endif //QT_LOG_COMMON_DEF_H

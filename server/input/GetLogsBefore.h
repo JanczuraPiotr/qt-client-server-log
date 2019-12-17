@@ -22,6 +22,8 @@ private: // methods
     QString input;
     int lim;
 
+    QDateTime borderMoment;
+
 public: // lock
     GetLogsBefore(const GetLogsBefore &) = delete;
     GetLogsBefore(GetLogsBefore &&) = delete;

@@ -85,11 +85,9 @@ void NetConnection::onNewConnection()
 
 void NetConnection::processMessage(const QString &msg)
 {
-    qDebug() << __FILE__ << __LINE__ << msg;
     QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
     int lim = msg.indexOf("|");
     QString command = msg.left(lim);
-    qDebug() << __FILE__ << __LINE__ << "command = " << command;
 
     // @task logowanie błędu przenieść do obsługi wyjątku
 

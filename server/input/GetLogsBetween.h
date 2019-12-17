@@ -23,6 +23,9 @@ private: // methods
     QString input;
     int lim;
 
+    QDateTime borderEarlier;
+    QDateTime borderLatter;
+
 public: // lock
     GetLogsBetween(const GetLogsBetween &) = delete;
     GetLogsBetween(GetLogsBetween &&) = delete;

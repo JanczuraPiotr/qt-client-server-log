@@ -19,9 +19,11 @@ public:
 
     QDateTime getBorderMoment();
 
-private: // methods
+private: // attributes
     QString input;
     int lim;
+
+    QDateTime borderMoment;
 
 public: // lock
     GetLogsAfter(const GetLogsAfter &) = delete;

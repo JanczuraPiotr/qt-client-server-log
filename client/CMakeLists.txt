@@ -13,7 +13,7 @@ add_executable(${CLIENT}
         input/Log.cpp                       input/Log.h
         model/LogRecord.cpp                 model/LogRecord.h
         model/LogCollection.cpp             model/LogCollection.h
-        )
+        ../common/algorithm/StringToDateTime.cpp ../common/algorithm/StringToDateTime.h)
 
 qt5_use_modules(${CLIENT}
         Core

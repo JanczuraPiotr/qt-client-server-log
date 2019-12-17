@@ -13,6 +13,9 @@
 #include "server/app/ConfigFile.h"
 #include "server/service/NetConnection.h"
 #include "server/service/FakeEvent.h"
+#include "server/service/Main.h"
+
+namespace ss = sv::service;
 
 int main(int argc, char **argv) {
     try {
@@ -27,13 +30,17 @@ int main(int argc, char **argv) {
                 , config->getDbUser()
                 , config->getDbPass());
 
+        // @task przekierować FakeEvent na Main a netConnection powiadamiać z Main
         auto &fakeEvent = sv::FakeEvent::instance();
         auto &netConnection = sv::service::NetConnection::instance();
+        auto &main = sv::service::Main::instance();
 
-        QObject::connect(&fakeEvent
-                , &sv::FakeEvent::insertedLog
-                , &netConnection
-                , &sv::service::NetConnection::insertedLog);
+        QObject::connect(&fakeEvent, &sv::FakeEvent::insertedLog, &netConnection, &ss::NetConnection::insertedLog);
+        QObject::connect(&netConnection, &ss::NetConnection::getLogsAfter, &main, &ss::Main::getLogsAfter);
+        QObject::connect(&netConnection, &ss::NetConnection::getLogsBefore, &main, &ss::Main::getLogsBefore);
+        QObject::connect(&netConnection, &ss::NetConnection::getLogsBetween, &main, &ss::Main::getLogsBetween);
+        QObject::connect(&netConnection, &ss::NetConnection::stopPushingLogs, &main, &ss::Main::stopPushingLogs);
+        QObject::connect(&netConnection, &ss::NetConnection::startPushingLogs, &main, &ss::Main::startPushingLogs);
 
         fakeEvent.start();
         netConnection.start();
