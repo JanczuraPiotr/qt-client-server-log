@@ -6,18 +6,22 @@
 #define SERVER_INPUT_GETLASTGetLastLog_H
 
 #include <string>
+#include <QtCore/QString>
+#include <QtCore/QDateTime>
 
 namespace sv::input {
 
 class GetLogsAfter {
 public:
-    explicit GetLogsAfter(const std::string &include);
+    explicit GetLogsAfter(const QString &input, int lim);
 
     bool parse();
 
+    QDateTime getBorderMoment();
 
 private: // methods
-    std::string input;
+    QString input;
+    int lim;
 
 public: // lock
     GetLogsAfter(const GetLogsAfter &) = delete;

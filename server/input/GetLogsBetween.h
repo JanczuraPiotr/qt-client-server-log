@@ -5,18 +5,23 @@
 #ifndef QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
 #define QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
 
-#include <string>
+#include <QString>
+#include <QDateTime>
 
 namespace sv::input {
 
 class GetLogsBetween {
 public:
-    explicit GetLogsBetween(const std::string &input);
+    explicit GetLogsBetween(const QString &input, int lim);
 
     bool parse();
 
+    QDateTime getBorderEarlier();
+    QDateTime getBorderLatter();
+
 private: // methods
-    std::string input;
+    QString input;
+    int lim;
 
 public: // lock
     GetLogsBetween(const GetLogsBetween &) = delete;

@@ -6,9 +6,14 @@
 
 #include <QDebug>
 #include <QString>
-#include "server/output/Log.h"
 
 #include "server/app/ConfigFile.h"
+#include "server/model/LogCollection.h"
+#include "server/input/GetLogsAfter.h"
+#include "server/input/GetLogsBefore.h"
+#include "server/input/GetLogsBetween.h"
+#include "server/output/Log.h"
+
 
 namespace sv::service {
 
@@ -81,15 +86,46 @@ void NetConnection::onNewConnection()
 void NetConnection::processMessage(const QString &msg)
 {
     qDebug() << __FILE__ << __LINE__ << msg;
+    QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
+    int lim = msg.indexOf("|");
+    QString command = msg.left(lim);
+    qDebug() << __FILE__ << __LINE__ << "command = " << command;
 
-    //QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
-    QStringList tokens = msg.split("|");
+    // @task logowanie błędu przenieść do obsługi wyjątku
 
-    if (tokens[0] == "getLogsAfter") {
-    } else if (tokens[0] == "getLogsBefore") {
-    } else if (tokens[0] == "getLogsBetween") {
-    } else if (tokens[0] == "stopPushingLogs") {
-    } else if (tokens[0] == "startPushingLogs") {
+    if (command == "getLogsAfter") {
+
+        sv::input::GetLogsAfter input(msg, lim);
+        if (input.parse()) {
+            emit getLogsAfter(input.getBorderMoment(), pSender->peerPort());
+        } else {
+            sv::model::LogCollection logCollection;
+            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsAfter");
+        }
+
+    } else if (command == "getLogsBefore") {
+
+        sv::input::GetLogsBefore input(msg, lim);
+        if (input.parse()) {
+            emit getLogsBefore(input.getBorderMoment(), pSender->peerPort());
+        } else {
+            sv::model::LogCollection logCollection;
+            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBefore");
+        }
+
+    } else if (command == "getLogsBetween") {
+        sv::input::GetLogsBetween input(msg, lim);
+        if (input.parse()) {
+            emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
+        } else {
+            sv::model::LogCollection logCollection;
+            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBetween");
+        }
+
+    } else if (command == "stopPushingLogs") {
+        emit stopPushingLogs(pSender->peerPort());
+    } else if (command == "startPushingLogs") {
+        emit startPushingLogs(pSender->peerPort());
     } else {
 
     }

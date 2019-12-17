@@ -7,8 +7,9 @@
 namespace sv::input {
 
 
-GetLogsBefore::GetLogsBefore(const std::string &input)
+GetLogsBefore::GetLogsBefore(const QString &input, int lim)
     : input(input)
+    , lim(lim)
 {
 
 }
@@ -16,6 +17,11 @@ GetLogsBefore::GetLogsBefore(const std::string &input)
 bool GetLogsBefore::parse()
 {
     return  false;
+}
+
+QDateTime GetLogsBefore::getBorderMoment()
+{
+    return QDateTime();
 }
 
 }

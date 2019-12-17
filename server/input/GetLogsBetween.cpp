@@ -6,8 +6,9 @@
 
 namespace sv::input {
 
-GetLogsBetween::GetLogsBetween(const std::string &input)
+GetLogsBetween::GetLogsBetween(const QString &input, int lim)
     : input(input)
+    , lim(lim)
 {
 
 }
@@ -15,5 +16,17 @@ GetLogsBetween::GetLogsBetween(const std::string &input)
 bool GetLogsBetween::parse() {
     return false;
 }
+
+QDateTime GetLogsBetween::getBorderEarlier()
+{
+    return QDateTime();
+}
+
+QDateTime GetLogsBetween::getBorderLatter()
+{
+    return QDateTime();
+}
+
+
 
 }

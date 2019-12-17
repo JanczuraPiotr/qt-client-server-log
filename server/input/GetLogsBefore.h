@@ -5,19 +5,22 @@
 #ifndef SERVER_INPUT_GETFIRSTLOG_H
 #define SERVER_INPUT_GETFIRSTLOG_H
 
-#include <string>
+#include <QString>
+#include <QDateTime>
 
 namespace sv::input{
 
 
 class GetLogsBefore {
 public:
-    explicit GetLogsBefore(const std::string &input);
+    explicit GetLogsBefore(const QString &input, int lim);
 
     bool parse();
+    QDateTime getBorderMoment();
 
 private: // methods
-    std::string input;
+    QString input;
+    int lim;
 
 public: // lock
     GetLogsBefore(const GetLogsBefore &) = delete;
