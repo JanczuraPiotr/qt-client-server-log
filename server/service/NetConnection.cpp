@@ -127,6 +127,8 @@ void NetConnection::processMessage(const QString &msg)
     } else if (command == "startPushingLogs") {
         emit startPushingLogs(pSender->peerPort());
     } else {
+        sv::model::LogCollection logCollection;
+        logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
 
     }
 }
