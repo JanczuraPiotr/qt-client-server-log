@@ -26,7 +26,7 @@ FakeEvent::FakeEvent()
 
 void FakeEvent::start()
 {
-    secTimer.setInterval(1000);
+    secTimer.setInterval(3000);
     secTimer.connect(&secTimer, &QTimer::timeout, this, &FakeEvent::cron1sec);
     secTimer.start();
 }
@@ -44,6 +44,7 @@ void FakeEvent::cron1sec()
         insertLog.message(message);
         insertLog.make();
 
+        qDebug() << "wygenerowano log =" << insertLog.id();
         emit insertedLog(
                 insertLog.id()
                 , insertLog.timestamp()

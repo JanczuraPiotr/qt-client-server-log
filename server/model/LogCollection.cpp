@@ -8,7 +8,6 @@ namespace sv::model {
 
 LogCollection::LogCollection() noexcept
     : Collection()
-    , map()
 {
 }
 
@@ -36,6 +35,11 @@ cm::AutoId LogCollection::insert(QDateTime timestamp, cm::LogPriority priority, 
             {":message", message}
     };
     return connection->insert(query, params);
+}
+
+LogRecord::map LogCollection::getLogsAfter(const QDateTime &borderMoment)
+{
+    return LogRecord::map();
 }
 
 //

@@ -13,7 +13,7 @@ namespace sv::input{
 
 class GetLogsBefore {
 public:
-    explicit GetLogsBefore(const QString &input, int lim);
+    explicit GetLogsBefore(QString input, int lim);
 
     bool parse();
     QDateTime getBorderMoment();

@@ -12,7 +12,7 @@ namespace sv::input {
 
 class GetLogsBetween {
 public:
-    explicit GetLogsBetween(const QString &input, int lim);
+    explicit GetLogsBetween(QString input, int lim);
 
     bool parse();
 

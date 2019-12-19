@@ -27,12 +27,16 @@ public:
 
 private: // typedef
 
-    typedef QMap<cm::TCPPort, QWebSocket *> SocketList;
+    typedef std::map<cm::TCPPort, QWebSocket *> SocketList;
+    typedef std::vector<cm::TCPPort> LogsListeners;
 
 private: // methods
 
     explicit NetConnection();
     QString initialMessage();
+    void stopPushingLogs(cm::TCPPort clientsPort);
+    void startPushingLogs(cm::TCPPort clientsPort);
+
 
 public :
     signals:
@@ -40,11 +44,11 @@ public :
     void getLogsAfter(const QDateTime &borderMoment, cm::TCPPort clientsPort);
     void getLogsBefore(const QDateTime &borderMoment, cm::TCPPort clientsPort);
     void getLogsBetween(const QDateTime &borderEarlier, const QDateTime &borderLatter, cm::TCPPort clientsPort);
-    void stopPushingLogs(cm::TCPPort clientsPort);
-    void startPushingLogs(cm::TCPPort clientsPort);
 
 public slots: // for external signals
+    void messageToClient(const QString &msg, cm::TCPPort clientsPort);
     void broadcastToNet(const QString &msg);
+    void broadcastLogToNet(const QString &msg);
     void insertedLog(
             cm::AutoId id
             , const QDateTime &dateTime
@@ -59,7 +63,11 @@ private slots: // for internal signals
 private:
 
     QWebSocketServer *socketServer;
+    // Wszyscy klienci podłączeni do socketServer
     SocketList socketsClients;
+    // Klienci oczekujący na powiadomienie o każdym nowym logu.
+    // Każdy nowy klient domyślnie dodawany jest do listy.
+    LogsListeners logsListeners;
 
 };
 

@@ -22,8 +22,6 @@ public slots:
     void getLogsAfter(const QDateTime &borderMoment, cm::TCPPort clientsPort);
     void getLogsBefore(const QDateTime &borderMoment, cm::TCPPort clientsPort);
     void getLogsBetween(const QDateTime &borderEarlier, const QDateTime &borderLatter, cm::TCPPort clientsPort);
-    void stopPushingLogs(cm::TCPPort clientsPort);
-    void startPushingLogs(cm::TCPPort clientsPort);
 
 private: // methods
     Main();

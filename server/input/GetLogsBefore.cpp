@@ -5,13 +5,14 @@
 #include "GetLogsBefore.h"
 
 #include <QDebug>
+#include <utility>
 #include "common/def.h"
 
 namespace sv::input {
 
 
-GetLogsBefore::GetLogsBefore(const QString &input, int lim)
-    : input(input)
+GetLogsBefore::GetLogsBefore(QString input, int lim)
+    : input(std::move(input))
     , lim(lim)
 {
 

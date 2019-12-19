@@ -6,6 +6,7 @@
 #define QT_CLIENT_SERVER_LOG_LOG_H
 
 #include <QDateTime>
+#include <server/model/LogRecord.h>
 
 #include "common/def.h"
 
@@ -17,6 +18,7 @@ public:
     Log() = default;
     virtual ~Log() = default;
 
+    cm::JsonString map(model::LogRecord::map records);
     cm::JsonString json(
             cm::AutoId id
             , const QDateTime &dateTime

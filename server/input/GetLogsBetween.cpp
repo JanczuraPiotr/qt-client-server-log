@@ -5,12 +5,13 @@
 #include "GetLogsBetween.h"
 
 #include <QDebug>
+#include <utility>
 #include "common/def.h"
 
 namespace sv::input {
 
-GetLogsBetween::GetLogsBetween(const QString &input, int lim)
-    : input(input)
+GetLogsBetween::GetLogsBetween(QString input, int lim)
+    : input(std::move(input))
     , lim(lim)
 {
 

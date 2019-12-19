@@ -22,6 +22,7 @@ class Main {
 
         document.addEventListener('evSocketConnected', this.onSocketConnected());
         document.addEventListener('evSocketDisconnected', this.onSocketDisconnected());
+        document.addEventListener('evMessageReceived', this.onMessageReceived());
     }
 
     buttonConnectOnClick() {
@@ -59,7 +60,7 @@ class Main {
         {
             this.socket.send( msg );
             console.log( "string sent :", '"'+strToSend+'"' );
-            this.debug(strToSend);
+            //this.debug(strToSend);
         }
     }
 
@@ -85,6 +86,16 @@ class Main {
             obj.buttonConnect.disabled = false;
             obj.buttonDisconnect.disabled = true;
             obj.commandButton.disabled = true;
+        });
+    }
+
+    onMessageReceived() {
+        let obj = this;
+        return (function (e) {
+            console.info('odebrano log', e.detail);
+            obj.textArea.append(e.detail);
+            obj.textArea.append('\n');
+            obj.textArea.scrollTop = obj.textArea.scrollHeight
         });
     }
 }

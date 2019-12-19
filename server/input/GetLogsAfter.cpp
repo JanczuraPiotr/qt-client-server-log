@@ -4,12 +4,14 @@
 
 #include "GetLogsAfter.h"
 
+#include <utility>
+
 #include "common/def.h"
 
 namespace sv::input {
 
-GetLogsAfter::GetLogsAfter(const QString &input, int lim)
-    : input(input)
+GetLogsAfter::GetLogsAfter(QString input, int lim)
+    : input(std::move(input))
     , lim(lim)
 {
 }

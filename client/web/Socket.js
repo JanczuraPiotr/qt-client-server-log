@@ -2,6 +2,7 @@
 
 let evSocketConnected = new CustomEvent('evSocketConnected');
 let evSocketDisconnected = new CustomEvent('evSocketDisconnected');
+let evMessageReceived = new CustomEvent('evMessageReceived');
 
 class Socket {
     constructor() {
@@ -51,7 +52,7 @@ class Socket {
     };
 
     onmessage(evt) {
-        console.log( "Message received :", evt.data );
+        document.dispatchEvent(new CustomEvent('evMessageReceived', {detail : evt.data}));
     };
 
     onerror(evt) {

@@ -13,7 +13,7 @@ namespace sv::input {
 
 class GetLogsAfter {
 public:
-    explicit GetLogsAfter(const QString &input, int lim);
+    explicit GetLogsAfter(QString input, int lim);
 
     bool parse();
 

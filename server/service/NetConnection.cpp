@@ -53,14 +53,28 @@ void NetConnection::insertedLog(
             , cm::LogPriority logPriority
             , const cm::Message &message)
 {
+    qDebug() << "NetConnection::insertedLog";
     output::Log log;
-    broadcastToNet("log|" + log.json(id, dateTime, logPriority, message));
+    broadcastLogToNet(log.json(id, dateTime, logPriority, message));
+}
+
+void NetConnection::messageToClient(const QString &msg, cm::TCPPort clientsPort)
+{
+    socketsClients[clientsPort]->sendTextMessage(msg);
+    // @task obsłuż brak klienta
 }
 
 void NetConnection::broadcastToNet(const QString &msg)
 {
-    for (QWebSocket *pClient : qAsConst(socketsClients)) {
-        pClient->sendTextMessage(msg);
+    for (auto &it : socketsClients) {
+        it.second->sendTextMessage(msg);
+    }
+}
+
+void NetConnection::broadcastLogToNet(const QString &msg)
+{
+    for (auto &it : logsListeners) {
+        socketsClients[it]->sendTextMessage(msg);
     }
 }
 
@@ -78,17 +92,29 @@ void NetConnection::onNewConnection()
     connect(pSocket, &QWebSocket::textMessageReceived, this, &NetConnection::processMessage);
     connect(pSocket, &QWebSocket::disconnected, this, &NetConnection::socketDisconnected);
 
-    socketsClients.insert(pSocket->peerPort(), pSocket);
+    socketsClients.insert(std::make_pair(pSocket->peerPort(), pSocket));
+    startPushingLogs(pSocket->peerPort());
     pSocket->sendTextMessage(initialMessage());
 }
 
+void NetConnection::stopPushingLogs(cm::TCPPort clientsPort)
+{
+    logsListeners.erase(std::find(logsListeners.begin(), logsListeners.end(), clientsPort));
+}
+
+void NetConnection::startPushingLogs(cm::TCPPort clientsPort)
+{
+    if (std::find(logsListeners.begin(), logsListeners.end(), clientsPort) == logsListeners.end()) {
+        logsListeners.push_back(clientsPort);
+    }
+}
 
 void NetConnection::processMessage(const QString &msg)
 {
     QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
     int lim = msg.indexOf("|");
     QString command = msg.left(lim);
-
+    qDebug() << "odebrano wiadomość :" << msg;
     // @task logowanie błędu przenieść do obsługi wyjątku
 
     if (command == "getLogsAfter") {
@@ -121,9 +147,11 @@ void NetConnection::processMessage(const QString &msg)
         }
 
     } else if (command == "stopPushingLogs") {
-        emit stopPushingLogs(pSender->peerPort());
+        stopPushingLogs(pSender->peerPort());
+        messageToClient("wyłączyłeś powiadomienia o nowych logach", pSender->peerPort());
     } else if (command == "startPushingLogs") {
-        emit startPushingLogs(pSender->peerPort());
+        startPushingLogs(pSender->peerPort());
+        messageToClient("włączyłeś powiadomienia o nowych logach", pSender->peerPort());
     } else {
         sv::model::LogCollection logCollection;
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
@@ -133,10 +161,10 @@ void NetConnection::processMessage(const QString &msg)
 
 void NetConnection::socketDisconnected()
 {
-    qDebug() << __FILE__ << __LINE__ << "NetConnection::socketDisconnected()";
     auto *pClient = qobject_cast<QWebSocket *>(sender());
     if (pClient) {
-        socketsClients.remove(pClient->peerPort());
+        stopPushingLogs(pClient->peerPort());
+        socketsClients.erase(pClient->peerPort());
     }
 }
 
