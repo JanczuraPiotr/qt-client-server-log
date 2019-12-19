@@ -22,6 +22,10 @@ add_executable(${SERVER}
         app/ConfigFile.cpp                  app/ConfigFile.h
         app/SignalBus.cpp                   app/SignalBus.h
 
+        input/GetLogsAfter.cpp              input/GetLogsAfter.h
+        input/GetLogsBefore.cpp             input/GetLogsBefore.h
+        input/GetLogsBetween.cpp            input/GetLogsBetween.h
+
         model/LogCollection.cpp             model/LogCollection.h
         model/LogRecord.cpp                 model/LogRecord.h
 
@@ -30,7 +34,7 @@ add_executable(${SERVER}
         service/FakeEvent.cpp               service/FakeEvent.h
         service/NetConnection.cpp           service/NetConnection.h
 
-        )
+        service/Main.cpp service/Main.h)
 
 qt5_use_modules(${SERVER}
         Core

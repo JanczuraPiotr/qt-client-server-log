@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>WebSocket Client</title>
+        <script src="main.js"></script>
+        <script src="Socket.js"></script>
+    </head>
+    <body class="container">
+
+        <h1>WebSocket Client</h1>
+        <p>
+            Host: <input id="webSocketHost" type="text" value="localhost:20000"/>
+        </p>
+        <p>
+            <button id="buttonConnect">
+                Connect
+            </button>
+
+            <button id="buttonDisconnect" disabled>
+                Disconnect
+            </button>
+
+        </p>
+
+        <p>
+            <textarea id="textArea" style="width:400px;height:200px;" readonly></textarea>
+        </p>
+
+        <p>
+            <input type="text" id="commandText" />
+            <button id="commandButton" >
+                Send
+            </button>
+        </p>
+
+    </body>
+
+    <script>
+        let main = new Main();
+    </script>
+
+</html>

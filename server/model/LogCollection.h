@@ -9,6 +9,7 @@
 
 #include <QtSql>
 #include <QSqlDatabase>
+#include <QDateTime>
 
 #include "common/def.h"
 #include "common/db/Collection.h"
@@ -19,8 +20,9 @@ namespace sv::model {
 class LogRecord;
 class LogCollection : public cm::db::Collection {
 public:
-    std::map<cm::AutoId, LogRecord::ptr> map;
     explicit LogCollection() noexcept ;
+
+    LogRecord::map getLogsAfter(const QDateTime &borderMoment);
 
     cm::AutoId insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message);
 
