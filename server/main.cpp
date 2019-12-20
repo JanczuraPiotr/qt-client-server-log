@@ -39,6 +39,7 @@ int main(int argc, char **argv) {
         QObject::connect(&netConnection, &ss::NetConnection::getLogsAfter, &main, &ss::Main::getLogsAfter);
         QObject::connect(&netConnection, &ss::NetConnection::getLogsBefore, &main, &ss::Main::getLogsBefore);
         QObject::connect(&netConnection, &ss::NetConnection::getLogsBetween, &main, &ss::Main::getLogsBetween);
+        QObject::connect(&main, &ss::Main::messageToClient, &netConnection, &ss::NetConnection::messageToClient);
 
         fakeEvent.start();
         netConnection.start();

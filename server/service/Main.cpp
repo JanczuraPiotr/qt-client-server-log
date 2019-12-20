@@ -19,31 +19,34 @@ Main::Main()
 {
 }
 
-void Main::getLogsAfter(const QDateTime &borderMoment, cm::TCPPort clientsPort)
+void Main::getLogsAfter(const QDateTime &limit, cm::TCPPort clientsPort)
 {
-    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsAfter" << borderMoment;
-//    model::LogCollection logCollection;
-//    auto logs = logCollection.getLogsAfter(borderMoment);
-//    sv::output::Log output;
-//    auto jsonString = output.map(logs);
+    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsAfter" << limit;
+    model::LogCollection logCollection;
+    auto logs = logCollection.getLogsAfter(limit);
+    sv::output::Log output;
+    auto jsonString = output.map(logs);
+    emit messageToClient("getLogsAfter|" + jsonString, clientsPort);
 }
 
-void Main::getLogsBefore(const QDateTime &borderMoment, cm::TCPPort clientsPort)
+void Main::getLogsBefore(const QDateTime &limit, cm::TCPPort clientsPort)
 {
-//    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsBefore" << borderMoment;
-//    model::LogCollection logCollection;
-//    auto logs = logCollection.getLogsBefore(borderMoment);
-//    sv::output::Log output;
-//    auto jsonString = output.map(logs);
+    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsBefore" << limit;
+    model::LogCollection logCollection;
+    auto logs = logCollection.getLogsBefore(limit);
+    sv::output::Log output;
+    auto jsonString = output.map(logs);
+    emit messageToClient("getLogsBefore|" + jsonString, clientsPort);
 }
 
-void Main::getLogsBetween(const QDateTime &borderEarlier, const QDateTime &borderLatter, cm::TCPPort clientsPort)
+void Main::getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitLatter, cm::TCPPort clientsPort)
 {
-    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsBetween" << borderEarlier << borderLatter;
-//    model::LogCollection logCollection;
-//    auto logs = logCollection.getLogsBetween(borderEarlier, borderLatter);
-//    sv::output::Log output;
-//    auto jsonString = output.map(logs);
+    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsBetween" << limitEarlier << limitLatter;
+    model::LogCollection logCollection;
+    auto logs = logCollection.getLogsBetween(limitEarlier, limitLatter);
+    sv::output::Log output;
+    auto jsonString = output.map(logs);
+    emit messageToClient("getLogsBetween|" + jsonString, clientsPort);
 }
 
 

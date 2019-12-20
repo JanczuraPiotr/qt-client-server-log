@@ -6,6 +6,7 @@
 
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 
 namespace sv::output {
 
@@ -24,7 +25,7 @@ cm::JsonString Log::json(
 {
     QJsonObject root;
     root["logId"] = QString::number(id);
-    root["borderMoment"] = dateTime.toString("yyyy-MM-dd hh:mm:ss");
+    root["limitMoment"] = dateTime.toString("yyyy-MM-dd hh:mm:ss");
     root["logPriority"] = QString::number(static_cast<int>(logPriority));
     root["message"] = message;
     QJsonDocument doc(root);
@@ -33,7 +34,19 @@ cm::JsonString Log::json(
 
 cm::JsonString Log::map(model::LogRecord::map records)
 {
-    return "[]";
+    QJsonArray jsonArray;
+
+    for (auto &it : records) {
+        QJsonObject row;
+        row["id"]        = QString::number(it.second->id());
+        row["timestamp"] = it.second->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str());
+        row["priority"]  = QString::number(static_cast<int>(it.second->priority()));
+        row["message"]   = it.second->message();
+        jsonArray.append(row);
+    }
+
+    QJsonDocument doc(jsonArray);
+    return doc.toJson();
 }
 
 }
