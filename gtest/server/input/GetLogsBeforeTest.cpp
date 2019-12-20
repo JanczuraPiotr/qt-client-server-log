@@ -54,6 +54,7 @@ TEST_F(GetLogsBeforeTest, parse_param_1)
     sv::input::GetLogsBefore GetLogsBefore(input, lim);
     EXPECT_FALSE(GetLogsBefore.parse());
 }
+
 TEST_F(GetLogsBeforeTest, parse_empty)
 {
     QString input = "GetLogsBeforeTest";

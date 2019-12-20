@@ -14,6 +14,7 @@ TEST_F(GetLogsAfterTest, parse_date_time_correct)
     sv::input::GetLogsAfter getLogsAfter(input, lim);
     EXPECT_TRUE(getLogsAfter.parse());
 }
+
 TEST_F(GetLogsAfterTest, parse_date_time_incorrect)
 {
     QString input = "getLogsAfter|2011-11-11 0d:00:00";
@@ -21,6 +22,7 @@ TEST_F(GetLogsAfterTest, parse_date_time_incorrect)
     sv::input::GetLogsAfter getLogsAfter(input, lim);
     EXPECT_FALSE(getLogsAfter.parse());
 }
+
 TEST_F(GetLogsAfterTest, parse_date_correct)
 {
     QString input = "getLogsAfter|2011-11-11";

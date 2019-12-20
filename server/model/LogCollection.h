@@ -22,19 +22,16 @@ class LogCollection : public cm::db::Collection {
 public:
     explicit LogCollection() noexcept ;
 
-    LogRecord::map getLogsAfter(const QDateTime &borderMoment);
+    LogRecord::map getLogsAfter(const QDateTime &limit);
+    LogRecord::map getLogsBefore(const QDateTime &limit);
+    LogRecord::map getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitLatter);
 
     cm::AutoId insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message);
 
     [[nodiscard]] QSqlRecord genericRecord() noexcept override;
-    [[nodiscard]] LogRecord::ptr get(cm::AutoId autoId) noexcept ;
-
-
-    //db::Map getAll();
+    [[nodiscard]] LogRecord::ptr get(cm::AutoId autoId) noexcept;
 
 private: // attributes
-
-//    sv::SignalBus &signalBus;
 
 };
 

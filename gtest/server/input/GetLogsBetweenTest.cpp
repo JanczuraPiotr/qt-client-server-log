@@ -16,6 +16,7 @@ TEST_F(GetLogsBetweenTest, parse_0)
     sv::input::GetLogsBetween getLogsBetween(input, lim);
     EXPECT_TRUE(getLogsBetween.parse());
 }
+
 TEST_F(GetLogsBetweenTest, parse_1)
 {
     QString input = "getLogsBetween|2011-11-11 00:00:00|2011-11-11 00:00:00|string";
@@ -23,6 +24,7 @@ TEST_F(GetLogsBetweenTest, parse_1)
     sv::input::GetLogsBetween getLogsBetween(input, lim);
     EXPECT_FALSE(getLogsBetween.parse());
 }
+
 TEST_F(GetLogsBetweenTest, parse_2)
 {
     QString input = "getLogsBetween|2011-11-11 00:00:00|2011-11-11 00:00:00|";
@@ -30,6 +32,7 @@ TEST_F(GetLogsBetweenTest, parse_2)
     sv::input::GetLogsBetween getLogsBetween(input, lim);
     EXPECT_FALSE(getLogsBetween.parse());
 }
+
 TEST_F(GetLogsBetweenTest, parse_3)
 {
     QString input = "getLogsBetween|2011-11-11 00:00:00||string";
@@ -37,6 +40,7 @@ TEST_F(GetLogsBetweenTest, parse_3)
     sv::input::GetLogsBetween getLogsBetween(input, lim);
     EXPECT_FALSE(getLogsBetween.parse());
 }
+
 TEST_F(GetLogsBetweenTest, parse_4)
 {
     QString input = "getLogsBetween|2011-11-11 00:00:00||";
@@ -44,6 +48,7 @@ TEST_F(GetLogsBetweenTest, parse_4)
     sv::input::GetLogsBetween getLogsBetween(input, lim);
     EXPECT_FALSE(getLogsBetween.parse());
 }
+
 TEST_F(GetLogsBetweenTest, parse_5)
 {
     QString input = "getLogsBetween|asdfasdf|2011-11-11 00:00:00";
@@ -51,6 +56,7 @@ TEST_F(GetLogsBetweenTest, parse_5)
     sv::input::GetLogsBetween getLogsBetween(input, lim);
     EXPECT_FALSE(getLogsBetween.parse());
 }
+
 TEST_F(GetLogsBetweenTest, parse_6)
 {
     QString input = "getLogsBetween||2011-11-11 00:00:00";
