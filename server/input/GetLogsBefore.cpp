@@ -6,12 +6,11 @@
 
 #include <QDebug>
 #include <utility>
-#include "common/def.h"
 
 namespace sv::input {
 
 
-GetLogsBefore::GetLogsBefore(QString input, int lim)
+GetLogsBefore::GetLogsBefore(cm::NetInput input, cm::Index lim)
     : input(std::move(input))
     , lim(lim)
 {

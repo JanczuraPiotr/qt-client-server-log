@@ -20,10 +20,15 @@ public:
     explicit Net(const QString &url, cm::TCPPort serverIPPort);
     virtual ~Net();
 
+public:
+    signals:
+
+    void log(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message);
+
 private slots: // for internal signals
     void onConnected();
     void onDisconnected();
-    void onTextMessageReceived(const QString &msg);
+    void onTextMessageReceived(const cm::NetInput &netInput);
 
 private: // methods
     void openSocket();

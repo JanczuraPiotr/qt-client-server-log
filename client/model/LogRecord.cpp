@@ -7,15 +7,15 @@
 namespace cl::model{
 
 LogRecord::ptr LogRecord::makeShared(
-        const QDateTime &timestamp
-        , cm::AutoId logId
+        cm::AutoId logId
+        , const QDateTime &timestamp
         , cm::LogPriority logPriority
         , const cm::Message &message)
 {
-    return std::shared_ptr<LogRecord>(new LogRecord(timestamp, logId, logPriority, message));
+    return std::shared_ptr<LogRecord>(new LogRecord(logId, timestamp, logPriority, message));
 }
 
-LogRecord::LogRecord(QDateTime timestamp, cm::AutoId logId, cm::LogPriority logPriority, cm::Message message)
+LogRecord::LogRecord(cm::AutoId logId, QDateTime timestamp, cm::LogPriority logPriority, cm::Message message)
     : timestamp(std::move(timestamp))
     , logId(logId)
     , logPriority(logPriority)

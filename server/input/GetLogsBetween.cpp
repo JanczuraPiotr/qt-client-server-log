@@ -6,11 +6,10 @@
 
 #include <QDebug>
 #include <utility>
-#include "common/def.h"
 
 namespace sv::input {
 
-GetLogsBetween::GetLogsBetween(QString input, int lim)
+GetLogsBetween::GetLogsBetween(cm::NetInput input, cm::Index lim)
     : input(std::move(input))
     , lim(lim)
 {

@@ -57,7 +57,7 @@ public slots: // for external signals
 
 private slots: // for internal signals
     void onNewConnection();
-    void processMessage(const QString &message);
+    void processMessage(const cm::NetInput &netInput);
     void socketDisconnected();
 
 private:

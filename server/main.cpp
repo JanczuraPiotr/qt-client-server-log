@@ -15,7 +15,7 @@
 #include "server/service/FakeEvent.h"
 #include "server/service/Main.h"
 
-namespace ss = sv::service;
+namespace ss = sv::service; // @task chyba lepszą nazwą jest controller
 
 int main(int argc, char **argv) {
     try {

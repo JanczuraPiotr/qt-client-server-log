@@ -11,12 +11,15 @@
 namespace cm {
 
 typedef unsigned AutoId;
+typedef std::size_t Index;
 typedef quint16 TCPPort;
 typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
 typedef QString JsonString;
 typedef QString NetCommand;
+
+typedef QString NetInput;
 
 enum class LogPriority {
     ok,
@@ -25,6 +28,7 @@ enum class LogPriority {
     error
 };
 
+const Index IndexInfinity = std::numeric_limits<Index>::max();
 const int RECONNECT_TIME_IN_MILLISECONDS = 3000;
 const int MAX_RECONNECT_ATTEMPTS = 3;
 

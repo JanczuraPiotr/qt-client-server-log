@@ -6,11 +6,10 @@
 
 #include <utility>
 
-#include "common/def.h"
 
 namespace sv::input {
 
-GetLogsAfter::GetLogsAfter(QString input, int lim)
+GetLogsAfter::GetLogsAfter(cm::NetInput input, cm::Index lim)
     : input(std::move(input))
     , lim(lim)
 {

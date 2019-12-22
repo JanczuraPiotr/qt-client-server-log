@@ -15,7 +15,7 @@ class Main : public QObject {
     Q_OBJECT
 public:
     static Main& instance();
-    virtual ~Main() = default;
+    ~Main() override = default;
 
 public slots:
 

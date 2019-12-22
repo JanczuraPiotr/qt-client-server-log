@@ -21,26 +21,26 @@ public:
 
     virtual ~LogRecord() = default;
 
-    [[nodiscard]] QDateTime getTmestamp();
     [[nodiscard]] cm::AutoId getAutoId();
+    [[nodiscard]] QDateTime getTmestamp();
     [[nodiscard]] cm::LogPriority getLogRecordPriority();
     [[nodiscard]] cm::Message getMessage();
 
 protected: // methods
     static ptr makeShared(
-            const QDateTime &timestamp
-            , cm::AutoId logId
+            cm::AutoId logId
+            , const QDateTime &timestamp
             , cm::LogPriority logPriority
             , const cm::Message &message);
     explicit LogRecord(
-            QDateTime timestamp
-            , cm::AutoId logId
+            cm::AutoId logId
+            , QDateTime timestamp
             , cm::LogPriority lopPriority
             , cm::Message message);
 
 private: // attributes
-    QDateTime timestamp;
     cm::AutoId logId;
+    QDateTime timestamp;
     cm::LogPriority logPriority;
     cm::Message message;
 
