@@ -60,7 +60,6 @@ class Main {
         {
             this.socket.send( msg );
             console.log( "string sent :", '"'+strToSend+'"' );
-            //this.debug(strToSend);
         }
     }
 

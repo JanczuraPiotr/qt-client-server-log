@@ -6,8 +6,11 @@ Podział kodu odzwierciedlony jest w przestrzeni nazw.
 Podstawowym "narzędziem" pracy kontrolera jest **sygnał**. Swoje zadania realizuje po otrzymaniu sygnału a jeżeli scenariusz tego wymaga wysyłają odpowiednie sygnały z powiadomieniami. Sygnały realizowane są metodą connect biblioteki QT.
 
 ### Kontroler
+
+Widok jest kontrolerem.
+
 Obsługuje sygnały. Nie ma dostępu do modelu i algorytmów.
-Odbierając sygnał kontroler uruchamia klasę przeznaczoną do jego obsługi. Może nią być klasa action::Operator lub service::Operator. Odbiera od operatora wynik działania i obsługuje w zależności od kontekstu (rest api, socket , konsola, inny blok aplikacji).
+Odbierając sygnał kontroler uruchamia klasę przeznaczoną do jego obsługi. Może nią być klasa action::Operator lub service::Operator. Odbiera od operatora wynik działania i obsługuje w zależności od kontekstu (rest api, socket , konsola, plik, inny blok aplikacji).
 Operatorzy wykonują swoje operacje na obiektach przekazanych przez referencje w konstruktorze. Wynik swojego działania pozostawiają do interpretacji w miejscu swojego wywołania.
 Kontroler w jednym zadaniu może wykonać kilka operatorów.
 

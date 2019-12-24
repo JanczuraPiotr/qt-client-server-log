@@ -2,14 +2,14 @@
 // Created by piotr@janczura.pl on 2019.04.13
 //
 
-#include <QCoreApplication>
+#include <QApplication>
 #include <iostream>
-#include <QDebug>
-#include <server/app/ConfigFile.h>
-#include <client/controller/Main.h>
+#include <client/view/MainWindow.h>
 
 #include "common/exception/general.h"
+#include "client/controller/Main.h"
 #include "client/controller/Net.h"
+#include "server/app/ConfigFile.h"
 
 // @task dodać mechanizm usuwania starych logów zgromadzonych w kolekcji
 // @task main.cpp powinien być zastąpiony przez service::Main
@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
     std::ignore = argv;
 
     try {
-        QCoreApplication app(argc, argv);
+        QApplication app(argc, argv);
 
         sv::ConfigFile *configFile = sv::ConfigFile::instance(); // TODO client powinien mieć swój plik konfiguracyjny
         cl::controller::Net net(configFile->getServerUrl(), configFile->getServerPort());
@@ -29,6 +29,9 @@ int main(int argc, char **argv) {
         auto &main = cc::Main::instance();
 
         QObject::connect(&net, &cc::Net::log, &main, &cc::Main::log);
+
+        cl::view::MainWindow mainWindow;
+        mainWindow.show();
 
         return app.exec();
 

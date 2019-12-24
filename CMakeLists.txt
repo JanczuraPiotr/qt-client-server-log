@@ -16,7 +16,6 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Sql REQUIRED)
 find_package(Qt5Network REQUIRED)
-#find_package(Qt5Widgets REQUIRED)
 
 
 include_directories(.)
