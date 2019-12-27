@@ -22,7 +22,7 @@ public:
 
 private: // methods
     QString input;
-    int lim;
+    cm::Index lim;
 
     QDateTime borderMoment;
 

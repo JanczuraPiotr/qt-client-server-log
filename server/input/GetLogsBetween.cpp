@@ -12,6 +12,8 @@ namespace sv::input {
 GetLogsBetween::GetLogsBetween(cm::NetInput input, cm::Index lim)
     : input(std::move(input))
     , lim(lim)
+    , borderEarlier()
+    , borderLatter()
 {
 
 }
@@ -19,9 +21,9 @@ GetLogsBetween::GetLogsBetween(cm::NetInput input, cm::Index lim)
 bool GetLogsBetween::parse()
 {
     // getLogsBetween|yyyy-MM-dd hh:mm:ss|yyyy-MM-dd hh:mm:ss"
-    const int CORRECT_INPUT_LONG = 54;
-    const int FIRST_LIM_INDEX = lim;
-    const int LAST_LIM_INDEX = lim + cm::DATE_TIME_TEMPLATE.length() + 1;
+    const cm::Index CORRECT_INPUT_LONG = 54;
+    const cm::Index FIRST_LIM_INDEX = lim;
+    const cm::Index LAST_LIM_INDEX = lim + static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.length()) + 1;
 
     if (input.length() != CORRECT_INPUT_LONG) {
         return false;
@@ -30,12 +32,16 @@ bool GetLogsBetween::parse()
         return false;
     }
 
-    borderEarlier = QDateTime::fromString(input.mid(FIRST_LIM_INDEX + 1, cm::DATE_TIME_TEMPLATE.length()), cm::DATE_TIME_TEMPLATE.c_str());
+    borderEarlier = QDateTime::fromString(
+            input.mid(FIRST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.length()))
+            , cm::DATE_TIME_TEMPLATE.c_str());
     if (!borderEarlier.isValid()) {
         return false;
     }
 
-    borderLatter  = QDateTime::fromString(input.mid(LAST_LIM_INDEX + 1, cm::DATE_TIME_TEMPLATE.length()), cm::DATE_TIME_TEMPLATE.c_str());
+    borderLatter  = QDateTime::fromString(
+            input.mid(LAST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.length()))
+            , cm::DATE_TIME_TEMPLATE.c_str());
     if (!borderLatter.isValid()) {
         return false;
     }

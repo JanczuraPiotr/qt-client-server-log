@@ -25,29 +25,39 @@ Log::Log(cm::NetInput input, cm::Index lim)
 bool Log::parse()
 {
     bool result = true;
-    qDebug() << input.mid(lim + 1).toUtf8();
-    QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(lim + 1).toUtf8());
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(lim).toUtf8());
     QJsonObject root = jsonDocument.object();
 
     if ( ! root.empty()) {
 
-        if (root["timestamp"].isUndefined() || root["timestamp"].isNull()) {
-            // @task wyjątek na brak log.borderMoment
+        if (root["timestamp"].toString().size() == cm::DATE_TIME_TEMPLATE.size()) {
+            if (root["timestamp"].isUndefined() || root["timestamp"].isNull()) {
+                // @task wyjątek na brak log.timestamp
+                result = false;
+            }
+            timestamp = root["timestamp"].toVariant().toDateTime();
+            result = timestamp.isValid();
+        } else {
             result = false;
         }
-        timestamp.fromString(root["timestamp"].toString(), cm::DATE_TIME_TEMPLATE.c_str());
 
         if (root["logId"].isUndefined() || root["logId"].isNull()) {
+            result = false;
             // @task wyjątek na brak log.logId
+        }
+        logId = static_cast<cm::AutoId>(root["logId"].toVariant().toUInt());
+        if (logId < 1) {
             result = false;
         }
-        logId = static_cast<cm::AutoId >(root["logId"].toInt());
 
         if (root["logPriority"].isUndefined() || root["logPriority"].isNull()) {
             // @task wyjątek na brak log.message
             result = false;
         }
-        logPriority = static_cast<cm::LogPriority>(root["logPriority"].toInt());
+        logPriority = static_cast<cm::LogPriority>(root["logPriority"].toVariant().toInt());
+        if (logPriority < cm::LogPriority::ok) {
+            result = false;
+        }
 
         if (root["message"].isUndefined() || root["message"].isNull()) {
             // @task wyjątek na brak log.message

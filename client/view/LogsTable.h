@@ -5,9 +5,12 @@
 #ifndef SERVER_VIEW_LOGSTABLE_H
 #define SERVER_VIEW_LOGSTABLE_H
 
-
+#include <QStandardItemModel>
 #include <QtWidgets/QTableView>
 #include <QObject>
+
+#include "common/def.h"
+#include "client/model/LogRecord.h"
 
 namespace cl::view {
 
@@ -15,10 +18,15 @@ namespace cl::view {
 class LogsTable : public QTableView {
     Q_OBJECT
 public:
-    LogsTable(QWidget *parent);
+    explicit LogsTable(QWidget *parent);
+
+    void log(cl::model::LogRecord::ptr logRecord);
 
 private: // methods
     void initColumns();
+
+private: // attributes
+    QStandardItemModel *model;
 
 };
 

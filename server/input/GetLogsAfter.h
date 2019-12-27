@@ -23,7 +23,7 @@ public:
 
 private: // attributes
     QString input;
-    int lim;
+    cm::Index lim;
 
     QDateTime borderMoment;
 

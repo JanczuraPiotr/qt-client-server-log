@@ -76,7 +76,7 @@ void Net::onTextMessageReceived(const cm::NetInput &netInput)
         pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(command));
     } else {
         if (command == "log") {
-            cl::input::Log inputLog(netInput, lim);
+            cl::input::Log inputLog(netInput, lim + 1);
             if (inputLog.parse()) {
                 emit log(inputLog.getLogId(), inputLog.getTimestamp(), inputLog.getLogPriority(), inputLog.getMessage());
             } else {

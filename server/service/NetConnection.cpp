@@ -29,6 +29,8 @@ NetConnection::NetConnection()
                                         QWebSocketServer::NonSecureMode,
                                         this))
     , socketsClients()
+    , logsListeners()
+
 {
     cm::TCPPort port = ConfigFile::instance()->getServerPort();
     if (socketServer->listen(QHostAddress::Any, port)) {

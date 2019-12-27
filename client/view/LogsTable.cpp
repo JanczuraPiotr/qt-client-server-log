@@ -3,8 +3,8 @@
 //
 
 #include "LogsTable.h"
-#include <QStandardItemModel>
 #include <QStandardItem>
+#include <QDebug>
 
 namespace cl::view {
 
@@ -14,17 +14,27 @@ LogsTable::LogsTable(QWidget *parent)
     initColumns();
 }
 
-void LogsTable::initColumns() {
-    QStandardItemModel *mod = new QStandardItemModel();
+void LogsTable::initColumns()
+{
+    // @task Tworzenie nagłówka przenieść do metody statycznej klasy LogsRecord - dla zachowania spójności między kolejnością nazw pól rekordu a kolejnością wartości pól rekordu
+    model = new QStandardItemModel();
     QStandardItem *id = new QStandardItem(tr("ID"));
-    mod->setHorizontalHeaderItem(0, id);
+    model->setHorizontalHeaderItem(0, id);
     QStandardItem *time = new QStandardItem(tr("Czas"));
-    mod->setHorizontalHeaderItem(1, time);
+    model->setHorizontalHeaderItem(1, time);
     QStandardItem *priorytet = new QStandardItem(tr("Priorytet"));
-    mod->setHorizontalHeaderItem(2, priorytet);
+    model->setHorizontalHeaderItem(2, priorytet);
     QStandardItem *message = new QStandardItem(tr("Treść"));
-    mod->setHorizontalHeaderItem(3, message);
-    setModel(mod);
-
+    model->setHorizontalHeaderItem(3, message);
+    setModel(model);
 }
+
+void LogsTable::log(cl::model::LogRecord::ptr logRecord)
+{
+    // @task nowe logi dopisywane na pierwszym wierszu tabeli
+    auto item = model->invisibleRootItem();
+    item->appendRow(logRecord->textRow());
+}
+
+
 }

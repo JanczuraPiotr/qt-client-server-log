@@ -18,19 +18,14 @@ Main& Main::instance()
 
 Main::Main()
 {
-
+    mainWindow.show();
 }
 
 void Main::log(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
 {
     cl::model::LogCollection logCollection;
-    logCollection.insert(
-            logId
-            , timestamp
-            , logPriority
-            , message
-            );
-    // @task powiadomić kontrolkę o nowym logu
+    cl::model::LogRecord::ptr logRecord = logCollection.insert(logId, timestamp, logPriority, message);
+    mainWindow.log(logRecord);
 }
 
 }

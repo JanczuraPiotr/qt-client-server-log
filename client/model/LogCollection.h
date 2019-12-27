@@ -20,7 +20,11 @@ public:
     explicit LogCollection();
     virtual ~LogCollection() = default;
 
-    void insert(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message);
+    LogRecord::ptr insert(
+            cm::AutoId logId
+            , const QDateTime &timestamp
+            , cm::LogPriority logPriority
+            , const cm::Message &message);
 
 private: // attributes
     LogRecord::map records;

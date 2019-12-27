@@ -9,6 +9,7 @@
 #include <QDateTime>
 
 #include "common/def.h"
+#include "client/view/MainWindow.h"
 
 namespace cl::controller {
 
@@ -25,6 +26,9 @@ public slots:
 
 private: // methods
     Main();
+
+private: // attributes
+    cl::view::MainWindow mainWindow;
 
 public: // lock
     Main(const Main &) = delete;

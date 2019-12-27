@@ -5,30 +5,42 @@
 #ifndef CLIENT_VIEW_MAINWINDOW_H
 #define CLIENT_VIEW_MAINWINDOW_H
 
+#include <QMenuBar>
+#include <QAction>
 #include <QMainWindow>
 #include <QObject>
+#include <client/model/LogRecord.h>
+
 #include "LogsTable.h"
+#include "common/def.h"
 
 namespace cl::view {
 
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() override = default;
+
+    void log(cl::model::LogRecord::ptr logRecord);
 
 private: // methods
-    void createMenus();
+    void initMenus();
     void showLogsBefore();
     void showLogsAfter();
     void showLogsBetween();
 
 private: // attributes
-    QAction *logsBetweenAction;
     QAction *logsAfterAction;
     QAction *logsBeforeAction;
+    QAction *logsBetweenAction;
 
     LogsTable logsTable;
+
+private:
+    MainWindow(const MainWindow& ) = delete;
+
 };
 }
 

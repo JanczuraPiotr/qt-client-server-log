@@ -7,22 +7,25 @@
 
 #include <map>
 #include <QVariant>
+#include <QStandardItem>
+#include <QList>
 
 namespace cm {
 
 typedef unsigned AutoId;
-typedef std::size_t Index;
+typedef int Index; //std::size_t Index;
 typedef quint16 TCPPort;
 typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
 typedef QString JsonString;
 typedef QString NetCommand;
+typedef QList<QStandardItem *> TextRow;
 
 typedef QString NetInput;
 
 enum class LogPriority {
-    ok,
+    ok = 1,
     info,
     warning,
     error

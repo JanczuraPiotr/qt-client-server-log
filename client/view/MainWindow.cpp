@@ -4,36 +4,39 @@
 
 #include "MainWindow.h"
 
-#include <QAction>
-#include <QMenuBar>
 #include <QDebug>
 
 namespace cl::view {
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , logsAfterAction([=](){ return new QAction(tr("Logi p&o dacie"), this);}())
+    , logsBeforeAction([=](){ return new QAction(tr("Logi po&między datami"), this);}())
+    , logsBetweenAction([=](){ return new QAction(tr("Logi prze&d datą"), this);}())
     , logsTable(this)
 {
     resize(500, 400);
-    createMenus();
+    initMenus();
     setWindowTitle(tr("Przegląd logów"));
 
     setCentralWidget(&logsTable);
 }
 
-void MainWindow::createMenus()
+void MainWindow::initMenus()
 {
-    logsBeforeAction = new QAction(tr("Logi prze&d datą"), this);
     menuBar()->addAction(logsBeforeAction);
     connect(logsBeforeAction, &QAction::triggered, this, &MainWindow::showLogsBefore);
 
-    logsAfterAction  = new QAction(tr("Logi p&o dacie"), this);
     menuBar()->addAction(logsAfterAction);
     connect(logsAfterAction, &QAction::triggered, this, &MainWindow::showLogsAfter);
 
-    logsBetweenAction  = new QAction(tr("Logi po&między datami"), this);
     menuBar()->addAction(logsBetweenAction);
     connect(logsBetweenAction, &QAction::triggered, this, &MainWindow::showLogsBetween);
+}
+
+void MainWindow::log(cl::model::LogRecord::ptr logRecord)
+{
+    logsTable.log(logRecord);
 }
 
 void MainWindow::showLogsBefore()

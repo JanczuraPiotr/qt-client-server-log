@@ -4,11 +4,11 @@
 
 #include <QApplication>
 #include <iostream>
-#include <client/view/MainWindow.h>
 
 #include "common/exception/general.h"
 #include "client/controller/Main.h"
 #include "client/controller/Net.h"
+#include "client/view/MainWindow.h"
 #include "server/app/ConfigFile.h"
 
 // @task dodać mechanizm usuwania starych logów zgromadzonych w kolekcji
@@ -27,11 +27,7 @@ int main(int argc, char **argv) {
         cl::controller::Net net(configFile->getServerUrl(), configFile->getServerPort());
 
         auto &main = cc::Main::instance();
-
         QObject::connect(&net, &cc::Net::log, &main, &cc::Main::log);
-
-        cl::view::MainWindow mainWindow;
-        mainWindow.show();
 
         return app.exec();
 
