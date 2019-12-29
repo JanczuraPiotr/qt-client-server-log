@@ -31,9 +31,8 @@ void LogsTable::initColumns()
 
 void LogsTable::log(cl::model::LogRecord::ptr logRecord)
 {
-    // @task nowe logi dopisywane na pierwszym wierszu tabeli
     auto item = model->invisibleRootItem();
-    item->appendRow(logRecord->textRow());
+    item->insertRow(0, logRecord->textRow());
 }
 
 
