@@ -7,8 +7,8 @@
 
 #include <map>
 #include <QVariant>
-#include <QStandardItem>
 #include <QList>
+#include <QtGui/QStandardItem>
 
 namespace cm {
 
