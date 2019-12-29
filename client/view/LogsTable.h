@@ -18,6 +18,16 @@ namespace cl::view {
 class LogsTable : public QTableView {
     Q_OBJECT
 public:
+    static const int COL_ID_IX = 0;
+    static const int COL_ID_HEIGHT = 70;
+    static const int COL_DATE_IX = 1;
+    static const int COL_DATE_HEIGHT = 150;
+    static const int COL_PRIORITY_IX = 2;
+    static const int COL_PRIORITY_HEIGHT = 100;
+    static const int COL_MESSAGE_IX = 3;
+    static const int COL_MESSAGE_HEIGHT  = 300;
+
+public:
     explicit LogsTable(QWidget *parent);
 
     void log(cl::model::LogRecord::ptr logRecord);

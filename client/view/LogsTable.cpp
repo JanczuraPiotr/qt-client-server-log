@@ -19,14 +19,18 @@ void LogsTable::initColumns()
     // @task Tworzenie nagłówka przenieść do metody statycznej klasy LogsRecord - dla zachowania spójności między kolejnością nazw pól rekordu a kolejnością wartości pól rekordu
     model = new QStandardItemModel();
     QStandardItem *id = new QStandardItem(tr("ID"));
-    model->setHorizontalHeaderItem(0, id);
+    model->setHorizontalHeaderItem(COL_ID_IX, id);
     QStandardItem *time = new QStandardItem(tr("Czas"));
-    model->setHorizontalHeaderItem(1, time);
+    model->setHorizontalHeaderItem(COL_DATE_IX, time);
     QStandardItem *priorytet = new QStandardItem(tr("Priorytet"));
-    model->setHorizontalHeaderItem(2, priorytet);
+    model->setHorizontalHeaderItem(COL_PRIORITY_IX, priorytet);
     QStandardItem *message = new QStandardItem(tr("Treść"));
-    model->setHorizontalHeaderItem(3, message);
+    model->setHorizontalHeaderItem(COL_MESSAGE_IX, message);
     setModel(model);
+    setColumnWidth(COL_ID_IX, COL_ID_HEIGHT);
+    setColumnWidth(COL_DATE_IX, COL_DATE_HEIGHT);
+    setColumnWidth(COL_PRIORITY_IX, COL_PRIORITY_HEIGHT);
+    setColumnWidth(COL_MESSAGE_IX, COL_MESSAGE_HEIGHT);
 }
 
 void LogsTable::log(cl::model::LogRecord::ptr logRecord)

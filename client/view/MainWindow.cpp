@@ -15,7 +15,18 @@ MainWindow::MainWindow(QWidget *parent)
     , logsBetweenAction([=](){ return new QAction(tr("Logi prze&d datą"), this);}())
     , logsTable(this)
 {
-    resize(500, 400);
+    const int MARGIN = 50;
+    const int WIDTH = 400;
+
+    resize(
+            MARGIN +
+            LogsTable::COL_ID_HEIGHT +
+            LogsTable::COL_DATE_HEIGHT +
+            LogsTable::COL_PRIORITY_HEIGHT +
+            LogsTable::COL_MESSAGE_HEIGHT
+
+            , WIDTH);
+
     initMenus();
     setWindowTitle(tr("Przegląd logów"));
 

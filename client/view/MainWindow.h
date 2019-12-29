@@ -16,6 +16,7 @@
 
 namespace cl::view {
 
+class LogsTable;
 
 class MainWindow : public QMainWindow {
     //Q_OBJECT
