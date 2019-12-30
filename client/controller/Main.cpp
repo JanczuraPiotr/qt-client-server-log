@@ -17,6 +17,7 @@ Main& Main::instance()
 }
 
 Main::Main()
+    : mainWindow()
 {
     mainWindow.show();
 }

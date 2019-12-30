@@ -8,10 +8,8 @@ add_executable(${CLIENT}
                                                     ../common/def.h
         ../server/app/ConfigFile.cpp                ../server/app/ConfigFile.h
         ../common/exception/general.cpp             ../common/exception/general.h
-#        ../common/algorithm/StringToDateTime.cpp    ../common/algorithm/StringToDateTime.h
-#        ../common/exception/general.cpp             ../common/exception/general.h
         ../common/output/ErrorMessage.cpp           ../common/output/ErrorMessage.h
-#
+
         controller/Main.cpp                         controller/Main.h
         controller/Net.cpp                          controller/Net.h
         input/Log.cpp                               input/Log.h
@@ -19,6 +17,9 @@ add_executable(${CLIENT}
         model/LogCollection.cpp                     model/LogCollection.h
         view/MainWindow.cpp                         view/MainWindow.h
         view/LogsTable.cpp                          view/LogsTable.h
+        view/dialogs/LogsAfter.cpp                  view/dialogs/LogsAfter.h
+        view/dialogs/LogsBefore.cpp                 view/dialogs/LogsBefore.h
+        view/dialogs/LogsBetween.cpp                view/dialogs/LogsBetween.h
         )
 
 #find_package(Qt5Widgets REQUIRED)

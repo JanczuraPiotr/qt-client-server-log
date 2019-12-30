@@ -27,7 +27,7 @@ public:
             , const cm::Message &message);
 
 private: // attributes
-    LogRecord::map records;
+    LogRecord::map records; // @task przełączyć na QCache
 
 public: // lock
     LogCollection(const LogCollection &) noexcept = delete;

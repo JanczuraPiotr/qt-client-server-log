@@ -2,6 +2,9 @@
 // Created by piotr@janczura.pl on 2019.04.13
 //
 
+// @task ujednolicić definicję plików nagłówkowych
+
+
 #include <iostream>
 
 #include <QCoreApplication>

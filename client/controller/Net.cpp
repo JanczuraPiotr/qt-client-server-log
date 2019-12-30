@@ -44,6 +44,7 @@ void Net::onDisconnected()
 
 void Net::openSocket()
 {
+    // @task przetestować, uruchomić, naprawić ... łączenie pracującego klienta do startującego serwera
     if (lastConnectionAttempt_.toMSecsSinceEpoch() + cm::RECONNECT_TIME_IN_MILLISECONDS < QDateTime::currentDateTime().toMSecsSinceEpoch())
     {
         if(tries_++ >= cm::MAX_RECONNECT_ATTEMPTS)

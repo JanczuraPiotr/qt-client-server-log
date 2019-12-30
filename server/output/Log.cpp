@@ -10,12 +10,10 @@
 
 namespace sv::output {
 
-
 cm::JsonString map(model::LogRecord::map)
 {
     return cm::JsonString();
 }
-
 
 cm::JsonString Log::json(
         cm::AutoId id

@@ -56,5 +56,4 @@ cm::Message LogRecord::getMessage() const noexcept
     return message;
 }
 
-
 }

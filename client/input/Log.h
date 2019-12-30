@@ -18,10 +18,10 @@ public:
 
     bool parse();
 
-    QDateTime getTimestamp();
-    cm::AutoId getLogId();
-    cm::LogPriority getLogPriority();
-    cm::Message getMessage();
+    [[nodiscard]] QDateTime getTimestamp() const noexcept;
+    [[nodiscard]] cm::AutoId getLogId() const noexcept;
+    [[nodiscard]] cm::LogPriority getLogPriority() const noexcept;
+    [[nodiscard]] cm::Message getMessage() const noexcept;
 
 private: // attributes
     cm::NetInput input;

@@ -33,9 +33,9 @@ private: // methods
     void showLogsBetween();
 
 private: // attributes
-    QAction *logsAfterAction;
-    QAction *logsBeforeAction;
-    QAction *logsBetweenAction;
+    QAction logsAfterAction;
+    QAction logsBeforeAction;
+    QAction logsBetweenAction;
 
     LogsTable logsTable;
 

@@ -6,6 +6,7 @@
 #define SERVER_VIEW_LOGSTABLE_H
 
 #include <QStandardItemModel>
+#include <QStandardItem>
 #include <QtWidgets/QTableView>
 #include <QObject>
 
@@ -28,7 +29,7 @@ public:
     static const int COL_MESSAGE_HEIGHT  = 300;
 
 public:
-    explicit LogsTable(QWidget *parent);
+    explicit LogsTable(QWidget *parent = nullptr);
 
     void log(cl::model::LogRecord::ptr logRecord);
 
@@ -36,7 +37,7 @@ private: // methods
     void initColumns();
 
 private: // attributes
-    QStandardItemModel *model;
+    QStandardItemModel model;
 
 };
 

@@ -30,7 +30,7 @@ bool Log::parse()
 
     if ( ! root.empty()) {
 
-        if (root["timestamp"].toString().size() == cm::DATE_TIME_TEMPLATE.size()) {
+        if (root["timestamp"].toString().size() == static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.size())) {
             if (root["timestamp"].isUndefined() || root["timestamp"].isNull()) {
                 // @task wyjątek na brak log.timestamp
                 result = false;
@@ -72,22 +72,22 @@ bool Log::parse()
     return result;
 }
 
-QDateTime Log::getTimestamp()
+QDateTime Log::getTimestamp() const noexcept
 {
     return timestamp;
 }
 
-cm::AutoId Log::getLogId()
+cm::AutoId Log::getLogId() const noexcept
 {
     return logId;
 }
 
-cm::LogPriority Log::getLogPriority()
+cm::LogPriority Log::getLogPriority() const noexcept
 {
     return logPriority;
 }
 
-cm::Message Log::getMessage()
+cm::Message Log::getMessage() const noexcept
 {
     return message;
 }
