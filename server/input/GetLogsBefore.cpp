@@ -6,14 +6,14 @@
 
 #include <QDebug>
 #include <utility>
-#include "common/def.h"
 
 namespace sv::input {
 
 
-GetLogsBefore::GetLogsBefore(QString input, int lim)
+GetLogsBefore::GetLogsBefore(cm::NetInput input, cm::Index lim)
     : input(std::move(input))
     , lim(lim)
+    , borderMoment()
 {
 
 }
@@ -21,7 +21,7 @@ GetLogsBefore::GetLogsBefore(QString input, int lim)
 bool GetLogsBefore::parse()
 {
     // "getLogsBefore|".length() = 14
-    if (input.length() - cm::DATE_TIME_TEMPLATE.length() != 14) {
+    if (input.length() - static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.length()) != 14) {
         return false;
     }
 

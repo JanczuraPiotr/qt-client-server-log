@@ -8,11 +8,14 @@
 #include <QString>
 #include <QDateTime>
 
+
+#include "common/def.h"
+
 namespace sv::input {
 
 class GetLogsBetween {
 public:
-    explicit GetLogsBetween(QString input, int lim);
+    explicit GetLogsBetween(cm::NetInput input, cm::Index lim);
 
     bool parse();
 

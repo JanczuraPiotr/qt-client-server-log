@@ -14,19 +14,21 @@ LogCollection::LogCollection()
 
 }
 
-void LogCollection::insert(
-        const QDateTime &timestamp
-        , cm::AutoId logId
+LogRecord::ptr LogCollection::insert(
+        cm::AutoId logId
+        , const QDateTime &timestamp
         , cm::LogPriority logPriority
-        , const cm::Message &message
-) {
+        , const cm::Message &message)
+{
     LogRecord::ptr record = LogRecord::makeShared(
-            timestamp
-            , logId
+            logId
+            , timestamp
             , logPriority
             , message
             );
     records.insert(std::make_pair(logId, record));
+    return record;
 }
+
 
 }

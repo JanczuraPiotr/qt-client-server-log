@@ -20,10 +20,14 @@ public:
     explicit LogCollection();
     virtual ~LogCollection() = default;
 
-    void insert(const QDateTime &timestamp, cm::AutoId logId, cm::LogPriority logPriority, const cm::Message &message);
+    LogRecord::ptr insert(
+            cm::AutoId logId
+            , const QDateTime &timestamp
+            , cm::LogPriority logPriority
+            , const cm::Message &message);
 
 private: // attributes
-    LogRecord::map records;
+    LogRecord::map records; // @task przełączyć na QCache
 
 public: // lock
     LogCollection(const LogCollection &) noexcept = delete;

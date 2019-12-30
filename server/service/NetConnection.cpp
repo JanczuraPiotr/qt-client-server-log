@@ -29,6 +29,8 @@ NetConnection::NetConnection()
                                         QWebSocketServer::NonSecureMode,
                                         this))
     , socketsClients()
+    , logsListeners()
+
 {
     cm::TCPPort port = ConfigFile::instance()->getServerPort();
     if (socketServer->listen(QHostAddress::Any, port)) {
@@ -74,7 +76,7 @@ void NetConnection::broadcastToNet(const QString &msg)
 void NetConnection::broadcastLogToNet(const QString &msg)
 {
     for (auto &it : logsListeners) {
-        socketsClients[it]->sendTextMessage(msg);
+        socketsClients[it]->sendTextMessage("log|" + msg);
     }
 }
 
@@ -109,53 +111,57 @@ void NetConnection::startPushingLogs(cm::TCPPort clientsPort)
     }
 }
 
-void NetConnection::processMessage(const QString &msg)
+void NetConnection::processMessage(const cm::NetInput &netInput)
 {
     QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
-    int lim = msg.indexOf("|");
-    QString command = msg.left(lim);
-    qDebug() << "odebrano wiadomość :" << msg;
+    cm::Index lim = netInput.indexOf("|");
+    cm::NetCommand command = netInput.left(lim);
+    qDebug() << "serwer odebrał wiadomość :" << netInput;
     // @task logowanie błędu przenieść do obsługi wyjątku
 
-    if (command == "getLogsAfter") {
-
-        sv::input::GetLogsAfter input(msg, lim);
-        if (input.parse()) {
-            emit getLogsAfter(input.getBorderMoment(), pSender->peerPort());
-        } else {
-            sv::model::LogCollection logCollection;
-            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsAfter");
-        }
-
-    } else if (command == "getLogsBefore") {
-
-        sv::input::GetLogsBefore input(msg, lim);
-        if (input.parse()) {
-            emit getLogsBefore(input.getBorderMoment(), pSender->peerPort());
-        } else {
-            sv::model::LogCollection logCollection;
-            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBefore");
-        }
-
-    } else if (command == "getLogsBetween") {
-        sv::input::GetLogsBetween input(msg, lim);
-        if (input.parse()) {
-            emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
-        } else {
-            sv::model::LogCollection logCollection;
-            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBetween");
-        }
-
-    } else if (command == "stopPushingLogs") {
-        stopPushingLogs(pSender->peerPort());
-        messageToClient("wyłączyłeś powiadomienia o nowych logach", pSender->peerPort());
-    } else if (command == "startPushingLogs") {
-        startPushingLogs(pSender->peerPort());
-        messageToClient("włączyłeś powiadomienia o nowych logach", pSender->peerPort());
-    } else {
+    if (lim == cm::IndexInfinity || command.isEmpty()) {
         sv::model::LogCollection logCollection;
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
+    } else {
+        if (command == "getLogsAfter") {
 
+            sv::input::GetLogsAfter input(netInput, lim);
+            if (input.parse()) {
+                emit getLogsAfter(input.getBorderMoment(), pSender->peerPort());
+            } else {
+                sv::model::LogCollection logCollection;
+                logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsAfter");
+            }
+
+        } else if (command == "getLogsBefore") {
+
+            sv::input::GetLogsBefore input(netInput, lim);
+            if (input.parse()) {
+                emit getLogsBefore(input.getBorderMoment(), pSender->peerPort());
+            } else {
+                sv::model::LogCollection logCollection;
+                logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBefore");
+            }
+
+        } else if (command == "getLogsBetween") {
+            sv::input::GetLogsBetween input(netInput, lim);
+            if (input.parse()) {
+                emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
+            } else {
+                sv::model::LogCollection logCollection;
+                logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBetween");
+            }
+
+        } else if (command == "stopPushingLogs") {
+            stopPushingLogs(pSender->peerPort());
+            messageToClient("wyłączyłeś powiadomienia o nowych logach", pSender->peerPort());
+        } else if (command == "startPushingLogs") {
+            startPushingLogs(pSender->peerPort());
+            messageToClient("włączyłeś powiadomienia o nowych logach", pSender->peerPort());
+        } else {
+            sv::model::LogCollection logCollection;
+            logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
+        }
     }
 }
 

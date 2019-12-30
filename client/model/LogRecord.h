@@ -8,6 +8,8 @@
 #include <memory>
 
 #include <QtCore/QDateTime>
+#include <QSqlRecord>
+#include <QStandardItem>
 
 #include "common/def.h"
 
@@ -21,26 +23,27 @@ public:
 
     virtual ~LogRecord() = default;
 
-    [[nodiscard]] QDateTime getTmestamp();
-    [[nodiscard]] cm::AutoId getAutoId();
-    [[nodiscard]] cm::LogPriority getLogRecordPriority();
-    [[nodiscard]] cm::Message getMessage();
+    [[nodiscard]] cm::TextRow textRow() const noexcept;
+    [[nodiscard]] cm::AutoId getLogId() const noexcept;
+    [[nodiscard]] QDateTime getTmestamp() const noexcept;
+    [[nodiscard]] cm::LogPriority getPriority() const noexcept;
+    [[nodiscard]] cm::Message getMessage() const noexcept;
 
 protected: // methods
     static ptr makeShared(
-            const QDateTime &timestamp
-            , cm::AutoId logId
+            cm::AutoId logId
+            , const QDateTime &timestamp
             , cm::LogPriority logPriority
             , const cm::Message &message);
     explicit LogRecord(
-            QDateTime timestamp
-            , cm::AutoId logId
+            cm::AutoId logId
+            , QDateTime timestamp
             , cm::LogPriority lopPriority
             , cm::Message message);
 
 private: // attributes
-    QDateTime timestamp;
     cm::AutoId logId;
+    QDateTime timestamp;
     cm::LogPriority logPriority;
     cm::Message message;
 

@@ -13,17 +13,20 @@ namespace cl::input {
 
 class Log {
 public:
-    explicit Log();
+    explicit Log(cm::NetInput input, cm::Index lim);
     virtual ~Log() = default;
 
-    void parse(const cm::JsonString &log);
+    bool parse();
 
-    QDateTime getTimestamp();
-    cm::AutoId getLogId();
-    cm::LogPriority getLogPriority();
-    cm::Message getMessage();
+    [[nodiscard]] QDateTime getTimestamp() const noexcept;
+    [[nodiscard]] cm::AutoId getLogId() const noexcept;
+    [[nodiscard]] cm::LogPriority getLogPriority() const noexcept;
+    [[nodiscard]] cm::Message getMessage() const noexcept;
 
 private: // attributes
+    cm::NetInput input;
+    cm::Index lim;
+
     QDateTime timestamp;
     cm::AutoId logId;
     cm::LogPriority logPriority;

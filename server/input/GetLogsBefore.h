@@ -8,19 +8,21 @@
 #include <QString>
 #include <QDateTime>
 
+#include "common/def.h"
+
 namespace sv::input{
 
 
 class GetLogsBefore {
 public:
-    explicit GetLogsBefore(QString input, int lim);
+    explicit GetLogsBefore(cm::NetInput input, cm::Index lim);
 
     bool parse();
     QDateTime getBorderMoment();
 
 private: // methods
     QString input;
-    int lim;
+    cm::Index lim;
 
     QDateTime borderMoment;
 

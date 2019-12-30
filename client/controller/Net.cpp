@@ -2,7 +2,7 @@
 // Created by piotr@janczura.pl on 2019.11.20
 //
 
-#include <client/model/LogCollection.h>
+#include "client/model/LogCollection.h"
 #include "common/output/ErrorMessage.h"
 #include "client/input/Log.h"
 #include "Net.h"
@@ -44,6 +44,7 @@ void Net::onDisconnected()
 
 void Net::openSocket()
 {
+    // @task przetestować, uruchomić, naprawić ... łączenie pracującego klienta do startującego serwera
     if (lastConnectionAttempt_.toMSecsSinceEpoch() + cm::RECONNECT_TIME_IN_MILLISECONDS < QDateTime::currentDateTime().toMSecsSinceEpoch())
     {
         if(tries_++ >= cm::MAX_RECONNECT_ATTEMPTS)
@@ -65,27 +66,30 @@ void Net::openSocket()
     }
 }
 
-void Net::onTextMessageReceived(const QString &msg)
+void Net::onTextMessageReceived(const cm::NetInput &netInput)
 {
     QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
-    QStringList tokens = msg.split("|");
-    cm::NetCommand netCommand  = tokens[0];
+    //qDebug() << "client odebrał wiadomość :" << netInput;
+    cm::Index lim = netInput.indexOf("|");
+    cm::NetCommand command = netInput.left(lim);
 
-    //cm::TCPPort port = pSender->peerPort();
-
-    if (netCommand == "log") {
-        cl::input::Log log;
-        log.parse(tokens[1]);
-        cl::model::LogCollection logCollection;
-        logCollection.insert(
-                log.getTimestamp()
-                , log.getLogId()
-                , log.getLogPriority()
-                , log.getMessage()
-                );
-    } else{
-        pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(netCommand));
+    if (lim == cm::IndexInfinity || command.isEmpty()) {
+        pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(command));
+    } else {
+        if (command == "log") {
+            cl::input::Log inputLog(netInput, lim + 1);
+            if (inputLog.parse()) {
+                emit log(inputLog.getLogId(), inputLog.getTimestamp(), inputLog.getLogPriority(), inputLog.getMessage());
+            } else {
+                // @task obsłużyć błąd struktury danych wejściowych
+                qDebug() << "// @task obsłużyć błąd struktury danych wejściowych";
+            }
+        } else{
+            pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(command));
+        }
     }
+
+
 
     // rozpoznaj komendę
 }

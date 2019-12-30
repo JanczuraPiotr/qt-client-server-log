@@ -9,11 +9,13 @@
 #include <QtCore/QString>
 #include <QtCore/QDateTime>
 
+#include "common/def.h"
+
 namespace sv::input {
 
 class GetLogsAfter {
 public:
-    explicit GetLogsAfter(QString input, int lim);
+    explicit GetLogsAfter(cm::NetInput input, cm::Index lim);
 
     bool parse();
 
@@ -21,7 +23,7 @@ public:
 
 private: // attributes
     QString input;
-    int lim;
+    cm::Index lim;
 
     QDateTime borderMoment;
 

@@ -6,9 +6,14 @@ include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
 
 add_executable(gtest_run main.cpp
+
+        ../client/input/Log.cpp                 ../client/input/Log.h
+
         ../server/input/GetLogsAfter.cpp        ../server/input/GetLogsAfter.h
         ../server/input/GetLogsBefore.cpp       ../server/input/GetLogsBefore.h
         ../server/input/GetLogsBetween.cpp      ../server/input/GetLogsBetween.h
+
+        client/input/LogTest.cpp client/input/LogTest.h
 
         server/input/GetLogsBeforeTest.cpp      server/input/GetLogsBeforeTest.h
         server/input/GetLogsBetweenTest.cpp     server/input/GetLogsBetweenTest.h
