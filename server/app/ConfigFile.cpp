@@ -6,8 +6,6 @@
 
 #include <QDir>
 #include <QDebug>
-#include <QSysInfo>
-#include <QtCore/QOperatingSystemVersion>
 
 #include "common/exception/general.h"
 
