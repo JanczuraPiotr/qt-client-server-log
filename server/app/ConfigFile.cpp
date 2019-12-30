@@ -4,9 +4,6 @@
 
 #include "ConfigFile.h"
 
-#include <filesystem>
-#include <cstdlib>
-
 #include <QDir>
 #include <QDebug>
 #include <QSysInfo>
@@ -63,11 +60,6 @@ QString ConfigFile::getConfigDir()
 
 QString ConfigFile::getDefaultConfigDir()
 {
-//    if (QOperatingSystemVersion::current().name() == "windows") {
-//    } else if (QOperatingSystemVersion::current().name() == ""){
-//    } else {
-//        // Zakładam uruchamianie tylko na windows lub linux i nie brnę w testowane innych systemów
-//    }
     return QDir::homePath() + "/qt-log";
 }
 
