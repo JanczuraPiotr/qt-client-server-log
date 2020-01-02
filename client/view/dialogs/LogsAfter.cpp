@@ -3,20 +3,27 @@
 //
 
 #include "LogsAfter.h"
+
+#include <QtCore/QDateTime>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QVBoxLayout>
 
+#include "common/def.h"
 
 namespace cl::view::dialog {
 
 LogsAfter::LogsAfter(QWidget *parent)
     : QDialog(parent)
-    , info(QLabel("W BUDOWIE", this))
+    , labelMoment(QLabel("Data graniczna", this))
+    , dateTime()
     , okButton(QPushButton("OK"))
     , cancelButton(QPushButton("Cancel"))
 {
     setWindowTitle("Pokaż logi po dacie");
+    dateTime.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
+    dateTime.setDateTime(QDateTime::currentDateTime());
+
     layout();
 
     connect(&okButton, &QAbstractButton::clicked, this, &QDialog::accept);
@@ -28,7 +35,8 @@ void LogsAfter::layout()
 {
     QGridLayout *gLayout = new QGridLayout;
     gLayout->setColumnStretch(2, 1);
-    gLayout->addWidget(&info, 0, 0);
+    gLayout->addWidget(&labelMoment, 0, 0);
+    gLayout->addWidget(&dateTime, 0, 1);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(&okButton);

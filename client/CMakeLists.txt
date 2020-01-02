@@ -23,8 +23,6 @@ add_executable(${CLIENT}
         view/dialogs/LogsBetween.cpp                view/dialogs/LogsBetween.h
         )
 
-#find_package(Qt5Widgets REQUIRED)
-
 qt5_use_modules(${CLIENT}
         Core
         Network

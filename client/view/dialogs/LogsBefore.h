@@ -6,6 +6,7 @@
 #define QT_CLIENT_SERVER_LOG_LOGSBEFORE_H
 
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QLabel>
@@ -22,7 +23,8 @@ private: // methods
     void layout();
 
 private: // attributes
-    QLabel info;
+    QLabel labelMoment;
+    QDateTimeEdit dateTime;
     QPushButton okButton;
     QPushButton cancelButton;
 };

@@ -6,6 +6,7 @@
 #define CLIENT_DIALOG_LOGSAFTER_H
 
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
 
@@ -20,7 +21,8 @@ private: // methods
     void layout();
 
 private: // attributes
-    QLabel info;
+    QLabel labelMoment;
+    QDateTimeEdit dateTime;
     QPushButton okButton;
     QPushButton cancelButton;
 };

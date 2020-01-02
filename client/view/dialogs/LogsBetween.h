@@ -5,6 +5,7 @@
 #ifndef QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
 #define QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
 
+#include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
@@ -21,7 +22,10 @@ private: // methods
     void layout();
 
 private: // attributes
-    QLabel info;
+    QLabel labelEarlier;
+    QLabel labelLatter;
+    QDateTimeEdit dateTimeEarlier;
+    QDateTimeEdit dateTimeLatter;
     QPushButton okButton;
     QPushButton cancelButton;
 
