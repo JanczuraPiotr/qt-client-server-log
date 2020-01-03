@@ -5,6 +5,7 @@
 #include "Main.h"
 
 #include <QDebug>
+#include <QCoreApplication>
 
 #include "model/LogCollection.h"
 

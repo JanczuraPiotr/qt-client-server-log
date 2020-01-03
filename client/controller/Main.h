@@ -14,7 +14,7 @@
 namespace cl::controller {
 
 class Main : public QObject {
-Q_OBJECT
+    Q_OBJECT
 public:
 
     static Main& instance();
@@ -26,6 +26,7 @@ public slots:
 
 private: // methods
     Main();
+
 
 private: // attributes
     cl::view::MainWindow mainWindow;

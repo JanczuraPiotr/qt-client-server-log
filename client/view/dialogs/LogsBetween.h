@@ -18,14 +18,17 @@ Q_OBJECT
 public:
     explicit LogsBetween(QWidget *parent = nullptr);
 
+    QString getBorderEarlier();
+    QString getBorderLatter();
+
 private: // methods
     void layout();
 
 private: // attributes
     QLabel labelEarlier;
     QLabel labelLatter;
-    QDateTimeEdit dateTimeEarlier;
-    QDateTimeEdit dateTimeLatter;
+    QDateTimeEdit borderEarlier;
+    QDateTimeEdit borderLatter;
     QPushButton okButton;
     QPushButton cancelButton;
 

@@ -17,12 +17,14 @@ class LogsAfter : public QDialog {
 public:
     explicit LogsAfter(QWidget *parent = nullptr);
 
+    QString getBorderMoment();
+
 private: // methods
     void layout();
 
 private: // attributes
     QLabel labelMoment;
-    QDateTimeEdit dateTime;
+    QDateTimeEdit borderMoment;
     QPushButton okButton;
     QPushButton cancelButton;
 };

@@ -16,13 +16,13 @@ namespace cl::view::dialog {
 LogsBefore::LogsBefore(QWidget *parent)
     : QDialog(parent)
     , labelMoment(QLabel("Data graniczna", this))
-    , dateTime()
+    , borderMoment()
     , okButton(QPushButton("OK"))
     , cancelButton(QPushButton("Cancel"))
 {
     setWindowTitle("Pokaż logi przed datą");
-    dateTime.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
-    dateTime.setDateTime(QDateTime::currentDateTime());
+    borderMoment.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
+    borderMoment.setDateTime(QDateTime::currentDateTime());
 
     layout();
 
@@ -36,7 +36,7 @@ void LogsBefore::layout()
     QGridLayout *gLayout = new QGridLayout;
     gLayout->setColumnStretch(2, 1);
     gLayout->addWidget(&labelMoment, 0, 0);
-    gLayout->addWidget(&dateTime, 0, 1);
+    gLayout->addWidget(&borderMoment, 0, 1);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(&okButton);
@@ -48,5 +48,11 @@ void LogsBefore::layout()
     mainLayout->addLayout(gLayout);
     setLayout(mainLayout);
 }
+
+QString LogsBefore::getBorderMoment()
+{
+    return borderMoment.text();
+}
+
 
 }

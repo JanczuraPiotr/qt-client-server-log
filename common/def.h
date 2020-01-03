@@ -13,6 +13,7 @@
 namespace cm {
 
 typedef unsigned AutoId;
+typedef QString Key;
 typedef int Index; //std::size_t Index;
 typedef quint16 TCPPort;
 typedef QString ColumnName;

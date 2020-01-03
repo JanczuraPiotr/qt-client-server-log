@@ -9,22 +9,29 @@
 #include <QAction>
 #include <QMainWindow>
 #include <QObject>
-#include <client/model/LogRecord.h>
 
-#include "LogsTable.h"
+#include "client/model/LogRecord.h"
+#include "client/view/windows/Logs.h"
+#include "client/view/table/Logs.h"
 #include "common/def.h"
 
+
+// @task zamknij wszystkie okna po zamknięciu okna aplikacji
 namespace cl::view {
 
-class LogsTable;
+class Logs;
 
 class MainWindow : public QMainWindow {
-    //Q_OBJECT
+    Q_OBJECT
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow() override = default;
+    explicit MainWindow();
+    ~MainWindow() override;
 
     void log(cl::model::LogRecord::ptr logRecord);
+    void closeEvent(QCloseEvent *event) override;
+
+public slots:
+    void closedWindow(const cm::Key &key);
 
 private: // methods
     void initMenus();
@@ -37,7 +44,10 @@ private: // attributes
     QAction logsBeforeAction;
     QAction logsBetweenAction;
 
-    LogsTable logsTable;
+    cl::view::table::Logs logsTable;
+    cl::view::window::Logs::map logsWindows;
+
+    Qt::ConnectionType connectionType;
 
 private:
     MainWindow(const MainWindow& ) = delete;

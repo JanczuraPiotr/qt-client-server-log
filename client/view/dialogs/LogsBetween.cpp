@@ -16,16 +16,16 @@ LogsBetween::LogsBetween(QWidget *parent)
     : QDialog(parent)
     , labelEarlier(QLabel("Data początkowa", this))
     , labelLatter(QLabel("Data ostatnia", this))
-    , dateTimeEarlier()
-    , dateTimeLatter()
+    , borderEarlier()
+    , borderLatter()
     , okButton(QPushButton("OK"))
     , cancelButton(QPushButton("Cancel"))
 {
     setWindowTitle("Pokaż logi między datami");
-    dateTimeEarlier.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
-    dateTimeEarlier.setDateTime(QDateTime::currentDateTime());
-    dateTimeLatter.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
-    dateTimeLatter.setDateTime(QDateTime::currentDateTime());
+    borderEarlier.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
+    borderEarlier.setDateTime(QDateTime::currentDateTime());
+    borderLatter.setDisplayFormat(cm::DATE_TIME_TEMPLATE.c_str());
+    borderLatter.setDateTime(QDateTime::currentDateTime());
 
     layout();
 
@@ -39,9 +39,9 @@ void LogsBetween::layout()
     QGridLayout *gLayout = new QGridLayout;
     gLayout->setColumnStretch(3, 1);
     gLayout->addWidget(&labelEarlier, 0, 0);
-    gLayout->addWidget(&dateTimeEarlier, 0, 1);
+    gLayout->addWidget(&borderEarlier, 0, 1);
     gLayout->addWidget(&labelLatter, 1, 0);
-    gLayout->addWidget(&dateTimeLatter, 1, 1);
+    gLayout->addWidget(&borderLatter, 1, 1);
 
     QHBoxLayout *buttonLayout = new QHBoxLayout;
     buttonLayout->addWidget(&okButton);
@@ -53,5 +53,16 @@ void LogsBetween::layout()
     mainLayout->addLayout(gLayout);
     setLayout(mainLayout);
 }
+
+QString LogsBetween::getBorderEarlier()
+{
+    return borderEarlier.text();
+}
+
+QString LogsBetween::getBorderLatter()
+{
+    return borderLatter.text();
+}
+
 
 }

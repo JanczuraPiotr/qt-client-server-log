@@ -13,10 +13,9 @@
 #include "common/def.h"
 #include "client/model/LogRecord.h"
 
-namespace cl::view {
+namespace cl::view::table {
 
-
-class LogsTable : public QTableView {
+class Logs : public QTableView {
     Q_OBJECT
 public:
     static const int COL_ID_IX = 0;
@@ -29,9 +28,9 @@ public:
     static const int COL_MESSAGE_HEIGHT  = 300;
 
 public:
-    explicit LogsTable(QWidget *parent = nullptr);
+    explicit Logs(QWidget *parent = nullptr);
 
-    void log(cl::model::LogRecord::ptr logRecord);
+    void log(model::LogRecord::ptr logRecord);
 
 private: // methods
     void initColumns();
@@ -42,5 +41,6 @@ private: // attributes
 };
 
 }
+
 
 #endif //SERVER_VIEW_LOGSTABLE_H

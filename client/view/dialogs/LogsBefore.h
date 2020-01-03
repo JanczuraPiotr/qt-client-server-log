@@ -19,12 +19,14 @@ Q_OBJECT
 public:
     explicit LogsBefore(QWidget *parent = nullptr);
 
+    QString getBorderMoment();
+
 private: // methods
     void layout();
 
 private: // attributes
     QLabel labelMoment;
-    QDateTimeEdit dateTime;
+    QDateTimeEdit borderMoment;
     QPushButton okButton;
     QPushButton cancelButton;
 };

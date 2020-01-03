@@ -12,13 +12,14 @@ add_executable(gtest_run main.cpp
         ../server/input/GetLogsAfter.cpp        ../server/input/GetLogsAfter.h
         ../server/input/GetLogsBefore.cpp       ../server/input/GetLogsBefore.h
         ../server/input/GetLogsBetween.cpp      ../server/input/GetLogsBetween.h
+        ../common/algorithm/Key.cpp ../common/algorithm/Key.h
 
-        client/input/LogTest.cpp client/input/LogTest.h
+        client/input/LogTest.cpp                client/input/LogTest.h
 
         server/input/GetLogsBeforeTest.cpp      server/input/GetLogsBeforeTest.h
         server/input/GetLogsBetweenTest.cpp     server/input/GetLogsBetweenTest.h
         server/input/GetLogsAfterTest.cpp       server/input/GetLogsAfterTest.h
-        )
+        common/algorithm/IntervalKeyTest.cpp common/algorithm/IntervalKeyTest.h)
 
 
 
