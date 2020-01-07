@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef SERVER_MODEL_LOGRECORD_H
-#define SERVER_MODEL_LOGRECORD_H
+#ifndef SERVER_MODEL_LOGRECORD
+#define SERVER_MODEL_LOGRECORD
 
 #include <memory>
 

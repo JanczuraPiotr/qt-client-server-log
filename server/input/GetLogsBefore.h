@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.15
 //
 
-#ifndef SERVER_INPUT_GETFIRSTLOG_H
-#define SERVER_INPUT_GETFIRSTLOG_H
+#ifndef SERVER_INPUT_GETFIRSTLOG
+#define SERVER_INPUT_GETFIRSTLOG
 
 #include <QString>
 #include <QDateTime>
@@ -36,4 +36,4 @@ public: // lock
 }
 
 
-#endif //SERVER_INPUT_GETFIRSTLOG_H
+#endif

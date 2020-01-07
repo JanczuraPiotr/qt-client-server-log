@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.03
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOGS_H
-#define QT_CLIENT_SERVER_LOG_LOGS_H
+#ifndef CLIENT_WINDOW_LOGS
+#define CLIENT_WINDOW_LOGS
 
 #include <QWidget>
 #include <QWidget>
@@ -39,5 +39,4 @@ private:
 }
 
 
-
-#endif //QT_CLIENT_SERVER_LOG_LOGS_H
+#endif

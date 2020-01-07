@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.07
 //
 
-#ifndef CLIENT_INPUT_GETLOGSAFTER_H
-#define CLIENT_INPUT_GETLOGSAFTER_H
+#ifndef CLIENT_INPUT_GETLOGSAFTER
+#define CLIENT_INPUT_GETLOGSAFTER
 
 #include "common/def.h"
 
@@ -25,4 +25,4 @@ private: // attributes
 
 }
 
-#endif //QT_CLIENT_SERVER_LOG_GETLOGSAFTER_H
+#endif

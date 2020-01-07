@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.30
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOGSBEFORE_H
-#define QT_CLIENT_SERVER_LOG_LOGSBEFORE_H
+#ifndef CLIENT_DIALOG_LOGSBEFORE
+#define CLIENT_DIALOG_LOGSBEFORE
 
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDateTimeEdit>
@@ -33,4 +33,4 @@ private: // attributes
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOGSBEFORE_H
+#endif

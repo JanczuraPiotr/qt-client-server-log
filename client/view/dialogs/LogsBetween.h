@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.30
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
-#define QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
+#ifndef CLIENT_DIALOG_LOGSBETWEEN
+#define CLIENT_DIALOG_LOGSBETWEEN
 
 #include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QDialog>
@@ -36,4 +36,4 @@ private: // attributes
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
+#endif

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.24
 //
 
-#ifndef SERVER_VIEW_LOGSTABLE_H
-#define SERVER_VIEW_LOGSTABLE_H
+#ifndef SERVER_TABLE_LOGSTABLE
+#define SERVER_TABLE_LOGSTABLE
 
 #include <QStandardItemModel>
 #include <QStandardItem>
@@ -43,4 +43,4 @@ private: // attributes
 }
 
 
-#endif //SERVER_VIEW_LOGSTABLE_H
+#endif

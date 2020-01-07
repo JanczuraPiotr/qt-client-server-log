@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.07
 //
 
-#ifndef CLIENT_INPUT_GETLOGSBETWEEN_H
-#define CLIENT_INPUT_GETLOGSBETWEEN_H
+#ifndef CLIENT_INPUT_GETLOGSBETWEEN
+#define CLIENT_INPUT_GETLOGSBETWEEN
 
 #include "common/def.h"
 

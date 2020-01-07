@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.07
 //
 
-#ifndef CLIENT_INPUT_GETLOGSBEFORE_H
-#define CLIENT_INPUT_GETLOGSBEFORE_H
+#ifndef CLIENT_INPUT_GETLOGSBEFORE
+#define CLIENT_INPUT_GETLOGSBEFORE
 
 #include "common/def.h"
 

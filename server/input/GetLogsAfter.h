@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.15
 //
 
-#ifndef SERVER_INPUT_GETLASTGetLastLog_H
-#define SERVER_INPUT_GETLASTGetLastLog_H
+#ifndef SERVER_INPUT_GETLOGSAFTER
+#define SERVER_INPUT_GETLOGSAFTER
 
 #include <string>
 #include <QtCore/QString>
@@ -40,4 +40,4 @@ public: // lock
 
 
 
-#endif //SERVER_INPUT_GETLASTGetLastLog_H
+#endif

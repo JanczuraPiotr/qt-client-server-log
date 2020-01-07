@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.24
 //
 
-#ifndef CLIENT_VIEW_MAINWINDOW_H
-#define CLIENT_VIEW_MAINWINDOW_H
+#ifndef CLIENT_VIEW_MAINWINDOW
+#define CLIENT_VIEW_MAINWINDOW
 
 #include <QMenuBar>
 #include <QAction>
@@ -56,4 +56,4 @@ private:
 }
 
 
-#endif //CLIENT_VIEW_MAINWINDOW_H
+#endif

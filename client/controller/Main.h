@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.22
 //
 
-#ifndef CLIENT_CONTROLLER_MAIN_H
-#define CLIENT_CONTROLLER_MAIN_H
+#ifndef CLIENT_CONTROLLER_MAIN
+#define CLIENT_CONTROLLER_MAIN
 
 #include <QObject>
 #include <QDateTime>
@@ -42,4 +42,4 @@ public: // lock
 
 
 
-#endif //CLIENT_CONTROLLER_MAIN_H
+#endif

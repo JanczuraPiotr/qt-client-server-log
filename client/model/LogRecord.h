@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.24
 //
 
-#ifndef CLIENT_MODEL_LOGRECORD_H
-#define CLIENT_MODEL_LOGRECORD_H
+#ifndef CLIENT_MODEL_LOGRECORD
+#define CLIENT_MODEL_LOGRECORD
 
 #include <memory>
 
@@ -58,4 +58,4 @@ public: // lock
 
 
 
-#endif //QT_CLIENT_SERVER_LogRecord_LogRecord_H
+#endif

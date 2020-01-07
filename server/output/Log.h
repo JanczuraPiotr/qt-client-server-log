@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.19
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOG_H
-#define QT_CLIENT_SERVER_LOG_LOG_H
+#ifndef SERVER_OUTPUT_LOG
+#define SERVER_OUTPUT_LOG
 
 #include <QDateTime>
 #include <server/model/LogRecord.h>
@@ -36,4 +36,4 @@ public: // lock
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOG_H
+#endif

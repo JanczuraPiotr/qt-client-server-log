@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.15
 //
 
-#ifndef SERVER_INPUT_GETLOGSBETWEEN_H
-#define SERVER_INPUT_GETLOGSBETWEEN_H
+#ifndef SERVER_INPUT_GETLOGSBETWEEN
+#define SERVER_INPUT_GETLOGSBETWEEN
 
 #include <QString>
 #include <QDateTime>

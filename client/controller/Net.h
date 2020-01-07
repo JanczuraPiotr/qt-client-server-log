@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.20
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_NET_H
-#define QT_CLIENT_SERVER_LOG_NET_H
+#ifndef CLIENT_CONSTROLLER_NET
+#define CLIENT_CONSTROLLER_NET
 
 #include <QObject>
 #include <QDateTime>

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.24
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOGCOLLECTION_H
-#define QT_CLIENT_SERVER_LOG_LOGCOLLECTION_H
+#ifndef CLIENT_MODEL_LOGCOLLECTION
+#define CLIENT_MODEL_LOGCOLLECTION
 
 #include <memory>
 #include <QDateTime>
@@ -41,4 +41,4 @@ public: // lock
 
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOGCOLLECTION_H
+#endif

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.30
 //
 
-#ifndef CLIENT_DIALOG_LOGSAFTER_H
-#define CLIENT_DIALOG_LOGSAFTER_H
+#ifndef CLIENT_DIALOG_LOGSAFTER
+#define CLIENT_DIALOG_LOGSAFTER
 
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDateTimeEdit>
@@ -33,4 +33,4 @@ private: // attributes
 
 
 
-#endif //CLIENT_DIALOG_LOGSAFTER_H
+#endif

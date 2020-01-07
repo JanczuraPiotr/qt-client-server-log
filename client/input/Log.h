@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.24
 //
 
-#ifndef CLIENT_INPUT_LOG_H
-#define CLIENT_INPUT_LOG_H
+#ifndef CLIENT_INPUT_LOG
+#define CLIENT_INPUT_LOG
 
 #include <QDateTime>
 
@@ -43,4 +43,4 @@ public: // lock
 
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOG_H
+#endif

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.17
 //
 
-#ifndef SERVER_MAIN_H
-#define SERVER_MAIN_H
+#ifndef SERVER_SERVICE_MAIN
+#define SERVER_SERVICE_MAIN
 
 #include <QObject>
 
@@ -40,4 +40,4 @@ public: // lock
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_MAIN_H
+#endif
