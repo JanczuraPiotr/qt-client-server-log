@@ -15,7 +15,7 @@ namespace cl::view::dialog {
 LogsBetween::LogsBetween(QWidget *parent)
     : QDialog(parent)
     , labelEarlier(QLabel("Data początkowa", this))
-    , labelLatter(QLabel("Data ostatnia", this))
+    , labelLatter(QLabel("Data końcowa", this))
     , borderEarlier()
     , borderLatter()
     , okButton(QPushButton("OK"))

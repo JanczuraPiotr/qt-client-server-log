@@ -62,6 +62,7 @@ void NetConnection::insertedLog(
 
 void NetConnection::messageToClient(const QString &msg, cm::TCPPort clientsPort)
 {
+    qDebug() << "NetConnection::messageToClient" << msg;
     socketsClients[clientsPort]->sendTextMessage(msg);
     // @task obsłuż brak klienta
 }
@@ -124,7 +125,6 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
     } else {
         if (command == "getLogsAfter") {
-
             sv::input::GetLogsAfter input(netInput, lim);
             if (input.parse()) {
                 emit getLogsAfter(input.getBorderMoment(), pSender->peerPort());
@@ -134,7 +134,6 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
             }
 
         } else if (command == "getLogsBefore") {
-
             sv::input::GetLogsBefore input(netInput, lim);
             if (input.parse()) {
                 emit getLogsBefore(input.getBorderMoment(), pSender->peerPort());

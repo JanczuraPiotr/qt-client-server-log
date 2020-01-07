@@ -15,7 +15,8 @@ namespace sv::input {
 
 class GetLogsAfter {
 public:
-    explicit GetLogsAfter(cm::NetInput input, cm::Index lim);
+    GetLogsAfter(cm::NetInput input, cm::Index lim);
+    virtual ~GetLogsAfter() = default;
 
     bool parse();
 

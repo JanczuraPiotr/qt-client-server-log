@@ -21,11 +21,11 @@ GetLogsBefore::GetLogsBefore(cm::NetInput input, cm::Index lim)
 bool GetLogsBefore::parse()
 {
     // "getLogsBefore|".length() = 14
-    if (input.length() - static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.length()) != 14) {
+    if (input.length() - static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()) != 14) {
         return false;
     }
 
-    borderMoment = QDateTime::fromString(input.mid(lim + 1) , cm::DATE_TIME_TEMPLATE.c_str());
+    borderMoment = QDateTime::fromString(input.mid(lim + 1) , cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str());
     if (!borderMoment.isValid()){
         return false;
     }

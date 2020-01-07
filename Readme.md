@@ -54,33 +54,34 @@ Cały komunikat może składać się tylko z tokenów oddzielonych znakiem "|". 
 ```
 
 ### Komunikaty, odpowiedzi i żądania.
-Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez serwer ale typ odpowiedzi ma tą samą nazwę co zapytanie:
+Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez serwer ale typ odpowiedzi ma tą samą nazwę co zapytanie oraz parametry:
+
 żądanie:
 
 ```
-"getLogsAfter|2011-11-11 11-11-11"
+"getLogsAfter|2011-11-11-11-11-11"
 ```
 
 odpowiedź
 ```
-"getLogsAfter|{logi wygenerowane po dacie z zapytania}"
+"getLogsAfter|2011-11-11-11-11-11{logi wygenerowane po dacie z zapytania}"
 ```
 
 żądanie:
 ```
-"getLogsBefore|2011-11-11 11-11-11"
+"getLogsBefore|2011-11-11-11-11-11"
 ```
 odpowiedź:
 ```
-"getLogsBefore|{logi wygenerowane przed datą z zapytania}"
+"getLogsBefore|2011-11-11-11-11-11{logi wygenerowane przed datą z zapytania}"
 ```
 żądanie:
 ```
-"getLogsBetween|2011-11-11 11-11-11|2011-11-11 12-12-12"
+"getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12"
 ```
 odpowiedź:
 ```
-"getLogsBetween|{logi wygenerowane przed datą z zapytania}"
+"getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12{logi wygenerowane przed datą z zapytania}"
 ```
 
 ### Komendy

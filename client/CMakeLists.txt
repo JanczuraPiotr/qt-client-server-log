@@ -14,6 +14,9 @@ add_executable(${CLIENT}
 
         controller/Main.cpp                         controller/Main.h
         controller/Net.cpp                          controller/Net.h
+        input/GetLogsAfter.cpp                      input/GetLogsAfter.h
+        input/GetLogsBefore.cpp                     input/GetLogsBefore.h
+        input/GetLogsBetween.cpp                    input/GetLogsBetween.h
         input/Log.cpp                               input/Log.h
         model/LogRecord.cpp                         model/LogRecord.h
         model/LogCollection.cpp                     model/LogCollection.h

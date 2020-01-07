@@ -41,7 +41,7 @@ cm::AutoId LogCollection::insert(QDateTime timestamp, cm::LogPriority priority, 
 LogRecord::map LogCollection::getLogsAfter(const QDateTime &limit)
 {
     QSqlQuery query;
-    query.prepare("SELECT id, timestamp, priority, message FROM log WHERE timestamp < :limit");
+    query.prepare("SELECT id, timestamp, priority, message FROM log WHERE timestamp > :limit");
     query.bindValue(":limit", limit);
     query.exec();
     LogRecord::map map;
@@ -55,7 +55,7 @@ LogRecord::map LogCollection::getLogsAfter(const QDateTime &limit)
 LogRecord::map LogCollection::getLogsBefore(const QDateTime &limit)
 {
     QSqlQuery query;
-    query.prepare("SELECT id, timestamp, priority, message FROM log WHERE timestamp > :limit");
+    query.prepare("SELECT id, timestamp, priority, message FROM log WHERE timestamp < :limit");
     query.bindValue(":limit", limit);
     query.exec();
     LogRecord::map map;

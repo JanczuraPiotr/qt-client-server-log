@@ -3,6 +3,7 @@
 //
 
 // @task ujednolicić definicję plików nagłówkowych
+// @task logowanie podłączenia i rozłączenia z klientem
 
 
 #include <iostream>

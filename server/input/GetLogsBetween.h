@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.15
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
-#define QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
+#ifndef SERVER_INPUT_GETLOGSBETWEEN_H
+#define SERVER_INPUT_GETLOGSBETWEEN_H
 
 #include <QString>
 #include <QDateTime>
@@ -38,4 +38,4 @@ public: // lock
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
+#endif
