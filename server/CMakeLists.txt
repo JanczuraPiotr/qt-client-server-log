@@ -25,8 +25,6 @@ add_executable(${SERVER}
         app/ConfigFile.cpp                  app/ConfigFile.h
         app/SignalBus.cpp                   app/SignalBus.h
 
-        input/GetLogsAfter.cpp              input/GetLogsAfter.h
-        input/GetLogsBefore.cpp             input/GetLogsBefore.h
         input/GetLogsBetween.cpp            input/GetLogsBetween.h
 
         model/LogCollection.cpp             model/LogCollection.h

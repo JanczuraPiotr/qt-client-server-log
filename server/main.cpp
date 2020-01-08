@@ -58,3 +58,8 @@ int main(int argc, char **argv) {
         std::cerr << "Unknown exception";
     }
 }
+
+// potem:
+//
+// po podłączeniu klienta powiadom go o najstarszym zapamiętanym logu i ich ilości
+// powiadamiaj klienta o usuniętych logach

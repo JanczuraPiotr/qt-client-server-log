@@ -9,8 +9,6 @@
 
 #include "server/app/ConfigFile.h"
 #include "server/model/LogCollection.h"
-#include "server/input/GetLogsAfter.h"
-#include "server/input/GetLogsBefore.h"
 #include "server/input/GetLogsBetween.h"
 #include "server/output/Log.h"
 
@@ -124,25 +122,7 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
         sv::model::LogCollection logCollection;
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
     } else {
-        if (command == "getLogsAfter") {
-            sv::input::GetLogsAfter input(netInput, lim);
-            if (input.parse()) {
-                emit getLogsAfter(input.getBorderMoment(), pSender->peerPort());
-            } else {
-                sv::model::LogCollection logCollection;
-                logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsAfter");
-            }
-
-        } else if (command == "getLogsBefore") {
-            sv::input::GetLogsBefore input(netInput, lim);
-            if (input.parse()) {
-                emit getLogsBefore(input.getBorderMoment(), pSender->peerPort());
-            } else {
-                sv::model::LogCollection logCollection;
-                logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBefore");
-            }
-
-        } else if (command == "getLogsBetween") {
+        if (command == "getLogsBetween") {
             sv::input::GetLogsBetween input(netInput, lim);
             if (input.parse()) {
                 emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());

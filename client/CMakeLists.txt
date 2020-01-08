@@ -14,16 +14,13 @@ add_executable(${CLIENT}
 
         controller/Main.cpp                         controller/Main.h
         controller/Net.cpp                          controller/Net.h
-        input/GetLogsAfter.cpp                      input/GetLogsAfter.h
-        input/GetLogsBefore.cpp                     input/GetLogsBefore.h
         input/GetLogsBetween.cpp                    input/GetLogsBetween.h
         input/Log.cpp                               input/Log.h
         model/LogRecord.cpp                         model/LogRecord.h
         model/LogCollection.cpp                     model/LogCollection.h
+        output/GetLogsBetween.cpp                   output/GetLogsBetween.h
         view/MainWindow.cpp                         view/MainWindow.h
-        view/table/Logs.cpp view/table/Logs.h
-        view/dialogs/LogsAfter.cpp                  view/dialogs/LogsAfter.h
-        view/dialogs/LogsBefore.cpp                 view/dialogs/LogsBefore.h
+        view/table/Logs.cpp                         view/table/Logs.h
         view/dialogs/LogsBetween.cpp                view/dialogs/LogsBetween.h
         view/windows/Logs.cpp                       view/windows/Logs.h
         )

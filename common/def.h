@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef QT_LOG_COMMON_DEF_H
-#define QT_LOG_COMMON_DEF_H
+#ifndef COMMON_DEF
+#define COMMON_DEF
 
 #include <map>
 #include <QVariant>
@@ -22,6 +22,7 @@ typedef QString Message;
 typedef QString JsonString;
 typedef QString NetCommand;
 typedef QList<QStandardItem *> TextRow;
+typedef QString DateTime;
 
 typedef QString NetInput;
 
@@ -40,4 +41,4 @@ const std::string DATE_TIME_TEMPLATE = "yyyy-MM-dd hh:mm:ss";
 const std::string DATE_TIME_IN_COMMAND_TEMPLATE = "yyyy-MM-dd-hh-mm-ss";
 }
 
-#endif //QT_LOG_COMMON_DEF_H
+#endif

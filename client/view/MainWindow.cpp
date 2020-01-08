@@ -8,9 +8,7 @@
 #include <QThread>
 #include <QCoreApplication>
 
-#include "client/view/dialogs/LogsBefore.h"
 #include "client/view/dialogs/LogsBetween.h"
-#include "client/view/dialogs/LogsAfter.h"
 #include "client/view/table/Logs.h"
 #include "client/view/windows/Logs.h"
 #include "common/algorithm/Key.h"
@@ -19,8 +17,6 @@ namespace cl::view {
 
 MainWindow::MainWindow()
     : QMainWindow()
-    , logsAfterAction([=](){ return QAction(tr("Logi p&o dacie"), this);}())
-    , logsBeforeAction([=](){ return QAction(tr("Logi prze&d datą"), this);}())
     , logsBetweenAction([=](){ return QAction(tr("Logi po&między datami"), this);}())
     , logsTable(this)
     , logsWindows()
@@ -51,12 +47,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::initMenus()
 {
-    menuBar()->addAction(&logsBeforeAction);
-    connect(&logsBeforeAction, &QAction::triggered, this, &MainWindow::showLogsBefore);
-
-    menuBar()->addAction(&logsAfterAction);
-    connect(&logsAfterAction, &QAction::triggered, this, &MainWindow::showLogsAfter);
-
     menuBar()->addAction(&logsBetweenAction);
     connect(&logsBetweenAction, &QAction::triggered, this, &MainWindow::showLogsBetween);
 }
@@ -78,50 +68,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::closedWindow(const cm::Key &key)
 {
     logsWindows.erase(key);
-}
-
-void MainWindow::showLogsBefore()
-{
-    namespace win = cl::view::window;
-    namespace alg = cm::algorithm;
-    namespace dlg = cl::view::dialog;
-
-    dlg::LogsBefore dialogBefore(this);
-    if (dialogBefore.exec()) {
-        cm::Key key(alg::Key::create("", dialogBefore.getBorderMoment()));
-        auto logsIT = logsWindows.find(key);
-        if ( logsIT != logsWindows.end()) {
-            logsIT->second->showNormal();
-        } else {
-            auto logsWindow = win::Logs::create(key, key);
-            logsWindow->resize(300,400);
-            logsWindow->show();
-            logsWindows.insert(std::make_pair(key, logsWindow));
-            connect(logsWindow.data(), &win::Logs::closedWindow, this, &MainWindow::closedWindow, connectionType);
-        }
-    }
-}
-
-void MainWindow::showLogsAfter()
-{
-    namespace win = cl::view::window;
-    namespace alg = cm::algorithm;
-    namespace dlg = cl::view::dialog;
-
-    cl::view::dialog::LogsAfter dialogAfter(this);
-    if (dialogAfter.exec()) {
-        cm::Key key(alg::Key::create(dialogAfter.getBorderMoment(), ""));
-        auto logsIT = logsWindows.find(key);
-        if ( logsIT != logsWindows.end()) {
-            logsIT->second->showNormal();
-        } else {
-            auto logsWindow = win::Logs::create(key, key);
-            logsWindow->resize(300, 400);
-            logsWindow->show();
-            logsWindows.insert(std::make_pair(key, logsWindow));
-            connect(logsWindow.data(), &win::Logs::closedWindow, this, &MainWindow::closedWindow, connectionType);
-        }
-    }
 }
 
 void MainWindow::showLogsBetween()

@@ -35,13 +35,9 @@ public slots:
 
 private: // methods
     void initMenus();
-    void showLogsBefore();
-    void showLogsAfter();
     void showLogsBetween();
 
 private: // attributes
-    QAction logsAfterAction;
-    QAction logsBeforeAction;
     QAction logsBetweenAction;
 
     cl::view::table::Logs logsTable;

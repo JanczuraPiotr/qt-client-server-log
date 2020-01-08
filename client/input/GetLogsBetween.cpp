@@ -2,7 +2,7 @@
 // Created by piotr@janczura.pl on 2020.01.07
 //
 
-#include "GetLogsBetween.h"
+#include "client/input/GetLogsBetween.h"
 
 namespace cl::input {
 

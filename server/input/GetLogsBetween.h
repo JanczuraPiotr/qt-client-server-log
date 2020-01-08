@@ -23,8 +23,8 @@ public:
     QDateTime getBorderLatter();
 
 private: // methods
-    QString input;
-    int lim;
+    cm::NetInput input;
+    cm::Index lim;
 
     QDateTime borderEarlier;
     QDateTime borderLatter;
