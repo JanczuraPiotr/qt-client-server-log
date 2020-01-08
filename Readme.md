@@ -57,25 +57,6 @@ Cały komunikat może składać się tylko z tokenów oddzielonych znakiem "|". 
 Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez serwer ale typ odpowiedzi ma tą samą nazwę co zapytanie oraz parametry:
 
 żądanie:
-
-```
-"getLogsAfter|2011-11-11-11-11-11"
-```
-
-odpowiedź
-```
-"getLogsAfter|2011-11-11-11-11-11{logi wygenerowane po dacie z zapytania}"
-```
-
-żądanie:
-```
-"getLogsBefore|2011-11-11-11-11-11"
-```
-odpowiedź:
-```
-"getLogsBefore|2011-11-11-11-11-11{logi wygenerowane przed datą z zapytania}"
-```
-żądanie:
 ```
 "getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12"
 ```
