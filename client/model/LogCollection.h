@@ -6,7 +6,9 @@
 #define CLIENT_MODEL_LOGCOLLECTION
 
 #include <memory>
+
 #include <QDateTime>
+
 #include "common/def.h"
 #include "client/model/LogRecord.h"
 
@@ -16,20 +18,22 @@ class LogRecord;
 class LogCollection {
 public:
     typedef std::shared_ptr<LogCollection> ptr;
-
-    explicit LogCollection();
+    static ptr makeShared();
     virtual ~LogCollection() = default;
 
+    LogRecord::ptr getById(cm::AutoId id);
     LogRecord::ptr insert(
             cm::AutoId logId
             , const QDateTime &timestamp
             , cm::LogPriority logPriority
             , const cm::Message &message);
+    cm::Size size();
 
 private: // attributes
     LogRecord::map records; // @task przełączyć na QCache
 
-public: // lock
+private: // lock
+    explicit LogCollection();
     LogCollection(const LogCollection &) noexcept = delete;
     LogCollection(LogCollection &&) noexcept = delete;
     LogCollection &operator = (const LogCollection&) noexcept = delete;

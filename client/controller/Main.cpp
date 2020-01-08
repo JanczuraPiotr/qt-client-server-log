@@ -25,8 +25,8 @@ Main::Main()
 
 void Main::log(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
 {
-    cl::model::LogCollection logCollection;
-    cl::model::LogRecord::ptr logRecord = logCollection.insert(logId, timestamp, logPriority, message);
+    auto logCollection = cl::model::LogCollection::makeShared();
+    cl::model::LogRecord::ptr logRecord = logCollection->insert(logId, timestamp, logPriority, message);
     mainWindow.log(logRecord);
 }
 

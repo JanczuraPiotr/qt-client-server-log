@@ -11,6 +11,7 @@ add_executable(${CLIENT}
         ../common/exception/general.cpp             ../common/exception/general.h
         ../common/output/ErrorMessage.cpp           ../common/output/ErrorMessage.h
         ../common/algorithm/Key.cpp                 ../common/algorithm/Key.h
+        ../common/algorithm/String.cpp              ../common/algorithm/String.h
 
         controller/Main.cpp                         controller/Main.h
         controller/Net.cpp                          controller/Net.h

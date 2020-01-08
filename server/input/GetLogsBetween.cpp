@@ -20,7 +20,7 @@ GetLogsBetween::GetLogsBetween(cm::NetInput input, cm::Index lim)
 
 bool GetLogsBetween::parse()
 {
-    // getLogsBetween|yyyy-MM-dd hh:mm:ss|yyyy-MM-dd hh:mm:ss"
+    // getLogsBetween|yyyy-MM-dd-hh-mm-ss|yyyy-MM-dd-hh-mm-ss"
     const cm::Index CORRECT_INPUT_LONG = 54;
     const cm::Index FIRST_LIM_INDEX = lim;
     const cm::Index LAST_LIM_INDEX = lim + static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()) + 1;

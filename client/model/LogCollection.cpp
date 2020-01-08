@@ -7,11 +7,19 @@
 
 namespace cl::model {
 
+LogCollection::ptr LogCollection::makeShared() {
+    return std::shared_ptr<LogCollection>(new LogCollection());
+}
 
 LogCollection::LogCollection()
     : records(LogRecord::map())
 {
 
+}
+
+// @task happy path
+LogRecord::ptr LogCollection::getById(cm::AutoId id) {
+    return records[id];
 }
 
 LogRecord::ptr LogCollection::insert(
@@ -30,5 +38,9 @@ LogRecord::ptr LogCollection::insert(
     return record;
 }
 
+cm::Size LogCollection::size()
+{
+    return records.size();
+}
 
 }

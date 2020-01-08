@@ -34,8 +34,8 @@ add_executable(${SERVER}
 
         service/FakeEvent.cpp               service/FakeEvent.h
         service/NetConnection.cpp           service/NetConnection.h
-
-        service/Main.cpp service/Main.h)
+        service/Main.cpp                    service/Main.h
+        )
 
 qt5_use_modules(${SERVER}
         Core

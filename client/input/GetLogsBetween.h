@@ -5,7 +5,10 @@
 #ifndef CLIENT_INPUT_GETLOGSBETWEEN
 #define CLIENT_INPUT_GETLOGSBETWEEN
 
+#include <QDateTime>
+
 #include "common/def.h"
+#include "client/model/LogCollection.h"
 
 namespace cl::input {
 
@@ -17,9 +20,19 @@ public:
 
     bool parse();
 
+    QDateTime getBorderEarlier();
+    QDateTime getBorderLatter();
+    cl::model::LogCollection::ptr getLogCollection();
+
 private: // attributes
     cm::NetInput input;
     cm::Index lim;
+
+    QDateTime borderEarlier;
+    QDateTime borderLatter;
+
+    cl::model::LogCollection::ptr logCollection;
+
 };
 
 }
