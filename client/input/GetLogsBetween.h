@@ -15,7 +15,7 @@ namespace cl::input {
 
 class GetLogsBetween {
 public:
-    GetLogsBetween(const cm::NetInput &input, cm::Index lim);
+    GetLogsBetween(const cm::NetInput &input);
     virtual ~GetLogsBetween() = default;
 
     bool parse();
@@ -27,6 +27,7 @@ public:
 private: // const
     // getLogsBetween|yyyy-MM-dd-hh-mm-ss|yyyy-MM-dd-hh-mm-ss{...}"
     const cm::Index CORRECT_JSON_START = 54;
+    const cm::Index CORRECT_DATA_START = 14;
 
 private: // methods
     bool parseDateTime();

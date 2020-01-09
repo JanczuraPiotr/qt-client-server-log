@@ -23,7 +23,7 @@ typedef QString Message;
 typedef QString JsonString;
 typedef QString NetCommand;
 typedef QList<QStandardItem *> TextRow;
-typedef QString DateTime;
+typedef QString DateTime; // Data i godzina w formie tekstowej według wzorca DATE_TIME_TEMPLATE
 
 typedef QString NetInput;
 
@@ -39,6 +39,7 @@ const int RECONNECT_TIME_IN_MILLISECONDS = 3000;
 const int MAX_RECONNECT_ATTEMPTS = 3;
 
 const std::string DATE_TIME_TEMPLATE = "yyyy-MM-dd hh:mm:ss";
+const std::string DATE_TIME_CONDENSED_TEMPLATE = "yyyyMMddhhmmss";
 const std::string DATE_TIME_IN_COMMAND_TEMPLATE = "yyyy-MM-dd-hh-mm-ss";
 }
 

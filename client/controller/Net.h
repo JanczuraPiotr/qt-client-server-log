@@ -10,6 +10,7 @@
 #include <QtWebSockets>
 #include <QString>
 
+#include "client/model/LogCollection.h"
 #include "common/def.h"
 
 namespace cl::controller {
@@ -20,10 +21,13 @@ public:
     explicit Net(const QString &url, cm::TCPPort serverIPPort);
     virtual ~Net();
 
-public:
-    signals:
-
+public: signals:
     void log(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message);
+    void logsBetween(const QDateTime &earlier, const QDateTime &latter, cl::model::LogCollection::ptr logCollection);
+
+public slots:
+    void netCommand(const cm::NetCommand &command);
+
 
 private slots: // for internal signals
     void onConnected();

@@ -8,6 +8,7 @@
 #include <QThread>
 #include <QCoreApplication>
 
+#include "client/controller/Main.h"
 #include "client/view/dialogs/LogsBetween.h"
 #include "client/view/table/Logs.h"
 #include "client/view/windows/Logs.h"
@@ -15,11 +16,15 @@
 
 namespace cl::view {
 
-MainWindow::MainWindow()
+namespace win = cl::view::window;
+namespace alg = cm::algorithm;
+namespace dlg = cl::view::dialog;
+
+MainWindow::MainWindow(cl::controller::Main &owner)
     : QMainWindow()
-    , logsBetweenAction([=](){ return QAction(tr("Logi po&między datami"), this);}())
+    , owner(owner)
+    , logsBetweenAction([=](){ return QAction(tr("Logi prze&filtrowane"), this);}())
     , logsTable(this)
-    , logsWindows()
     , connectionType(Qt::ConnectionType::AutoConnection)
 {
     const int MARGIN = 50;
@@ -58,37 +63,27 @@ void MainWindow::log(cl::model::LogRecord::ptr logRecord)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    event->accept();
-    for (auto &it : logsWindows) {
-        it.second->close();
-        logsWindows.erase(it.first);
-    }
+    std::ignore = event;
+    // @work przenieść do cl::controller::Main
+//    event->accept();
+//    for (auto &it : logsWindows) {
+//        it.second->close();
+//        logsWindows.erase(it.first);
+//    }
 }
 
 void MainWindow::closedWindow(const cm::Key &key)
 {
-    logsWindows.erase(key);
+    std::ignore = key;
+    // @work przenieść do cl::controller::Main
+//    logsWindows.erase(key);
 }
 
 void MainWindow::showLogsBetween()
 {
-    namespace win = cl::view::window;
-    namespace alg = cm::algorithm;
-    namespace dlg = cl::view::dialog;
-
     dlg::LogsBetween dialogBetween(this);
     if (dialogBetween.exec()) {
-        cm::Key key(alg::Key::create(dialogBetween.getBorderEarlier(), dialogBetween.getBorderLatter()));
-        auto logsIT = logsWindows.find(key);
-        if ( logsIT != logsWindows.end()) {
-            logsIT->second->showNormal();
-        } else {
-            auto logsWindow = win::Logs::create(key, key);
-            logsWindow->resize(300, 400);
-            logsWindow->show();
-            logsWindows.insert(std::make_pair(key, logsWindow));
-            connect(logsWindow.data(), &win::Logs::closedWindow, this, &MainWindow::closedWindow, connectionType);
-        }
+        owner.loadLogsBetween(dialogBetween.getBorderEarlier(), dialogBetween.getBorderLatter());
     }
 }
 

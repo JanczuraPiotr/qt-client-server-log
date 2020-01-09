@@ -21,11 +21,9 @@ public:
     void start();
 
 public slots:
-
     void cron1sec();
 
 signals:
-
     void insertedLog(
             cm::AutoId id
             , const QDateTime &dateTime
@@ -33,9 +31,7 @@ signals:
             , const cm::Message &message);
 
 private: // methods
-
     explicit FakeEvent();
-
 
 private: // attributes
 

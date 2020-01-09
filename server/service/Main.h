@@ -18,13 +18,9 @@ public:
     ~Main() override = default;
 
 public slots:
-
-    void getLogsAfter(const QDateTime &limit, cm::TCPPort clientsPort);
-    void getLogsBefore(const QDateTime &limit, cm::TCPPort clientsPort);
     void getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitLatter, cm::TCPPort clientsPort);
 
 signals:
-
     void messageToClient(const QString &logs, cm::TCPPort clientsPort);
 
 private: // methods

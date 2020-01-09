@@ -11,10 +11,12 @@
 #include <QObject>
 
 #include "client/model/LogRecord.h"
-#include "client/view/windows/Logs.h"
 #include "client/view/table/Logs.h"
 #include "common/def.h"
 
+namespace cl::controller {
+    class Main;
+}
 
 // @task zamknij wszystkie okna po zamknięciu okna aplikacji
 namespace cl::view {
@@ -24,7 +26,7 @@ class Logs;
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
-    explicit MainWindow();
+    explicit MainWindow(cl::controller::Main &owner);
     ~MainWindow() override;
 
     void log(cl::model::LogRecord::ptr logRecord);
@@ -38,10 +40,10 @@ private: // methods
     void showLogsBetween();
 
 private: // attributes
+    cl::controller::Main &owner;
     QAction logsBetweenAction;
 
     cl::view::table::Logs logsTable;
-    cl::view::window::Logs::map logsWindows;
 
     Qt::ConnectionType connectionType;
 

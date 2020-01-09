@@ -9,6 +9,7 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
+#include "common/def.h"
 
 
 namespace cl::view::dialog {
@@ -18,8 +19,8 @@ Q_OBJECT
 public:
     explicit LogsBetween(QWidget *parent = nullptr);
 
-    QString getBorderEarlier();
-    QString getBorderLatter();
+    cm::DateTime getBorderEarlier();
+    cm::DateTime getBorderLatter();
 
 private: // methods
     void layout();

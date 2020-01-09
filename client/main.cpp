@@ -28,6 +28,8 @@ int main(int argc, char **argv) {
 
         auto &main = cc::Main::instance();
         QObject::connect(&net, &cc::Net::log, &main, &cc::Main::log);
+        QObject::connect(&net, &cc::Net::logsBetween, &main, &cc::Main::logsBetween);
+        QObject::connect(&main, &cc::Main::netCommand, &net, &cc::Net::netCommand);
 
         return app.exec();
 

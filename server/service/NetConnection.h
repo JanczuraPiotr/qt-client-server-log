@@ -7,13 +7,13 @@
 
 #include <QObject>
 #include <QtWebSockets>
-//#include <QMap>
 #include <QDateTime>
 
 #include "common/def.h"
 
 namespace sv::service {
 
+// @task NetConnection jest kontrolerem
 class NetConnection : public QObject {
     Q_OBJECT
     Q_DISABLE_COPY(NetConnection)

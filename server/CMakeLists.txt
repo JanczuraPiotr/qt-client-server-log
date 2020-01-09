@@ -16,7 +16,7 @@ add_executable(${SERVER}
         ../common/db/SQLiteConnection.cpp   ../common/db/SQLiteConnection.h
         ../common/db/SQLiteStructure.cpp    ../common/db/SQLiteStructure.h
         ../common/algorithm/Key.cpp         ../common/algorithm/Key.h
-
+        ../common/algorithm/String.cpp      ../common/algorithm/String.h
 
         ../common/output/ErrorMessage.cpp   ../common/output/ErrorMessage.h
 

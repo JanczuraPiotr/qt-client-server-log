@@ -6,12 +6,15 @@
 #define COMMON_ALGORITHM_STRING_H
 
 #include <QString>
+#include <common/def.h>
 
 namespace cm::algorithm {
 
 class String {
 public:
     static QString condense(const QString &string);
+    static QString dateTimeInNetCommand(const cm::DateTime &dateTime);
+    static QString dateTimeInNetCommand(const QDateTime &dateTime);
 
 public: // lock
     String() = delete;

@@ -54,12 +54,12 @@ void LogsBetween::layout()
     setLayout(mainLayout);
 }
 
-QString LogsBetween::getBorderEarlier()
+cm::DateTime LogsBetween::getBorderEarlier()
 {
     return borderEarlier.text();
 }
 
-QString LogsBetween::getBorderLatter()
+cm::DateTime LogsBetween::getBorderLatter()
 {
     return borderLatter.text();
 }

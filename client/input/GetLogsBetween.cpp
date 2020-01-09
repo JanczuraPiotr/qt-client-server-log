@@ -14,14 +14,14 @@
 
 namespace cl::input {
 
-GetLogsBetween::GetLogsBetween(const cm::NetInput &input, cm::Index lim)
+GetLogsBetween::GetLogsBetween(const cm::NetInput &input)
         : input(input)
-        , lim(lim)
+        , lim(CORRECT_DATA_START)
         , borderEarlier()
         , borderLatter()
         , logCollection(cl::model::LogCollection::makeShared())
 {
-//    qDebug() << input.mid(lim);
+    qDebug() << input.mid(lim);
 }
 
 cl::model::LogCollection::ptr GetLogsBetween::getLogCollection() {

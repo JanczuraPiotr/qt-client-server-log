@@ -6,11 +6,13 @@
 #define CLIENT_WINDOW_LOGS
 
 #include <QWidget>
-#include <QWidget>
 #include <QMap>
 #include <QCloseEvent>
 #include <map>
+
 #include "common/def.h"
+#include "client/view/table/Logs.h"
+
 
 // @task Jeżeli dla wyświetlenia okna były potrzebne logi z dłuższego okresu niż przewidziano do trzymania lokalnie należy te logi usunąć
 
@@ -28,11 +30,13 @@ signals:
     void closedWindow(const cm::Key windowKey);
 
 protected:
-    void closeEvent(QCloseEvent *event) override;
+//    void closeEvent(QCloseEvent *event) override;
 
 private:
     explicit Logs(const QString &title, const cm::Key &key, QWidget *parent = nullptr);
     cm::Key key;
+    cl::view::table::Logs logsTable;
+
 
 };
 

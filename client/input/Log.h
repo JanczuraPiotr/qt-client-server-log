@@ -13,6 +13,7 @@ namespace cl::input {
 
 class Log {
 public:
+    // @task pozbądź się lim
     explicit Log(cm::NetInput input, cm::Index lim);
     virtual ~Log() = default;
 

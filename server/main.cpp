@@ -40,8 +40,6 @@ int main(int argc, char **argv) {
         auto &main = sv::service::Main::instance();
 
         QObject::connect(&fakeEvent, &sv::FakeEvent::insertedLog, &netConnection, &ss::NetConnection::insertedLog);
-        QObject::connect(&netConnection, &ss::NetConnection::getLogsAfter, &main, &ss::Main::getLogsAfter);
-        QObject::connect(&netConnection, &ss::NetConnection::getLogsBefore, &main, &ss::Main::getLogsBefore);
         QObject::connect(&netConnection, &ss::NetConnection::getLogsBetween, &main, &ss::Main::getLogsBetween);
         QObject::connect(&main, &ss::Main::messageToClient, &netConnection, &ss::NetConnection::messageToClient);
 
