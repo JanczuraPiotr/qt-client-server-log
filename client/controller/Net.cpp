@@ -79,7 +79,7 @@ void Net::onTextMessageReceived(const cm::NetInput &netInput)
         if (command == "log") {
             cl::input::Log inputLog(netInput, lim + 1);
             if (inputLog.parse()) {
-                emit log(inputLog.getLogId(), inputLog.getTimestamp(), inputLog.getLogPriority(), inputLog.getMessage());
+                emit log(inputLog.getId(), inputLog.getTimestamp(), inputLog.getPriority(), inputLog.getMessage());
             } else {
                 // @task obsłużyć błąd struktury danych wejściowych
                 qDebug() << "// @task obsłużyć błąd struktury danych wejściowych";

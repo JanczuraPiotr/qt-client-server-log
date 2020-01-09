@@ -24,6 +24,14 @@ public:
     QDateTime getBorderLatter();
     cl::model::LogCollection::ptr getLogCollection();
 
+private: // const
+    // getLogsBetween|yyyy-MM-dd-hh-mm-ss|yyyy-MM-dd-hh-mm-ss{...}"
+    const cm::Index CORRECT_JSON_START = 54;
+
+private: // methods
+    bool parseDateTime();
+    bool parseJson();
+
 private: // attributes
     cm::NetInput input;
     cm::Index lim;
@@ -32,6 +40,13 @@ private: // attributes
     QDateTime borderLatter;
 
     cl::model::LogCollection::ptr logCollection;
+
+public: // lock
+    GetLogsBetween() = delete;
+    GetLogsBetween(const GetLogsBetween &) = delete;
+    GetLogsBetween(GetLogsBetween &&) = delete;
+    GetLogsBetween &operator = (const GetLogsBetween&) = delete;
+    GetLogsBetween &operator = (GetLogsBetween &&) = delete;
 
 };
 

@@ -23,17 +23,19 @@ public:
 
     LogRecord::ptr getById(cm::AutoId id);
     LogRecord::ptr insert(
-            cm::AutoId logId
+            cm::AutoId id
             , const QDateTime &timestamp
-            , cm::LogPriority logPriority
+            , cm::LogPriority priority
             , const cm::Message &message);
     cm::Size size();
 
 private: // attributes
-    LogRecord::map records; // @task przełączyć na QCache
+    LogRecord::map records; // @proposal przełączyć na QCache
 
 private: // lock
     explicit LogCollection();
+
+public: // lock
     LogCollection(const LogCollection &) noexcept = delete;
     LogCollection(LogCollection &&) noexcept = delete;
     LogCollection &operator = (const LogCollection&) noexcept = delete;

@@ -23,18 +23,18 @@ LogRecord::ptr LogCollection::getById(cm::AutoId id) {
 }
 
 LogRecord::ptr LogCollection::insert(
-        cm::AutoId logId
+        cm::AutoId id
         , const QDateTime &timestamp
-        , cm::LogPriority logPriority
+        , cm::LogPriority priority
         , const cm::Message &message)
 {
     LogRecord::ptr record = LogRecord::makeShared(
-            logId
+            id
             , timestamp
-            , logPriority
+            , priority
             , message
             );
-    records.insert(std::make_pair(logId, record));
+    records.insert(std::make_pair(id, record));
     return record;
 }
 
