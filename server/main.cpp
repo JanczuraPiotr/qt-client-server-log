@@ -2,7 +2,6 @@
 // Created by piotr@janczura.pl on 2019.04.13
 //
 
-// @task ujednolicić definicję plików nagłówkowych
 // @task logowanie podłączenia i rozłączenia z klientem
 
 
@@ -57,7 +56,5 @@ int main(int argc, char **argv) {
     }
 }
 
-// potem:
-//
-// po podłączeniu klienta powiadom go o najstarszym zapamiętanym logu i ich ilości
-// powiadamiaj klienta o usuniętych logach
+// @proposal po podłączeniu klienta powiadom go o najstarszym zapamiętanym logu i ich ilości
+// @proposal powiadamiaj klienta o usuniętych logach

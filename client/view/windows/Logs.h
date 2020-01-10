@@ -25,6 +25,7 @@ public:
     static ptr create(const QString &title, const cm::Key &key, QWidget *pointer = nullptr);
 
     ~Logs() override;
+    void addLog(cl::model::LogRecord::ptr logRecord);
 
 signals:
     void closedWindow(const cm::Key windowKey);

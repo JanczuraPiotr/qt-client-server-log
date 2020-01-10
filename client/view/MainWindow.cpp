@@ -27,10 +27,11 @@ MainWindow::MainWindow(cl::controller::Main &owner)
     , logsTable(this)
     , connectionType(Qt::ConnectionType::AutoConnection)
 {
+    // @work powtórzenie
     const int MARGIN = 50;
     const int WIDTH = 400;
 
-    resize(
+    setFixedSize(
             MARGIN +
             cl::view::table::Logs::COL_ID_HEIGHT +
             cl::view::table::Logs::COL_DATE_HEIGHT +

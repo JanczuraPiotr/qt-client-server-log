@@ -29,6 +29,9 @@ public:
             , const cm::Message &message);
     cm::Size size();
 
+    LogRecord::map::iterator getBegin();
+    LogRecord::map::iterator getEnd();
+
 private: // attributes
     LogRecord::map records; // @proposal przełączyć na QCache
 

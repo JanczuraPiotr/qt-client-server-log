@@ -17,6 +17,16 @@ LogCollection::LogCollection()
 
 }
 
+LogRecord::map::iterator LogCollection::getBegin()
+{
+    return records.begin();
+}
+
+LogRecord::map::iterator LogCollection::getEnd()
+{
+    return records.end();
+}
+
 // @task happy path
 LogRecord::ptr LogCollection::getById(cm::AutoId id) {
     return records[id];

@@ -6,6 +6,7 @@
 
 #include <QDebug>
 #include <QCoreApplication>
+#include <QThread>
 
 #include "common/algorithm/String.h"
 #include "common/algorithm/Key.h"
@@ -68,6 +69,10 @@ void Main::logsBetween(const QDateTime &earlier, const QDateTime &latter, cl::mo
             logsWindow->resize(300, 400);
             logsWindow->show();
             logsWindows.insert(std::make_pair(key, logsWindow));
+            for (auto it = logCollection->getBegin(); it != logCollection->getEnd(); ++it) {
+                logsWindow->addLog(it->second);
+            }
+
 
             // @work przywrócić zamykanie wszystkich okien po zamknięciu aplikacji
             //connect(logsWindow.data(), &win::Logs::closedWindow, this, &MainWindow::closedWindow, connectionType);

@@ -21,7 +21,6 @@ GetLogsBetween::GetLogsBetween(const cm::NetInput &input)
         , borderLatter()
         , logCollection(cl::model::LogCollection::makeShared())
 {
-    qDebug() << input.mid(lim);
 }
 
 cl::model::LogCollection::ptr GetLogsBetween::getLogCollection() {
