@@ -24,7 +24,6 @@ Main::Main()
 
 void Main::getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitLatter, cm::TCPPort clientsPort)
 {
-    qDebug() << __FILE__ << __LINE__ << "odebrano komendę : getLogsBetween" << limitEarlier << limitLatter;
     model::LogCollection logCollection;
     auto logs = logCollection.getLogsBetween(limitEarlier, limitLatter);
     sv::output::Log output;

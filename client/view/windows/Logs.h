@@ -24,7 +24,6 @@ public:
     typedef std::map<cm::Key, ptr> map;
     static ptr create(const QString &title, const cm::Key &key, QWidget *pointer = nullptr);
 
-    ~Logs() override;
     void addLog(cl::model::LogRecord::ptr logRecord);
 
 signals:

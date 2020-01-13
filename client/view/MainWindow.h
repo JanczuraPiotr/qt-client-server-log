@@ -27,7 +27,6 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
     explicit MainWindow(cl::controller::Main &owner);
-    ~MainWindow() override;
 
     void log(cl::model::LogRecord::ptr logRecord);
     void closeEvent(QCloseEvent *event) override;

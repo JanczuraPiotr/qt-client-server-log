@@ -24,7 +24,6 @@ MainWindow::MainWindow(cl::controller::Main &owner)
     , logsBetweenAction([=](){ return QAction(tr("Logi prze&filtrowane"), this);}())
     , logsTable(this)
 {
-    // @work powtórzenie
     const int MARGIN = 50;
     const int WIDTH = 400;
 
@@ -41,11 +40,6 @@ MainWindow::MainWindow(cl::controller::Main &owner)
     setWindowTitle(tr("Przegląd logów"));
 
     setCentralWidget(&logsTable);
-}
-
-MainWindow::~MainWindow()
-{
-    qDebug() << __FILE__ << __LINE__;
 }
 
 void MainWindow::initMenus()

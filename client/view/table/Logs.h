@@ -18,7 +18,6 @@ namespace cl::view::table {
 class Logs : public QTableView {
     Q_OBJECT
 public:
-    // @work powtórzenie
     static const int COL_ID_IX = 0;
     static const int COL_ID_HEIGHT = 70;
     static const int COL_DATE_IX = 1;

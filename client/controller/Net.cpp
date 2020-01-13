@@ -26,7 +26,6 @@ Net::Net(const QString &url, cm::TCPPort serverIPPort)
 
 Net::~Net()
 {
-    qDebug() << __FILE__ << __LINE__;
     socket_.close();
 }
 
@@ -39,13 +38,11 @@ void Net::netCommand(const cm::NetCommand &command)
 void Net::onConnected()
 {
     connected_ = true;
-    qDebug() << __FILE__ << __LINE__;
 }
 
 void Net::onDisconnected()
 {
     connected_ = false;
-    qDebug() << __FILE__ << __LINE__;
 }
 
 void Net::openSocket()

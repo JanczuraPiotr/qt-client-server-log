@@ -14,7 +14,6 @@ Logs::Logs(const QString &title, const cm::Key &key, QWidget *parent)
     , key(key)
     , logsTable(this)
 {
-    // @work powtórzenie
     const int MARGIN = 50;
     const int WIDTH = 400;
     setFixedSize(
@@ -25,7 +24,6 @@ Logs::Logs(const QString &title, const cm::Key &key, QWidget *parent)
             cl::view::table::Logs::COL_MESSAGE_HEIGHT
 
             , WIDTH);
-    // @work powtórzenie
     logsTable.setFixedSize(
             MARGIN +
             cl::view::table::Logs::COL_ID_HEIGHT +
@@ -44,11 +42,6 @@ Logs::Logs(const QString &title, const cm::Key &key, QWidget *parent)
     layout->addWidget(&logsTable, 0, 0);
     layout->setSizeConstraint(QLayout::SetFixedSize);
     setLayout(layout);
-}
-
-Logs::~Logs()
-{
-    qDebug() << " destruktor okna :" << key;
 }
 
 void Logs::addLog(cl::model::LogRecord::ptr logRecord)
