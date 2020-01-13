@@ -38,10 +38,17 @@ Przygotowuje dane do wysłania na zewnątrz aplikacji.
 
 Serwer rozsyła powiadomienia w postaci tekstowej.
 Format wiadomości zależy od jej typu, domyślnie jest to json. 
-Server wysyła wiadomości i odpowiedzi. Wiadomości wysyłane są do wszystkich podłączonych klientów. Odpowiedzi tylko do nadawcy zapytania.
+Serwer wysyła wiadomości i odpowiedzi. Wiadomości wysyłane są do wszystkich podłączonych klientów. Odpowiedzi tylko do nadawcy zapytania.
 
-### Wiadomości automatycznie generowane przez server
 Każda wiadomość poprzedzona jest nazwą typu wiadomości oddzielony znakiem "|". Typ wiadomości pozwala odbiorcy przekierować odebraną wiadomość do właściwego obiektu gdzie nastąpi właściwa analiza.
+
+Wymiana danych pomiędzy pomiędzy klientem i serwerem odbywa się za pośrednictwem dwóch protokołów. Wybór możliwy jest przez podanie odpowiednich parametrów w wierszu poleceń podczas uruchamiania serwera. Klient wybiera protokół podczas nawiązywanie połączenia z serwerem. 
+
+Parametry : ...
+
+### Protokół JSON
+
+#### Wiadomości automatycznie generowane przez server
 Struktura :
 
 ```
@@ -53,7 +60,7 @@ Cały komunikat może składać się tylko z tokenów oddzielonych znakiem "|". 
 "type|parametr0|parametr1|parametr..."
 ```
 
-### Komunikaty, odpowiedzi i żądania.
+#### Komunikaty, odpowiedzi i żądania.
 Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez serwer ale typ odpowiedzi ma tą samą nazwę co zapytanie oraz parametry:
 
 żądanie:
@@ -65,8 +72,46 @@ odpowiedź:
 "getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12{logi wygenerowane przed datą z zapytania}"
 ```
 
-### Komendy
+#### Komendy
 
 ``` stopPushingLogs```  - klient wyłącza automatyczne wysyłanie nowych logów przez serwer do siebie
 
 ```startPushingLogs``` - klient włącza automatyczne wysyłanie nowych logów przez serwer do siebie
+
+### Protokół EBNF
+
+#### Wiadomości automatycznie generowane przez server
+
+Struktura :
+
+```
+...
+```
+
+...
+
+```
+....
+```
+
+#### Komunikaty, odpowiedzi i żądania.
+
+Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez serwer ale typ odpowiedzi ma tą samą nazwę co zapytanie oraz parametry:
+
+żądanie:
+
+```
+...
+```
+
+odpowiedź:
+
+```
+...
+```
+
+#### Komendy
+
+```...```  - klient wyłącza automatyczne wysyłanie nowych logów przez serwer do siebie
+
+```...``` - klient włącza automatyczne wysyłanie nowych logów przez serwer do siebie
