@@ -35,7 +35,6 @@ Logs::Logs(const QString &title, const cm::Key &key, QWidget *parent)
 
             , WIDTH);
 
-    // @work tworzenie okna z przefiltrowanymi logami
     setWindowTitle(title);
 
     QGridLayout *layout = new QGridLayout();
@@ -62,10 +61,10 @@ Logs::ptr Logs::create(const QString &title, const cm::Key &key, QWidget *parent
     return ptr(new Logs(title, key, parent));
 }
 
-//@work void Logs::closeEvent(QCloseEvent *event)
-//{
-//    event->accept();
-//    emit closedWindow(key);
-//}
+void Logs::closeEvent(QCloseEvent *event)
+{
+    event->accept();
+    emit closedWindow(key);
+}
 
 }

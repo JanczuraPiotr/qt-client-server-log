@@ -32,8 +32,8 @@ public:
     void log(cl::model::LogRecord::ptr logRecord);
     void closeEvent(QCloseEvent *event) override;
 
-public slots:
-    void closedWindow(const cm::Key &key);
+public: signals:
+    void closeMainWindow();
 
 private: // methods
     void initMenus();
@@ -42,10 +42,7 @@ private: // methods
 private: // attributes
     cl::controller::Main &owner;
     QAction logsBetweenAction;
-
     cl::view::table::Logs logsTable;
-
-    Qt::ConnectionType connectionType;
 
 private:
     MainWindow(const MainWindow& ) = delete;

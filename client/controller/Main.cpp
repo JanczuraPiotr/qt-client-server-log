@@ -5,18 +5,18 @@
 #include "Main.h"
 
 #include <QDebug>
-#include <QCoreApplication>
+#include <QApplication>
 #include <QThread>
 
 #include "common/algorithm/String.h"
 #include "common/algorithm/Key.h"
 #include "model/LogCollection.h"
+#include "client/view/windows/Logs.h"
 
 namespace cl::controller {
 
 namespace win = cl::view::window;
 namespace alg = cm::algorithm;
-//namespace dlg = cl::view::dialog;
 
 Main& Main::instance()
 {
@@ -27,8 +27,31 @@ Main& Main::instance()
 Main::Main()
     : mainWindow(reinterpret_cast<Main&>(*this))
     , logsWindows()
+    , connectionType(Qt::ConnectionType::AutoConnection)
 {
     mainWindow.show();
+    connect(&mainWindow, &cl::view::MainWindow::closeMainWindow, this, &Main::closeMainWindow);
+}
+
+Main::~Main()
+{
+    closeAllWindows();
+    if (mainWindow.isVisible()) {
+        mainWindow.close();
+    }
+}
+
+void Main::closeAllWindows()
+{
+    for (auto &it : logsWindows) {
+        it.second->close();
+        logsWindows.erase(it.first);
+    }
+}
+
+void Main::closeMainWindow()
+{
+    closeAllWindows();
 }
 
 void Main::log(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
@@ -43,28 +66,27 @@ void Main::loadLogsBetween(const cm::DateTime &earlier, const cm::DateTime &latt
     cm::NetCommand command("getLogsBetween|" +
             cm::algorithm::String::dateTimeInNetCommand(earlier) + "|" +
             cm::algorithm::String::dateTimeInNetCommand(latter));
-    qDebug() << "Main -> netCommand => " <<command;
     emit netCommand(command);
+}
+
+void Main::closedWindow(const cm::Key &key)
+{
+    std::ignore = key;
+    logsWindows.erase(key);
 }
 
 void Main::logsBetween(const QDateTime &earlier, const QDateTime &latter, cl::model::LogCollection::ptr logCollection)
 {
-    qDebug() << __FILE__ << __LINE__ << earlier;
-    qDebug() << __FILE__ << __LINE__ << latter;
-    qDebug() << __FILE__ << __LINE__ << logCollection->size();
-
     if (logCollection->size() > 0) {
-        qDebug() << __FILE__ << __LINE__;
+        // @task komunikat na wypadek pustej odpowiedzi gdy nie jest wyświetlane okno z logami
 
         cm::Key key(alg::Key::create(
                 earlier.toString(cm::DATE_TIME_TEMPLATE.c_str())
                 , latter.toString(cm::DATE_TIME_TEMPLATE.c_str())));
         auto logsIT = logsWindows.find(key);
         if ( logsIT != logsWindows.end()) {
-            qDebug() << __FILE__ << __LINE__;
             logsIT->second->showNormal();
         } else {
-            qDebug() << __FILE__ << __LINE__;
             auto logsWindow = win::Logs::create(key, key);
             logsWindow->resize(300, 400);
             logsWindow->show();
@@ -72,10 +94,7 @@ void Main::logsBetween(const QDateTime &earlier, const QDateTime &latter, cl::mo
             for (auto it = logCollection->getBegin(); it != logCollection->getEnd(); ++it) {
                 logsWindow->addLog(it->second);
             }
-
-
-            // @work przywrócić zamykanie wszystkich okien po zamknięciu aplikacji
-            //connect(logsWindow.data(), &win::Logs::closedWindow, this, &MainWindow::closedWindow, connectionType);
+            connect(logsWindow.data(), &win::Logs::closedWindow, this, &Main::closedWindow, connectionType);
         }
     }
 }

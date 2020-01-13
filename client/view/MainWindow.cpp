@@ -6,18 +6,16 @@
 
 #include <QDebug>
 #include <QThread>
-#include <QCoreApplication>
+#include <QApplication>
 
 #include "client/controller/Main.h"
 #include "client/view/dialogs/LogsBetween.h"
 #include "client/view/table/Logs.h"
 #include "client/view/windows/Logs.h"
-#include "common/algorithm/Key.h"
 
 namespace cl::view {
 
 namespace win = cl::view::window;
-namespace alg = cm::algorithm;
 namespace dlg = cl::view::dialog;
 
 MainWindow::MainWindow(cl::controller::Main &owner)
@@ -25,7 +23,6 @@ MainWindow::MainWindow(cl::controller::Main &owner)
     , owner(owner)
     , logsBetweenAction([=](){ return QAction(tr("Logi prze&filtrowane"), this);}())
     , logsTable(this)
-    , connectionType(Qt::ConnectionType::AutoConnection)
 {
     // @work powtórzenie
     const int MARGIN = 50;
@@ -65,24 +62,14 @@ void MainWindow::log(cl::model::LogRecord::ptr logRecord)
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     std::ignore = event;
-    // @work przenieść do cl::controller::Main
-//    event->accept();
-//    for (auto &it : logsWindows) {
-//        it.second->close();
-//        logsWindows.erase(it.first);
-//    }
-}
-
-void MainWindow::closedWindow(const cm::Key &key)
-{
-    std::ignore = key;
-    // @work przenieść do cl::controller::Main
-//    logsWindows.erase(key);
+    event->accept();
+    emit closeMainWindow();
 }
 
 void MainWindow::showLogsBetween()
 {
     dlg::LogsBetween dialogBetween(this);
+    // @task jeżeli wybrany okres jest już wyświetlony - odnaleźć okno i wyświetlić je jako pierwsze
     if (dialogBetween.exec()) {
         owner.loadLogsBetween(dialogBetween.getBorderEarlier(), dialogBetween.getBorderLatter());
     }

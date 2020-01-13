@@ -31,7 +31,7 @@ signals:
     void closedWindow(const cm::Key windowKey);
 
 protected:
-//    void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 private:
     explicit Logs(const QString &title, const cm::Key &key, QWidget *parent = nullptr);

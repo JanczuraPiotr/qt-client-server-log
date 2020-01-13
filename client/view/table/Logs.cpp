@@ -35,8 +35,11 @@ void cl::view::table::Logs::initColumns()
 
 void cl::view::table::Logs::log(cl::model::LogRecord::ptr logRecord)
 {
+    qDebug() << __FILE__ << __LINE__;
     auto item = model.invisibleRootItem();
+    qDebug() << __FILE__ << __LINE__;
     item->insertRow(0, logRecord->textRow());
+    qDebug() << __FILE__ << __LINE__;
 }
 
 

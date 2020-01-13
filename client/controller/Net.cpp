@@ -74,7 +74,6 @@ void Net::openSocket()
 
 void Net::onTextMessageReceived(const cm::NetInput &netInput)
 {
-    qDebug() << "client odebrał wiadomość :" << netInput;
     cm::Index lim = netInput.indexOf("|");
     cm::NetCommand command = netInput.left(lim);
 
