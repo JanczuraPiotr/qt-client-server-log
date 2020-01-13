@@ -16,8 +16,8 @@ Log::Log(cm::NetInput input, cm::Index lim)
     : input(input)
     , lim(lim)
     , timestamp(QDateTime::fromString("1970-01-01 00:00:00", cm::DATE_TIME_TEMPLATE.c_str()))
-    , logId(0)
-    , logPriority(static_cast<cm::LogPriority>(0))
+    , id(0)
+    , priority(static_cast<cm::LogPriority>(0))
     , message("")
 {
 }
@@ -27,7 +27,8 @@ bool Log::parse()
     bool result = true;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(lim).toUtf8());
     QJsonObject root = jsonDocument.object();
-
+    // @proposal : Ze względu na parsowanie pojedynczego logu przez tą klasę i GetLogsBetween przenieść do osobnej klasy.
+    // Uważam, że wzajemne wywoływanie klas tego samego poziomu jest błędem.
     if ( ! root.empty()) {
 
         if (root["timestamp"].toString().size() == static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.size())) {
@@ -41,21 +42,21 @@ bool Log::parse()
             result = false;
         }
 
-        if (root["logId"].isUndefined() || root["logId"].isNull()) {
+        if (root["id"].isUndefined() || root["id"].isNull()) {
             result = false;
-            // @task wyjątek na brak log.logId
+            // @task wyjątek na brak log.id
         }
-        logId = static_cast<cm::AutoId>(root["logId"].toVariant().toUInt());
-        if (logId < 1) {
+        id = static_cast<cm::AutoId>(root["id"].toVariant().toUInt());
+        if (id < 1) {
             result = false;
         }
 
-        if (root["logPriority"].isUndefined() || root["logPriority"].isNull()) {
+        if (root["priority"].isUndefined() || root["priority"].isNull()) {
             // @task wyjątek na brak log.message
             result = false;
         }
-        logPriority = static_cast<cm::LogPriority>(root["logPriority"].toVariant().toInt());
-        if (logPriority < cm::LogPriority::ok) {
+        priority = static_cast<cm::LogPriority>(root["priority"].toVariant().toInt());
+        if (priority < cm::LogPriority::ok) {
             result = false;
         }
 
@@ -77,14 +78,14 @@ QDateTime Log::getTimestamp() const noexcept
     return timestamp;
 }
 
-cm::AutoId Log::getLogId() const noexcept
+cm::AutoId Log::getId() const noexcept
 {
-    return logId;
+    return id;
 }
 
-cm::LogPriority Log::getLogPriority() const noexcept
+cm::LogPriority Log::getPriority() const noexcept
 {
-    return logPriority;
+    return priority;
 }
 
 cm::Message Log::getMessage() const noexcept

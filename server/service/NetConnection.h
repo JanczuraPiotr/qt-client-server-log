@@ -2,18 +2,18 @@
 // Created by piotr@janczura.pl on 2019.11.12
 //
 
-#ifndef SERVICE_NETCONNECTION_H
-#define SERVICE_NETCONNECTION_H
+#ifndef SERVER_SERVICE_NETCONNECTION
+#define SERVER_SERVICE_NETCONNECTION
 
 #include <QObject>
 #include <QtWebSockets>
-//#include <QMap>
 #include <QDateTime>
 
 #include "common/def.h"
 
 namespace sv::service {
 
+// @task NetConnection jest kontrolerem
 class NetConnection : public QObject {
     Q_OBJECT
     Q_DISABLE_COPY(NetConnection)
@@ -74,4 +74,4 @@ private:
 }
 
 
-#endif //SERVICE_NETCONNECTION_H
+#endif

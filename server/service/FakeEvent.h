@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 10.11.2019.
 //
 
-#ifndef SERVER_FAKEEVENT_H
-#define SERVER_FAKEEVENT_H
+#ifndef SERVER_SERVICE_FAKEEVENT
+#define SERVER_SERVICE_FAKEEVENT
 
 #include <QTimer>
 #include <QObject>
@@ -21,11 +21,9 @@ public:
     void start();
 
 public slots:
-
     void cron1sec();
 
 signals:
-
     void insertedLog(
             cm::AutoId id
             , const QDateTime &dateTime
@@ -33,9 +31,7 @@ signals:
             , const cm::Message &message);
 
 private: // methods
-
     explicit FakeEvent();
-
 
 private: // attributes
 
@@ -54,4 +50,4 @@ public: // lock
 
 
 
-#endif //SERVER_FAKEEVENT_H
+#endif

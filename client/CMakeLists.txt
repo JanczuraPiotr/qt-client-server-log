@@ -10,20 +10,21 @@ add_executable(${CLIENT}
         ../server/app/ConfigFile.cpp                ../server/app/ConfigFile.h
         ../common/exception/general.cpp             ../common/exception/general.h
         ../common/output/ErrorMessage.cpp           ../common/output/ErrorMessage.h
+        ../common/algorithm/Key.cpp                 ../common/algorithm/Key.h
+        ../common/algorithm/String.cpp              ../common/algorithm/String.h
 
         controller/Main.cpp                         controller/Main.h
         controller/Net.cpp                          controller/Net.h
+        input/GetLogsBetween.cpp                    input/GetLogsBetween.h
         input/Log.cpp                               input/Log.h
         model/LogRecord.cpp                         model/LogRecord.h
         model/LogCollection.cpp                     model/LogCollection.h
+        output/GetLogsBetween.cpp                   output/GetLogsBetween.h
         view/MainWindow.cpp                         view/MainWindow.h
-        view/LogsTable.cpp                          view/LogsTable.h
-        view/dialogs/LogsAfter.cpp                  view/dialogs/LogsAfter.h
-        view/dialogs/LogsBefore.cpp                 view/dialogs/LogsBefore.h
+        view/table/Logs.cpp                         view/table/Logs.h
         view/dialogs/LogsBetween.cpp                view/dialogs/LogsBetween.h
+        view/windows/Logs.cpp                       view/windows/Logs.h
         )
-
-#find_package(Qt5Widgets REQUIRED)
 
 qt5_use_modules(${CLIENT}
         Core

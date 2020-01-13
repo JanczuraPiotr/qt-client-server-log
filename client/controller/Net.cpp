@@ -5,6 +5,7 @@
 #include "client/model/LogCollection.h"
 #include "common/output/ErrorMessage.h"
 #include "client/input/Log.h"
+#include "client/input/GetLogsBetween.h"
 #include "Net.h"
 
 namespace cl::controller {
@@ -21,25 +22,27 @@ Net::Net(const QString &url, cm::TCPPort serverIPPort)
     connect(&socket_, &QWebSocket::connected, this, &Net::onConnected);
     connect(&socket_, &QWebSocket::disconnected, this, &Net::onDisconnected);
     connect(&socket_, &QWebSocket::textMessageReceived, this, &Net::onTextMessageReceived);
-
 }
 
 Net::~Net()
 {
-    qDebug() << __FILE__ << __LINE__;
     socket_.close();
 }
+
+void Net::netCommand(const cm::NetCommand &command)
+{
+    socket_.sendTextMessage(command);
+}
+
 
 void Net::onConnected()
 {
     connected_ = true;
-    qDebug() << __FILE__ << __LINE__;
 }
 
 void Net::onDisconnected()
 {
     connected_ = false;
-    qDebug() << __FILE__ << __LINE__;
 }
 
 void Net::openSocket()
@@ -68,24 +71,31 @@ void Net::openSocket()
 
 void Net::onTextMessageReceived(const cm::NetInput &netInput)
 {
-    QWebSocket *pSender = qobject_cast<QWebSocket *>(sender());
-    //qDebug() << "client odebrał wiadomość :" << netInput;
     cm::Index lim = netInput.indexOf("|");
     cm::NetCommand command = netInput.left(lim);
 
     if (lim == cm::IndexInfinity || command.isEmpty()) {
-        pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(command));
+        socket_.sendTextMessage(cm::output::ErrorMessage::badCommand(command));
     } else {
         if (command == "log") {
-            cl::input::Log inputLog(netInput, lim + 1);
-            if (inputLog.parse()) {
-                emit log(inputLog.getLogId(), inputLog.getTimestamp(), inputLog.getLogPriority(), inputLog.getMessage());
+            cl::input::Log input(netInput, lim + 1);
+            if (input.parse()) {
+                emit log(input.getId(), input.getTimestamp(), input.getPriority(), input.getMessage());
+            } else {
+                // @task obsłużyć błąd struktury danych wejściowych
+                qDebug() << "// @task obsłużyć błąd struktury danych wejściowych";
+            }
+        } else if (command == "getLogsBetween") {
+            cl::input::GetLogsBetween input(netInput);
+            if (input.parse()) {
+                //emit log(input.getId(), inputLog.getTimestamp(), inputLog.getPriority(), inputLog.getMessage());
+                emit logsBetween(input.getBorderEarlier(), input.getBorderLatter(), input.getLogCollection());
             } else {
                 // @task obsłużyć błąd struktury danych wejściowych
                 qDebug() << "// @task obsłużyć błąd struktury danych wejściowych";
             }
         } else{
-            pSender->sendTextMessage(cm::output::ErrorMessage::badCommand(command));
+            socket_.sendTextMessage(cm::output::ErrorMessage::badCommand(command));
         }
     }
 

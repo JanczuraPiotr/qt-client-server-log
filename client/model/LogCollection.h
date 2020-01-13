@@ -2,11 +2,13 @@
 // Created by piotr@janczura.pl on 2019.11.24
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOGCOLLECTION_H
-#define QT_CLIENT_SERVER_LOG_LOGCOLLECTION_H
+#ifndef CLIENT_MODEL_LOGCOLLECTION
+#define CLIENT_MODEL_LOGCOLLECTION
 
 #include <memory>
+
 #include <QDateTime>
+
 #include "common/def.h"
 #include "client/model/LogRecord.h"
 
@@ -16,18 +18,25 @@ class LogRecord;
 class LogCollection {
 public:
     typedef std::shared_ptr<LogCollection> ptr;
-
-    explicit LogCollection();
+    static ptr makeShared();
     virtual ~LogCollection() = default;
 
+    LogRecord::ptr getById(cm::AutoId id);
     LogRecord::ptr insert(
-            cm::AutoId logId
+            cm::AutoId id
             , const QDateTime &timestamp
-            , cm::LogPriority logPriority
+            , cm::LogPriority priority
             , const cm::Message &message);
+    cm::Size size();
+
+    LogRecord::map::iterator getBegin();
+    LogRecord::map::iterator getEnd();
 
 private: // attributes
-    LogRecord::map records; // @task przełączyć na QCache
+    LogRecord::map records; // @proposal przełączyć na QCache
+
+private: // lock
+    explicit LogCollection();
 
 public: // lock
     LogCollection(const LogCollection &) noexcept = delete;
@@ -41,4 +50,4 @@ public: // lock
 
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOGCOLLECTION_H
+#endif

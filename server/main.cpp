@@ -2,7 +2,7 @@
 // Created by piotr@janczura.pl on 2019.04.13
 //
 
-// @task ujednolicić definicję plików nagłówkowych
+// @task logowanie podłączenia i rozłączenia z klientem
 
 
 #include <iostream>
@@ -39,8 +39,6 @@ int main(int argc, char **argv) {
         auto &main = sv::service::Main::instance();
 
         QObject::connect(&fakeEvent, &sv::FakeEvent::insertedLog, &netConnection, &ss::NetConnection::insertedLog);
-        QObject::connect(&netConnection, &ss::NetConnection::getLogsAfter, &main, &ss::Main::getLogsAfter);
-        QObject::connect(&netConnection, &ss::NetConnection::getLogsBefore, &main, &ss::Main::getLogsBefore);
         QObject::connect(&netConnection, &ss::NetConnection::getLogsBetween, &main, &ss::Main::getLogsBetween);
         QObject::connect(&main, &ss::Main::messageToClient, &netConnection, &ss::NetConnection::messageToClient);
 
@@ -57,3 +55,6 @@ int main(int argc, char **argv) {
         std::cerr << "Unknown exception";
     }
 }
+
+// @proposal po podłączeniu klienta powiadom go o najstarszym zapamiętanym logu i ich ilości
+// @proposal powiadamiaj klienta o usuniętych logach

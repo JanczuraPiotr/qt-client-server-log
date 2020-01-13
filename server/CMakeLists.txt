@@ -15,6 +15,8 @@ add_executable(${SERVER}
         ../common/db/Structure.cpp          ../common/db/Structure.h
         ../common/db/SQLiteConnection.cpp   ../common/db/SQLiteConnection.h
         ../common/db/SQLiteStructure.cpp    ../common/db/SQLiteStructure.h
+        ../common/algorithm/Key.cpp         ../common/algorithm/Key.h
+        ../common/algorithm/String.cpp      ../common/algorithm/String.h
 
         ../common/output/ErrorMessage.cpp   ../common/output/ErrorMessage.h
 
@@ -23,8 +25,6 @@ add_executable(${SERVER}
         app/ConfigFile.cpp                  app/ConfigFile.h
         app/SignalBus.cpp                   app/SignalBus.h
 
-        input/GetLogsAfter.cpp              input/GetLogsAfter.h
-        input/GetLogsBefore.cpp             input/GetLogsBefore.h
         input/GetLogsBetween.cpp            input/GetLogsBetween.h
 
         model/LogCollection.cpp             model/LogCollection.h
@@ -34,8 +34,8 @@ add_executable(${SERVER}
 
         service/FakeEvent.cpp               service/FakeEvent.h
         service/NetConnection.cpp           service/NetConnection.h
-
-        service/Main.cpp service/Main.h)
+        service/Main.cpp                    service/Main.h
+        )
 
 qt5_use_modules(${SERVER}
         Core

@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.15
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
-#define QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
+#ifndef SERVER_INPUT_GETLOGSBETWEEN
+#define SERVER_INPUT_GETLOGSBETWEEN
 
 #include <QString>
 #include <QDateTime>
@@ -23,8 +23,8 @@ public:
     QDateTime getBorderLatter();
 
 private: // methods
-    QString input;
-    int lim;
+    cm::NetInput input;
+    cm::Index lim;
 
     QDateTime borderEarlier;
     QDateTime borderLatter;
@@ -38,4 +38,4 @@ public: // lock
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_GETLOGSBETWEEN_H
+#endif

@@ -5,28 +5,34 @@
 #include "MainWindow.h"
 
 #include <QDebug>
-#include "client/view/dialogs/LogsBefore.h"
+#include <QThread>
+#include <QApplication>
+
+#include "client/controller/Main.h"
 #include "client/view/dialogs/LogsBetween.h"
-#include "client/view/dialogs/LogsAfter.h"
+#include "client/view/table/Logs.h"
+#include "client/view/windows/Logs.h"
 
 namespace cl::view {
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , logsAfterAction([=](){ return QAction(tr("Logi p&o dacie"), this);}())
-    , logsBeforeAction([=](){ return QAction(tr("Logi prze&d datą"), this);}())
-    , logsBetweenAction([=](){ return QAction(tr("Logi po&między datami"), this);}())
+namespace win = cl::view::window;
+namespace dlg = cl::view::dialog;
+
+MainWindow::MainWindow(cl::controller::Main &owner)
+    : QMainWindow()
+    , owner(owner)
+    , logsBetweenAction([=](){ return QAction(tr("Logi prze&filtrowane"), this);}())
     , logsTable(this)
 {
     const int MARGIN = 50;
     const int WIDTH = 400;
 
-    resize(
+    setFixedSize(
             MARGIN +
-            LogsTable::COL_ID_HEIGHT +
-            LogsTable::COL_DATE_HEIGHT +
-            LogsTable::COL_PRIORITY_HEIGHT +
-            LogsTable::COL_MESSAGE_HEIGHT
+            cl::view::table::Logs::COL_ID_HEIGHT +
+            cl::view::table::Logs::COL_DATE_HEIGHT +
+            cl::view::table::Logs::COL_PRIORITY_HEIGHT +
+            cl::view::table::Logs::COL_MESSAGE_HEIGHT
 
             , WIDTH);
 
@@ -38,12 +44,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::initMenus()
 {
-    menuBar()->addAction(&logsBeforeAction);
-    connect(&logsBeforeAction, &QAction::triggered, this, &MainWindow::showLogsBefore);
-
-    menuBar()->addAction(&logsAfterAction);
-    connect(&logsAfterAction, &QAction::triggered, this, &MainWindow::showLogsAfter);
-
     menuBar()->addAction(&logsBetweenAction);
     connect(&logsBetweenAction, &QAction::triggered, this, &MainWindow::showLogsBetween);
 }
@@ -53,22 +53,20 @@ void MainWindow::log(cl::model::LogRecord::ptr logRecord)
     logsTable.log(logRecord);
 }
 
-void MainWindow::showLogsBefore()
+void MainWindow::closeEvent(QCloseEvent *event)
 {
-    cl::view::dialog::LogsBefore dialogBefore(this);
-    dialogBefore.exec();
-}
-
-void MainWindow::showLogsAfter()
-{
-    cl::view::dialog::LogsAfter dialogAfter(this);
-    dialogAfter.exec();
+    std::ignore = event;
+    event->accept();
+    emit closeMainWindow();
 }
 
 void MainWindow::showLogsBetween()
 {
-    cl::view::dialog::LogsBetween dialogBetween(this);
-    dialogBetween.exec();
+    dlg::LogsBetween dialogBetween(this);
+    // @task jeżeli wybrany okres jest już wyświetlony - odnaleźć okno i wyświetlić je jako pierwsze
+    if (dialogBetween.exec()) {
+        owner.loadLogsBetween(dialogBetween.getBorderEarlier(), dialogBetween.getBorderLatter());
+    }
 }
 
 }

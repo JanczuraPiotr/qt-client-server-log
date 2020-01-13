@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.24
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOG_H
-#define QT_CLIENT_SERVER_LOG_LOG_H
+#ifndef CLIENT_INPUT_LOG
+#define CLIENT_INPUT_LOG
 
 #include <QDateTime>
 
@@ -13,14 +13,15 @@ namespace cl::input {
 
 class Log {
 public:
+    // @task pozbądź się lim
     explicit Log(cm::NetInput input, cm::Index lim);
     virtual ~Log() = default;
 
     bool parse();
 
     [[nodiscard]] QDateTime getTimestamp() const noexcept;
-    [[nodiscard]] cm::AutoId getLogId() const noexcept;
-    [[nodiscard]] cm::LogPriority getLogPriority() const noexcept;
+    [[nodiscard]] cm::AutoId getId() const noexcept;
+    [[nodiscard]] cm::LogPriority getPriority() const noexcept;
     [[nodiscard]] cm::Message getMessage() const noexcept;
 
 private: // attributes
@@ -28,8 +29,8 @@ private: // attributes
     cm::Index lim;
 
     QDateTime timestamp;
-    cm::AutoId logId;
-    cm::LogPriority logPriority;
+    cm::AutoId id;
+    cm::LogPriority priority;
     cm::Message message;
 
 public: // lock
@@ -43,4 +44,4 @@ public: // lock
 
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOG_H
+#endif

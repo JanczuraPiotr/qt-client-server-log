@@ -7,6 +7,9 @@
 
 namespace cl::model {
 
+LogCollection::ptr LogCollection::makeShared() {
+    return std::shared_ptr<LogCollection>(new LogCollection());
+}
 
 LogCollection::LogCollection()
     : records(LogRecord::map())
@@ -14,21 +17,40 @@ LogCollection::LogCollection()
 
 }
 
+LogRecord::map::iterator LogCollection::getBegin()
+{
+    return records.begin();
+}
+
+LogRecord::map::iterator LogCollection::getEnd()
+{
+    return records.end();
+}
+
+// @task happy path
+LogRecord::ptr LogCollection::getById(cm::AutoId id) {
+    return records[id];
+}
+
 LogRecord::ptr LogCollection::insert(
-        cm::AutoId logId
+        cm::AutoId id
         , const QDateTime &timestamp
-        , cm::LogPriority logPriority
+        , cm::LogPriority priority
         , const cm::Message &message)
 {
     LogRecord::ptr record = LogRecord::makeShared(
-            logId
+            id
             , timestamp
-            , logPriority
+            , priority
             , message
             );
-    records.insert(std::make_pair(logId, record));
+    records.insert(std::make_pair(id, record));
     return record;
 }
 
+cm::Size LogCollection::size()
+{
+    return records.size();
+}
 
 }

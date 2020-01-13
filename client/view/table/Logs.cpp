@@ -2,19 +2,19 @@
 // Created by piotr@janczura.pl on 2019.12.24
 //
 
-#include "LogsTable.h"
+#include "Logs.h"
 #include <QDebug>
 
 namespace cl::view {
 
-LogsTable::LogsTable(QWidget *parent)
+cl::view::table::Logs::Logs(QWidget *parent)
     : QTableView(parent)
     , model(QStandardItemModel())
 {
     initColumns();
 }
 
-void LogsTable::initColumns()
+void cl::view::table::Logs::initColumns()
 {
     // @task Tworzenie nagłówka przenieść do metody statycznej klasy LogsRecord - dla zachowania spójności między kolejnością nazw pól rekordu a kolejnością wartości pól rekordu
 //    model = new QStandardItemModel();
@@ -33,7 +33,7 @@ void LogsTable::initColumns()
     setColumnWidth(COL_MESSAGE_IX, COL_MESSAGE_HEIGHT);
 }
 
-void LogsTable::log(cl::model::LogRecord::ptr logRecord)
+void cl::view::table::Logs::log(cl::model::LogRecord::ptr logRecord)
 {
     auto item = model.invisibleRootItem();
     item->insertRow(0, logRecord->textRow());

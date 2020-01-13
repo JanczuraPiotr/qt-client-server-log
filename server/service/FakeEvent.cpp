@@ -35,7 +35,7 @@ void FakeEvent::cron1sec()
 {
     QDateTime timestamp = QDateTime::currentDateTime();
     auto logPriority = static_cast<cm::LogPriority>(QRandomGenerator::global()->bounded(1, 4));
-    cm::Message message = "msg-" + timestamp.toString("yyyyMMddhhmmss") + "/" + QString::number(static_cast<short>(logPriority));
+    cm::Message message = "msg-" + timestamp.toString(cm::DATE_TIME_CONDENSED_TEMPLATE.c_str()) + "/" + QString::number(static_cast<short>(logPriority));
 
     try {
 

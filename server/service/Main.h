@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.12.17
 //
 
-#ifndef SERVER_MAIN_H
-#define SERVER_MAIN_H
+#ifndef SERVER_SERVICE_MAIN
+#define SERVER_SERVICE_MAIN
 
 #include <QObject>
 
@@ -18,13 +18,9 @@ public:
     ~Main() override = default;
 
 public slots:
-
-    void getLogsAfter(const QDateTime &limit, cm::TCPPort clientsPort);
-    void getLogsBefore(const QDateTime &limit, cm::TCPPort clientsPort);
     void getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitLatter, cm::TCPPort clientsPort);
 
 signals:
-
     void messageToClient(const QString &logs, cm::TCPPort clientsPort);
 
 private: // methods
@@ -40,4 +36,4 @@ public: // lock
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_MAIN_H
+#endif

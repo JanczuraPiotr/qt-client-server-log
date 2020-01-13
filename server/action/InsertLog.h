@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.11.12
 //
 
-#ifndef SERVER_ACTION_INSERTLOG_H
-#define SERVER_ACTION_INSERTLOG_H
+#ifndef SERVER_ACTION_INSERTLOG
+#define SERVER_ACTION_INSERTLOG
 
 
 #include <QtCore/QDateTime>
@@ -50,4 +50,4 @@ public: // lock
 
 
 
-#endif // SERVER_ACTION_INSERTLOG_H
+#endif

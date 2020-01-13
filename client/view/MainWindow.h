@@ -2,42 +2,46 @@
 // Created by piotr@janczura.pl on 2019.12.24
 //
 
-#ifndef CLIENT_VIEW_MAINWINDOW_H
-#define CLIENT_VIEW_MAINWINDOW_H
+#ifndef CLIENT_VIEW_MAINWINDOW
+#define CLIENT_VIEW_MAINWINDOW
 
 #include <QMenuBar>
 #include <QAction>
 #include <QMainWindow>
 #include <QObject>
-#include <client/model/LogRecord.h>
 
-#include "LogsTable.h"
+#include "client/model/LogRecord.h"
+#include "client/view/table/Logs.h"
 #include "common/def.h"
 
+namespace cl::controller {
+    class Main;
+}
+
+// @task zamknij wszystkie okna po zamknięciu okna aplikacji
 namespace cl::view {
 
-class LogsTable;
+class Logs;
 
 class MainWindow : public QMainWindow {
-    //Q_OBJECT
+    Q_OBJECT
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow() override = default;
+    explicit MainWindow(cl::controller::Main &owner);
 
     void log(cl::model::LogRecord::ptr logRecord);
+    void closeEvent(QCloseEvent *event) override;
+
+public: signals:
+    void closeMainWindow();
 
 private: // methods
     void initMenus();
-    void showLogsBefore();
-    void showLogsAfter();
     void showLogsBetween();
 
 private: // attributes
-    QAction logsAfterAction;
-    QAction logsBeforeAction;
+    cl::controller::Main &owner;
     QAction logsBetweenAction;
-
-    LogsTable logsTable;
+    cl::view::table::Logs logsTable;
 
 private:
     MainWindow(const MainWindow& ) = delete;
@@ -46,4 +50,4 @@ private:
 }
 
 
-#endif //CLIENT_VIEW_MAINWINDOW_H
+#endif

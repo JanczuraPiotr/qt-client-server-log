@@ -22,9 +22,9 @@ cm::JsonString Log::json(
         , const cm::Message &message)
 {
     QJsonObject root;
-    root["logId"] = QString::number(id);
+    root["id"] = QString::number(id);
     root["timestamp"] = dateTime.toString(cm::DATE_TIME_TEMPLATE.c_str());
-    root["logPriority"] = QString::number(static_cast<int>(logPriority));
+    root["priority"] = QString::number(static_cast<int>(logPriority));
     root["message"] = message;
     QJsonDocument doc(root);
     return doc.toJson();

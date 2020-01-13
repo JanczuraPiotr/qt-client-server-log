@@ -2,12 +2,14 @@
 // Created by piotr@janczura.pl on 2019.12.30
 //
 
-#ifndef QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
-#define QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
+#ifndef CLIENT_DIALOG_LOGSBETWEEN
+#define CLIENT_DIALOG_LOGSBETWEEN
 
+#include <QtWidgets/QDateTimeEdit>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QLabel>
+#include "common/def.h"
 
 
 namespace cl::view::dialog {
@@ -17,11 +19,17 @@ Q_OBJECT
 public:
     explicit LogsBetween(QWidget *parent = nullptr);
 
+    cm::DateTime getBorderEarlier();
+    cm::DateTime getBorderLatter();
+
 private: // methods
     void layout();
 
 private: // attributes
-    QLabel info;
+    QLabel labelEarlier;
+    QLabel labelLatter;
+    QDateTimeEdit borderEarlier;
+    QDateTimeEdit borderLatter;
     QPushButton okButton;
     QPushButton cancelButton;
 
@@ -29,4 +37,4 @@ private: // attributes
 }
 
 
-#endif //QT_CLIENT_SERVER_LOG_LOGSBETWEEN_H
+#endif

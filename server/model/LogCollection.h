@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2019.04.18
 //
 
-#ifndef MODEL_LOGCOLLECTION_H
-#define MODEL_LOGCOLLECTION_H
+#ifndef SERVER_MODEL_LOGCOLLECTION
+#define SERVER_MODEL_LOGCOLLECTION
 
 #include <map>
 
@@ -39,4 +39,4 @@ private: // attributes
 
 
 
-#endif //MODEL_LOGCOLLECTION_H
+#endif
