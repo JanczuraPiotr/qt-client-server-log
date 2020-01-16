@@ -2,4 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.16
 //
 
-#include "GetLogsBetween.h"
+#include "LogJson.h"
+
+namespace cl::input {
+
+}

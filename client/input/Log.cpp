@@ -27,7 +27,7 @@ bool Log::parse()
     bool result = true;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(lim).toUtf8());
     QJsonObject root = jsonDocument.object();
-    // @proposal : Ze względu na parsowanie pojedynczego logu przez tą klasę i GetLogsBetween przenieść do osobnej klasy.
+    // @proposal : Ze względu na parsowanie pojedynczego logu przez tą klasę i GetLogsBetweenJson przenieść do osobnej klasy.
     // Uważam, że wzajemne wywoływanie klas tego samego poziomu jest błędem.
     if ( ! root.empty()) {
 

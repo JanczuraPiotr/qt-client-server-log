@@ -19,12 +19,12 @@ add_executable(${CLIENT}
         input/Log.cpp                               input/Log.h
         model/LogRecord.cpp                         model/LogRecord.h
         model/LogCollection.cpp                     model/LogCollection.h
-        output/GetLogsBetween.cpp                   output/GetLogsBetween.h
+        output/component/GetLogsBetweenJson.cpp output/component/GetLogsBetweenJson.h
         view/MainWindow.cpp                         view/MainWindow.h
         view/table/Logs.cpp                         view/table/Logs.h
         view/dialogs/LogsBetween.cpp                view/dialogs/LogsBetween.h
         view/windows/Logs.cpp                       view/windows/Logs.h
-        )
+        input/component/GetLogsBetweenJson.cpp input/component/GetLogsBetweenJson.h input/component/GetLogsBetweenEbnf.cpp input/component/GetLogsBetweenEbnf.h output/component/GetLogsBetweenEbnf.cpp output/component/GetLogsBetweenEbnf.h output/GetLogsBetween.cpp output/GetLogsBetween.h)
 
 qt5_use_modules(${CLIENT}
         Core

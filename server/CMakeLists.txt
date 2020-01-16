@@ -25,7 +25,7 @@ add_executable(${SERVER}
         app/ConfigFile.cpp                  app/ConfigFile.h
         app/SignalBus.cpp                   app/SignalBus.h
 
-        input/GetLogsBetween.cpp            input/GetLogsBetween.h
+        input/components/GetLogsBetweenJson.cpp input/components/GetLogsBetweenJson.h
 
         model/LogCollection.cpp             model/LogCollection.h
         model/LogRecord.cpp                 model/LogRecord.h
@@ -35,7 +35,7 @@ add_executable(${SERVER}
         service/FakeEvent.cpp               service/FakeEvent.h
         service/NetConnection.cpp           service/NetConnection.h
         service/Main.cpp                    service/Main.h
-        )
+        output/component/LogJson.cpp output/component/LogJson.h output/component/LogEbnf.cpp output/component/LogEbnf.h input/components/GetLogsBetweenEbnf.cpp input/components/GetLogsBetweenEbnf.h input/GetLogsBetween.cpp input/GetLogsBetween.h)
 
 qt5_use_modules(${SERVER}
         Core

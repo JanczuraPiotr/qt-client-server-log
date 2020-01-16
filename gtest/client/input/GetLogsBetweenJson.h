@@ -10,7 +10,7 @@
 namespace test {
 
 
-class Client_Input_GetLogsBetween : public ::testing::Test {
+class Client_Input_GetLogsBetweenJson : public ::testing::Test {
 
 };
 

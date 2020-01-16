@@ -14,6 +14,7 @@ namespace cl::input {
 
 
 class GetLogsBetween {
+// @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
 public:
     GetLogsBetween(const cm::NetInput &input);
     virtual ~GetLogsBetween() = default;

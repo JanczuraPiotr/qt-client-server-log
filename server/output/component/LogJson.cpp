@@ -1,8 +1,8 @@
 //
-// Created by piotr@janczura.pl on 2019.11.19
+// Created by piotr@janczura.pl on 2020.01.16
 //
 
-#include "Log.h"
+#include "LogJson.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -10,7 +10,7 @@
 
 namespace sv::output {
 
-QString Log::one(
+QString LogJson::one(
         cm::AutoId id
         , const QDateTime &dateTime
         , cm::LogPriority logPriority
@@ -25,7 +25,7 @@ QString Log::one(
     return doc.toJson();
 }
 
-QString Log::map(model::LogRecord::map records)
+QString LogJson::map(model::LogRecord::map records)
 {
     QJsonArray jsonArray;
 

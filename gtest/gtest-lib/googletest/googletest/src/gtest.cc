@@ -261,7 +261,7 @@ GTEST_DEFINE_string_(
     output,
     internal::StringFromGTestEnv("output",
       internal::OutputFlagAlsoCheckEnvVar().c_str()),
-    "A format (defaults to \"xml\" but can be specified to be \"json\"), "
+    "A format (defaults to \"xml\" but can be specified to be \"one\"), "
     "optionally followed by a colon and an output file name or directory. "
     "A directory is indicated by a trailing pathname separator. "
     "Examples: \"xml:filename.xml\", \"xml::directoryname/\". "
@@ -5078,7 +5078,7 @@ void UnitTestImpl::ConfigureXmlOutput() {
   if (output_format == "xml") {
     listeners()->SetDefaultXmlGenerator(new XmlUnitTestResultPrinter(
         UnitTestOptions::GetAbsolutePathToOutputFile().c_str()));
-  } else if (output_format == "json") {
+  } else if (output_format == "one") {
     listeners()->SetDefaultXmlGenerator(new JsonUnitTestResultPrinter(
         UnitTestOptions::GetAbsolutePathToOutputFile().c_str()));
   } else if (output_format != "") {
@@ -5601,7 +5601,7 @@ void UnitTestImpl::ListTestsMatchingFilter() {
   }
   fflush(stdout);
   const std::string& output_format = UnitTestOptions::GetOutputFormat();
-  if (output_format == "xml" || output_format == "json") {
+  if (output_format == "xml" || output_format == "one") {
     FILE* fileout = OpenFileForWriting(
         UnitTestOptions::GetAbsolutePathToOutputFile().c_str());
     std::stringstream stream;
@@ -5609,7 +5609,7 @@ void UnitTestImpl::ListTestsMatchingFilter() {
       XmlUnitTestResultPrinter(
           UnitTestOptions::GetAbsolutePathToOutputFile().c_str())
           .PrintXmlTestsList(&stream, test_suites_);
-    } else if (output_format == "json") {
+    } else if (output_format == "one") {
       JsonUnitTestResultPrinter(
           UnitTestOptions::GetAbsolutePathToOutputFile().c_str())
           .PrintJsonTestList(&stream, test_suites_);

@@ -21,6 +21,7 @@ typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
 typedef QString JsonString;
+typedef QString EBNFString;
 typedef QString NetCommand;
 typedef QList<QStandardItem *> TextRow;
 typedef QString DateTime; // Data i godzina w formie tekstowej według wzorca DATE_TIME_TEMPLATE
@@ -28,7 +29,7 @@ typedef QString DateTime; // Data i godzina w formie tekstowej według wzorca DA
 typedef QString NetInput;
 
 enum class LogPriority {
-    ok = 1,
+    ok = 1, // @task usunąć LogPriority::ok
     info,
     warning,
     error

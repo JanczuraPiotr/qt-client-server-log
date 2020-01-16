@@ -1,21 +1,22 @@
 //
-// Created by piotr@janczura.pl on 2019.11.24
+// Created by piotr@janczura.pl on 2020.01.16
 //
 
-#ifndef CLIENT_INPUT_LOG
-#define CLIENT_INPUT_LOG
+#ifndef CLIENT_INPUT_LOGEBNF
+#define CLIENT_INPUT_LOGEBNF
 
 #include <QDateTime>
 
 #include "common/def.h"
+#include "server/model/LogRecord.h"
 
 namespace cl::input {
-// @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
-class Log {
+
+
+class LogEBNF {
 public:
-    // @task pozbądź się lim
-    explicit Log(cm::NetInput input, cm::Index lim);
-    virtual ~Log() = default;
+    LogEBNF(cm::NetInput input, cm::Index lim);
+    virtual ~LogEBNF() = default;
 
     bool parse();
 
@@ -34,14 +35,14 @@ private: // attributes
     cm::Message message;
 
 public: // lock
-    Log(const Log &) = delete;
-    Log(Log &&) = delete;
-    Log &operator = (const Log&) = delete;
-    Log &operator = (Log &&) = delete;
+    LogEBNF() = delete;
+    LogEBNF(const LogEBNF &) = delete;
+    LogEBNF(LogEBNF &&) = delete;
+    LogEBNF &operator = (const LogEBNF&) = delete;
+    LogEBNF &operator = (LogEBNF &&) = delete;
+
 };
 
 }
-
-
 
 #endif

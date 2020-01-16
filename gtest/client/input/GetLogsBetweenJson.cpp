@@ -6,18 +6,15 @@
 
 #include <QDebug>
 
-#include "common/algorithm/String.h"
 #include "client/input/GetLogsBetween.h"
-#include "GetLogsBetween.h"
-
-namespace alg = cm::algorithm;
+#include "GetLogsBetweenJson.h"
 
 namespace test {
 
-TEST_F(Client_Input_GetLogsBetween, correct_input)
+TEST_F(Client_Input_GetLogsBetweenJson, correct_input)
 {
-//    cl::input::GetLogsBetween input(alg::String::condense(test::DataFromServerToClient::getLogsBetween()), 14);
-    cl::input::GetLogsBetween input(test::DataFromServerToClient::getLogsBetween());
+//    cl::input::GetLogsBetweenJson input(alg::String::condense(test::DataFromServerToClient::getLogsBetweenJson()), 14);
+    cl::input::GetLogsBetween input(test::DataFromServerToClient::getLogsBetweenJson());
 
     EXPECT_TRUE(input.parse());
     EXPECT_EQ(input.getBorderEarlier().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-00-00-00");

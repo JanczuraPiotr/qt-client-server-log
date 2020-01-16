@@ -2343,16 +2343,16 @@ Things to note:
 
 googletest can also emit a JSON report as an alternative format to XML. To
 generate the JSON report, set the `GTEST_OUTPUT` environment variable or the
-`--gtest_output` flag to the string `"json:path_to_output_file"`, which will
+`--gtest_output` flag to the string `"one:path_to_output_file"`, which will
 create the file at the given location. You can also just use the string
-`"json"`, in which case the output can be found in the `test_detail.json` file
+`"one"`, in which case the output can be found in the `test_detail.one` file
 in the current directory.
 
 The report format conforms to the following JSON Schema:
 
-```json
+```one
 {
-  "$schema": "http://json-schema.org/schema#",
+  "$schema": "http://one-schema.org/schema#",
   "type": "object",
   "definitions": {
     "TestCase": {
@@ -2419,7 +2419,7 @@ The report format conforms to the following JSON Schema:
 ```
 
 The report uses the format that conforms to the following Proto3 using the
-[JSON encoding](https://developers.google.com/protocol-buffers/docs/proto3#json):
+[JSON encoding](https://developers.google.com/protocol-buffers/docs/proto3#one):
 
 ```proto
 syntax = "proto3";
@@ -2477,7 +2477,7 @@ TEST(LogicTest, NonContradiction) { ... }
 
 could generate this report:
 
-```json
+```one
 {
   "tests": 3,
   "failures": 1,

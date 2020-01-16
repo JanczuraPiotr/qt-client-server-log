@@ -37,7 +37,7 @@ Przygotowuje dane do wysłania na zewnątrz aplikacji.
 <small>Obecnie, komunikaty nie zwracają informacji o ewentualnym błędzie. W przypadku błędu zwracany jest pusty zbiór.</small>
 
 Serwer rozsyła powiadomienia w postaci tekstowej.
-Format wiadomości zależy od jej typu, domyślnie jest to json. 
+Format wiadomości zależy od jej typu, domyślnie jest to one. 
 Serwer wysyła wiadomości i odpowiedzi. Wiadomości wysyłane są do wszystkich podłączonych klientów. Odpowiedzi tylko do nadawcy zapytania.
 
 Każda wiadomość poprzedzona jest nazwą typu wiadomości oddzielony znakiem "|". Typ wiadomości pozwala odbiorcy przekierować odebraną wiadomość do właściwego obiektu gdzie nastąpi właściwa analiza.

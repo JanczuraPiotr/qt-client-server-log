@@ -13,6 +13,7 @@ namespace test {
 class Server_Input_GetLogsBetween : public ::testing::Test {
 
 };
+
 }
 
 

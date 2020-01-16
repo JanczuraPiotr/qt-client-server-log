@@ -6,20 +6,19 @@
 #define SERVER_OUTPUT_LOG
 
 #include <QDateTime>
-#include <server/model/LogRecord.h>
 
 #include "common/def.h"
-
+#include "server/model/LogRecord.h"
 
 namespace sv::output {
-
+// @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
 class Log {
 public:
     Log() = default;
     virtual ~Log() = default;
 
-    cm::JsonString map(model::LogRecord::map records);
-    cm::JsonString json(
+    QString map(model::LogRecord::map records);
+    QString one(
             cm::AutoId id
             , const QDateTime &dateTime
             , cm::LogPriority logPriority

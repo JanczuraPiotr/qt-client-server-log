@@ -464,7 +464,7 @@ py_test(
     name = "googletest-json-output-unittest",
     size = "medium",
     srcs = [
-        "googletest-json-output-unittest.py",
+        "googletest-one-output-unittest.py",
         "gtest_json_test_utils.py",
     ],
     args = select({

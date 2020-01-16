@@ -9,7 +9,7 @@
 
 #include "server/app/ConfigFile.h"
 #include "server/model/LogCollection.h"
-#include "server/input/GetLogsBetween.h"
+#include "server/input/components/GetLogsBetweenJson.h"
 #include "server/output/Log.h"
 
 
@@ -55,7 +55,7 @@ void NetConnection::insertedLog(
 {
     qDebug() << "NetConnection::insertedLog";
     output::Log log;
-    broadcastLogToNet(log.json(id, dateTime, logPriority, message));
+    broadcastLogToNet(log.one(id, dateTime, logPriority, message));
 }
 
 void NetConnection::messageToClient(const QString &msg, cm::TCPPort clientsPort)
@@ -123,7 +123,7 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
     } else {
         if (command == "getLogsBetween") {
-            sv::input::GetLogsBetween input(netInput, lim);
+            sv::input::GetLogsBetweenJson input(netInput, lim);
             if (input.parse()) {
                 emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
             } else {

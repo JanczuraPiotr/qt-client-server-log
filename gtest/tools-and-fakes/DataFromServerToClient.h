@@ -11,7 +11,8 @@ namespace test {
 
 class DataFromServerToClient {
 public:
-    static cm::JsonString getLogsBetween();
+    static cm::JsonString getLogsBetweenJson();
+    static cm::JsonString getLogsBetweenEbnf();
 };
 }
 

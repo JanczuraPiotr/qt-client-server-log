@@ -1,7 +1,7 @@
 //
 // Created by piotr@janczura.pl on 2019.04.16
 //
-#include "Log.h"
+#include "LogJson.h"
 
 #include "common/def.h"
 
