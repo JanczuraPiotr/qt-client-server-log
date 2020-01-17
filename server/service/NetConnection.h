@@ -24,7 +24,6 @@ public:
 
     void start();
 
-
 private: // typedef
 
     typedef std::map<cm::TCPPort, QWebSocket *> SocketList;
@@ -61,8 +60,8 @@ private slots: // for internal signals
     void socketDisconnected();
 
 private:
-
     QWebSocketServer *socketServer;
+    cm::NetProtocol netProtocol;// @work uruchomić możliwość wyboru protokołu
     // Wszyscy klienci podłączeni do socketServer
     SocketList socketsClients;
     // Klienci oczekujący na powiadomienie o każdym nowym logu.

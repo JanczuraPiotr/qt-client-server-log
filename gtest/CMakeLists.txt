@@ -7,14 +7,14 @@ include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
 add_executable(gtest_run main.cpp
 
-        ../client/input/component/GetLogsBetweenEbnf.cpp
-        ../client/input/component/GetLogsBetweenEbnf.h
-        ../client/input/component/GetLogsBetweenJson.cpp
-        ../client/input/component/GetLogsBetweenJson.h
-        ../client/input/component/LogEbnf.cpp
-        ../client/input/component/LogEbnf.h
-        ../client/input/component/LogJson.cpp
-        ../client/input/component/LogJson.h
+        ../client/input/protocol/GetLogsBetweenEbnf.cpp
+        ../client/input/protocol/GetLogsBetweenEbnf.h
+        ../client/input/protocol/GetLogsBetweenJson.cpp
+        ../client/input/protocol/GetLogsBetweenJson.h
+        ../client/input/protocol/LogEbnf.cpp
+        ../client/input/protocol/LogEbnf.h
+        ../client/input/protocol/LogJson.cpp
+        ../client/input/protocol/LogJson.h
         ../client/input/GetLogsBetween.cpp
         ../client/input/GetLogsBetween.h
         ../client/input/Log.cpp
@@ -23,10 +23,10 @@ add_executable(gtest_run main.cpp
         ../client/model/LogCollection.h
         ../client/model/LogRecord.cpp
         ../client/model/LogRecord.h
-        ../client/output/component/GetLogsBetweenEbnf.cpp
-        ../client/output/component/GetLogsBetweenEbnf.h
-        ../client/output/component/GetLogsBetweenJson.cpp
-        ../client/output/component/GetLogsBetweenJson.h
+        ../client/output/protocol/GetLogsBetweenEbnf.cpp
+        ../client/output/protocol/GetLogsBetweenEbnf.h
+        ../client/output/protocol/GetLogsBetweenJson.cpp
+        ../client/output/protocol/GetLogsBetweenJson.h
         ../client/output/GetLogsBetween.cpp
         ../client/output/GetLogsBetween.h
 
@@ -65,18 +65,18 @@ add_executable(gtest_run main.cpp
         tools-and-fakes/DataFromServerToClient.cpp
         tools-and-fakes/DataFromServerToClient.h
 
-        ../server/input/components/GetLogsBetweenEbnf.cpp
-        ../server/input/components/GetLogsBetweenEbnf.h
-        ../server/input/components/GetLogsBetweenJson.cpp
-        ../server/input/components/GetLogsBetweenJson.h
+        ../server/input/protocol/GetLogsBetweenEbnf.cpp
+        ../server/input/protocol/GetLogsBetweenEbnf.h
+        ../server/input/protocol/GetLogsBetweenJson.cpp
+        ../server/input/protocol/GetLogsBetweenJson.h
         ../server/input/GetLogsBetween.cpp
         ../server/input/GetLogsBetween.h
         ../server/model/LogRecord.cpp
         ../server/model/LogRecord.h
-        ../server/output/component/LogJson.cpp
-        ../server/output/component/LogJson.h
-        ../server/output/component/LogEbnf.cpp
-        ../server/output/component/LogEbnf.h
+        ../server/output/protocol/LogJson.cpp
+        ../server/output/protocol/LogJson.h
+        ../server/output/protocol/LogEbnf.cpp
+        ../server/output/protocol/LogEbnf.h
         ../server/output/Log.cpp
         ../server/output/Log.h
 

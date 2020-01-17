@@ -14,7 +14,7 @@ namespace sv::output {
 // @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
 class Log {
 public:
-    Log() = default;
+    explicit Log(cm::NetProtocol netProtocol);// @work uruchomić możliwość wyboru protokołu
     virtual ~Log() = default;
 
     QString map(model::LogRecord::map records);
@@ -23,6 +23,9 @@ public:
             , const QDateTime &dateTime
             , cm::LogPriority logPriority
             , const cm::Message &message);
+
+private: //attributes
+    cm::NetProtocol netProtocol;
 
 public: // lock
     Log(const Log &) = delete;

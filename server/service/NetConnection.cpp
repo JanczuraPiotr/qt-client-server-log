@@ -9,7 +9,7 @@
 
 #include "server/app/ConfigFile.h"
 #include "server/model/LogCollection.h"
-#include "server/input/components/GetLogsBetweenJson.h"
+#include "server/input/GetLogsBetween.h"
 #include "server/output/Log.h"
 
 
@@ -26,6 +26,7 @@ NetConnection::NetConnection()
     , socketServer(new QWebSocketServer(QStringLiteral("Log Server"),
                                         QWebSocketServer::NonSecureMode,
                                         this))
+    , netProtocol(cm::NetProtocol::JSON) // @work uruchomić możliwość wyboru protokołu
     , socketsClients()
     , logsListeners()
 
@@ -54,7 +55,7 @@ void NetConnection::insertedLog(
             , const cm::Message &message)
 {
     qDebug() << "NetConnection::insertedLog";
-    output::Log log;
+    output::Log log(netProtocol);// @work uruchomić możliwość wyboru protokołu
     broadcastLogToNet(log.one(id, dateTime, logPriority, message));
 }
 
@@ -123,8 +124,8 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
     } else {
         if (command == "getLogsBetween") {
-            sv::input::GetLogsBetweenJson input(netInput, lim);
-            if (input.parse()) {
+            sv::input::GetLogsBetween input(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
+            if (input.parse(netInput, lim)) {
                 emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
             } else {
                 sv::model::LogCollection logCollection;

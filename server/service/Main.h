@@ -10,7 +10,7 @@
 #include "common/def.h"
 
 namespace sv::service {
-    
+    // @work uruchomić możliwość wyboru protokołu
 class Main : public QObject {
     Q_OBJECT
 public:

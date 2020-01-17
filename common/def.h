@@ -35,6 +35,11 @@ enum class LogPriority {
     error
 };
 
+enum class NetProtocol {
+    JSON = 1,
+    EBNF,
+};
+
 const Index IndexInfinity = std::numeric_limits<Index>::max();
 const int RECONNECT_TIME_IN_MILLISECONDS = 3000;
 const int MAX_RECONNECT_ATTEMPTS = 3;

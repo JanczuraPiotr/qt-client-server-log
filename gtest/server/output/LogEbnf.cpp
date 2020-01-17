@@ -5,7 +5,7 @@
 #include "LogEbnf.h"
 #include <QDateTime>
 
-#include "server/output/component/LogEbnf.h"
+#include "server/output/protocol/LogEbnf.h"
 
 #include "common/def.h"
 

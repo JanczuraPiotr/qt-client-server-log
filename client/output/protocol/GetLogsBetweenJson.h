@@ -9,18 +9,15 @@
 
 namespace cl::output {
 
-class GetLogsBetweenJson {
+/*@work */ class GetLogsBetweenJson {
 public:
-    // @task Do czasu opracowania systemu wyjątków zakładam "szczęśliwą ścieżkę"
-    // @task kontrola danych wejściowych
-    // @task wyjątek gdy daty są niepoprawne
-    GetLogsBetweenJson(const cm::DateTime &earlier, const cm::DateTime &latter);
+    // @work uruchomić możliwość wyboru protokołu
+    explicit GetLogsBetweenJson(cm::NetProtocol netProtocol);
 
-    cm::JsonString command();
+    cm::JsonString command(const cm::DateTime &earlier, const cm::DateTime &latter);
 
 private: // attributes
-    cm::DateTime earlier;
-    cm::DateTime latter;
+    cm::NetProtocol netProtocol;
 
 public: // lock
     GetLogsBetweenJson(const GetLogsBetweenJson &) = delete;

@@ -3,39 +3,70 @@ project(${SERVER})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wpedantic -Wextra -Werror -Wconversion -pedantic-errors -Weffc++ -MMD -MP -MF")
 
-add_executable(${SERVER}
-        main.cpp
-        ../common/exception/general.cpp     ../common/exception/general.h
+add_executable(${SERVER} main.cpp
 
-        ../common/db/exception.cpp          ../common/db/exception.h
-        ../common/db/Db.cpp                 ../common/db/Db.h
-        ../common/db/Connection.cpp         ../common/db/Connection.h
-        ../common/db/Collection.cpp         ../common/db/Collection.h
-        ../common/db/Record.cpp             ../common/db/Record.h
-        ../common/db/Structure.cpp          ../common/db/Structure.h
-        ../common/db/SQLiteConnection.cpp   ../common/db/SQLiteConnection.h
-        ../common/db/SQLiteStructure.cpp    ../common/db/SQLiteStructure.h
-        ../common/algorithm/Key.cpp         ../common/algorithm/Key.h
-        ../common/algorithm/String.cpp      ../common/algorithm/String.h
+        ../common/algorithm/Key.cpp
+        ../common/algorithm/Key.h
+        ../common/algorithm/String.cpp
+        ../common/algorithm/String.h
 
-        ../common/output/ErrorMessage.cpp   ../common/output/ErrorMessage.h
+        ../common/db/Collection.cpp
+        ../common/db/Collection.h
+        ../common/db/Connection.cpp
+        ../common/db/Connection.h
+        ../common/db/Db.cpp
+        ../common/db/Db.h
+        ../common/db/exception.cpp
+        ../common/db/exception.h
+        ../common/db/Record.cpp
+        ../common/db/Record.h
+        ../common/db/SQLiteConnection.cpp
+        ../common/db/SQLiteConnection.h
+        ../common/db/SQLiteStructure.cpp
+        ../common/db/SQLiteStructure.h
+        ../common/db/Structure.cpp
+        ../common/db/Structure.h
 
-        action/InsertLog.cpp                action/InsertLog.h
+        ../common/exception/general.cpp
+        ../common/exception/general.h
 
-        app/ConfigFile.cpp                  app/ConfigFile.h
-        app/SignalBus.cpp                   app/SignalBus.h
+        ../common/output/ErrorMessage.cpp
+        ../common/output/ErrorMessage.h
 
-        input/components/GetLogsBetweenJson.cpp input/components/GetLogsBetweenJson.h
+        action/InsertLog.cpp
+        action/InsertLog.h
 
-        model/LogCollection.cpp             model/LogCollection.h
-        model/LogRecord.cpp                 model/LogRecord.h
+        app/ConfigFile.cpp
+        app/ConfigFile.h
+        app/SignalBus.cpp
+        app/SignalBus.h
 
-        output/Log.cpp                      output/Log.h
+        input/protocol/GetLogsBetweenEbnf.cpp
+        input/protocol/GetLogsBetweenEbnf.h
+        input/protocol/GetLogsBetweenJson.cpp
+        input/protocol/GetLogsBetweenJson.h
+        input/GetLogsBetween.cpp
+        input/GetLogsBetween.h
 
-        service/FakeEvent.cpp               service/FakeEvent.h
-        service/NetConnection.cpp           service/NetConnection.h
-        service/Main.cpp                    service/Main.h
-        output/component/LogJson.cpp output/component/LogJson.h output/component/LogEbnf.cpp output/component/LogEbnf.h input/components/GetLogsBetweenEbnf.cpp input/components/GetLogsBetweenEbnf.h input/GetLogsBetween.cpp input/GetLogsBetween.h)
+        model/LogCollection.cpp
+        model/LogCollection.h
+        model/LogRecord.cpp
+        model/LogRecord.h
+
+        output/protocol/LogJson.cpp
+        output/protocol/LogJson.h
+        output/protocol/LogEbnf.cpp
+        output/protocol/LogEbnf.h
+        output/Log.cpp
+        output/Log.h
+
+        service/FakeEvent.cpp
+        service/FakeEvent.h
+        service/NetConnection.cpp
+        service/NetConnection.h
+        service/Main.cpp
+        service/Main.h
+        )
 
 qt5_use_modules(${SERVER}
         Core

@@ -4,7 +4,7 @@
 
 #include "GetLogsBetweenJson.h"
 
-#include "client/output/component/GetLogsBetweenJson.h"
+#include "client/output/GetLogsBetween.h"
 #include "common/def.h"
 
 namespace test {
@@ -14,9 +14,9 @@ TEST_F(Client_Output_GetLogsBetween, test_1)
 {
     cm::DateTime earlier("2011-11-11 11:11:11");
     cm::DateTime latter("2012-12-12 12:12:12");
-    cl::output::GetLogsBetweenJson output(earlier, latter);
+    cl::output::GetLogsBetween output(cm::NetProtocol::JSON);
 
-    EXPECT_EQ(output.command(), "getLogsBetween|2011-11-11 11:11:11|2012-12-12 12:12:12");
+    EXPECT_EQ(output.command(earlier, latter), "getLogsBetween|2011-11-11 11:11:11|2012-12-12 12:12:12");
 }
 
 }

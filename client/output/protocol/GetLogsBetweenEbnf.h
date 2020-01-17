@@ -8,6 +8,7 @@
 namespace cl::output {
 
 /* @work : */class GetLogsBetweenEbnf {
+        // @work uruchomić możliwość wyboru protokołu
 };
 }
 

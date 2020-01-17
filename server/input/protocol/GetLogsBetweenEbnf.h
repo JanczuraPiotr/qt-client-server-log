@@ -7,7 +7,7 @@
 
 namespace sv::input {
 
-
+// @work uruchomić możliwość wyboru protokołu
 /* @work */ class GetLogsBetweenEbnf {
 
 };

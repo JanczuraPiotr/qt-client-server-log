@@ -12,7 +12,7 @@
 
 namespace sv::output {
 
-
+// @work uruchomić możliwość wyboru protokołu
 class LogEBNF {
 public:
     LogEBNF() = default;

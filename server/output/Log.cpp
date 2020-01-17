@@ -10,6 +10,13 @@
 
 namespace sv::output {
 
+
+Log::Log(cm::NetProtocol netProtocol)
+    : netProtocol(netProtocol)
+{
+
+}
+
 QString Log::one(
         cm::AutoId id
         , const QDateTime &dateTime

@@ -6,14 +6,13 @@
 
 namespace cl::output {
 
-GetLogsBetweenJson::GetLogsBetweenJson(const cm::DateTime &earlier, const cm::DateTime &latter)
-    : earlier(earlier)
-    , latter(latter)
+GetLogsBetweenJson::GetLogsBetweenJson(cm::NetProtocol netProtocol)
+    : netProtocol(netProtocol)
 {
 
 }
 
-cm::JsonString GetLogsBetweenJson::command()
+cm::JsonString GetLogsBetweenJson::command(const cm::DateTime &earlier, const cm::DateTime &latter)
 {
     cm::JsonString jsonString("getLogsBetween|" + earlier + "|" + latter);
 

@@ -14,6 +14,7 @@ Net::Net(const QString &url, cm::TCPPort serverIPPort)
     : url_(url)
     , serverIPPort_(serverIPPort)
     , socket_()
+    , netProtocol(cm::NetProtocol::JSON) // @work uruchomić możliwość wyboru protokołu
     , connected_(false)
     , tries_(0)
     , lastConnectionAttempt_(QDateTime::fromTime_t(0))
@@ -78,16 +79,16 @@ void Net::onTextMessageReceived(const cm::NetInput &netInput)
         socket_.sendTextMessage(cm::output::ErrorMessage::badCommand(command));
     } else {
         if (command == "log") {
-            cl::input::Log input(netInput, lim + 1);
-            if (input.parse()) {
+            cl::input::Log input(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
+            if (input.parse(netInput, lim + 1)) {
                 emit log(input.getId(), input.getTimestamp(), input.getPriority(), input.getMessage());
             } else {
                 // @task obsłużyć błąd struktury danych wejściowych
                 qDebug() << "// @task obsłużyć błąd struktury danych wejściowych";
             }
         } else if (command == "getLogsBetween") {
-            cl::input::GetLogsBetween input(netInput);
-            if (input.parse()) {
+            cl::input::GetLogsBetween input(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
+            if (input.parse(netInput)) {
                 //emit log(input.getId(), inputLog.getTimestamp(), inputLog.getPriority(), inputLog.getMessage());
                 emit logsBetween(input.getBorderEarlier(), input.getBorderLatter(), input.getLogCollection());
             } else {

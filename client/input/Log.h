@@ -10,14 +10,15 @@
 #include "common/def.h"
 
 namespace cl::input {
-// @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
+// @work na podstawie parametrów wiersza poleceń wybrać właściwy protokół
+// @work uruchomić możliwość wyboru protokołu
 class Log {
 public:
     // @task pozbądź się lim
-    explicit Log(cm::NetInput input, cm::Index lim);
+    explicit Log(cm::NetProtocol netProtocol);// @work uruchomić możliwość wyboru protokołu
     virtual ~Log() = default;
 
-    bool parse();
+    bool parse(const cm::NetInput &input, const cm::Index &lim);
 
     [[nodiscard]] QDateTime getTimestamp() const noexcept;
     [[nodiscard]] cm::AutoId getId() const noexcept;
@@ -25,8 +26,7 @@ public:
     [[nodiscard]] cm::Message getMessage() const noexcept;
 
 private: // attributes
-    cm::NetInput input;
-    cm::Index lim;
+    cm::NetProtocol netProtocol;
 
     QDateTime timestamp;
     cm::AutoId id;

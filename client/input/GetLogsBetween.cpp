@@ -14,8 +14,9 @@
 
 namespace cl::input {
 
-GetLogsBetween::GetLogsBetween(const cm::NetInput &input)
-        : input(input)
+GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
+        : netProtocol(netProtocol)
+        , input()
         , lim(CORRECT_DATA_START)
         , borderEarlier()
         , borderLatter()
@@ -27,9 +28,10 @@ cl::model::LogCollection::ptr GetLogsBetween::getLogCollection() {
     return logCollection;
 }
 
-bool GetLogsBetween::parse()
+bool GetLogsBetween::parse(const cm::NetInput &input)
 {
-    if (input.indexOf('{') != CORRECT_JSON_START) {
+    this->input = input;
+    if (this->input.indexOf('{') != CORRECT_JSON_START) {
         return false;
     }
 
@@ -79,8 +81,8 @@ bool GetLogsBetween::parseJson()
             QJsonDocument tmpJson(data[i].toObject());
             QByteArray tmpArray = tmpJson.toJson();
             cm::JsonString tmpString(tmpArray);
-            cl::input::Log inputLog(tmpString, 0);
-            if (!inputLog.parse()) {
+            cl::input::Log inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
+            if (!inputLog.parse(tmpString, 0)) {
                 return false;
             }
             logCollection->insert(

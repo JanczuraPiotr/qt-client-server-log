@@ -14,9 +14,9 @@ namespace test {
 TEST_F(Client_Input_GetLogsBetweenJson, correct_input)
 {
 //    cl::input::GetLogsBetweenJson input(alg::String::condense(test::DataFromServerToClient::getLogsBetweenJson()), 14);
-    cl::input::GetLogsBetween input(test::DataFromServerToClient::getLogsBetweenJson());
+    cl::input::GetLogsBetween input(cm::NetProtocol::JSON);
 
-    EXPECT_TRUE(input.parse());
+    EXPECT_TRUE(input.parse(test::DataFromServerToClient::getLogsBetweenJson()));
     EXPECT_EQ(input.getBorderEarlier().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-00-00-00");
     EXPECT_EQ(input.getBorderLatter().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-01-00-00");
     EXPECT_EQ(input.getLogCollection()->size(), 4);

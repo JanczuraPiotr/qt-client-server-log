@@ -14,12 +14,13 @@ namespace cl::input {
 
 
 class GetLogsBetween {
-// @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
+// @work na podstawie parametrów wiersza poleceń wybrać właściwy protokół
+// @work uruchomić możliwość wyboru protokołu
 public:
-    GetLogsBetween(const cm::NetInput &input);
+    explicit GetLogsBetween(cm::NetProtocol netProtocol);
     virtual ~GetLogsBetween() = default;
 
-    bool parse();
+    bool parse(const cm::NetInput &input);
 
     QDateTime getBorderEarlier();
     QDateTime getBorderLatter();
@@ -35,6 +36,7 @@ private: // methods
     bool parseJson();
 
 private: // attributes
+    cm::NetProtocol netProtocol;
     cm::NetInput input;
     cm::Index lim;
 

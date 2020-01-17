@@ -28,7 +28,6 @@ public: signals:
 public slots:
     void netCommand(const cm::NetCommand &command);
 
-
 private slots: // for internal signals
     void onConnected();
     void onDisconnected();
@@ -41,6 +40,7 @@ private: // attributes
     QString url_;
     cm::TCPPort serverIPPort_;
     QWebSocket socket_;
+    cm::NetProtocol netProtocol;// @work uruchomić możliwość wyboru protokołu
     bool connected_;
     int tries_;
     QDateTime lastConnectionAttempt_;
