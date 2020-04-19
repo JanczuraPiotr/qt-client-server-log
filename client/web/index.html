@@ -1,4 +1,4 @@
-<html>
+<html lang="pl_PL">
     <head>
         <title>WebSocket Client</title>
         <script src="main.js"></script>
@@ -8,7 +8,7 @@
 
         <h1>WebSocket Client</h1>
         <p>
-            Host: <input id="webSocketHost" type="text" value="localhost:20000"/>
+            <label for="webSocketHost">Host: </label><input id="webSocketHost" type="text" value="localhost:20000"/>
         </p>
         <p>
             <button id="buttonConnect">
@@ -22,10 +22,11 @@
         </p>
 
         <p>
-            <textarea id="textArea" style="width:400px; height:200px;" readonly></textarea>
+            <label for="textArea"></label><textarea id="textArea" style="width:400px; height:200px;" readonly></textarea>
         </p>
 
         <p>
+            <label for="commandText">command: </label>
             <input type="text" id="commandText" />
             <button id="commandButton" >
                 Send
