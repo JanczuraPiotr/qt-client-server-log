@@ -39,10 +39,10 @@ private: // lock
     explicit LogCollection();
 
 public: // lock
-    LogCollection(const LogCollection &) noexcept = delete;
-    LogCollection(LogCollection &&) noexcept = delete;
-    LogCollection &operator = (const LogCollection&) noexcept = delete;
-    LogCollection &operator = (LogCollection &&) noexcept = delete;
+    LogCollection(const LogCollection &) = delete;
+    LogCollection(LogCollection &&) = delete;
+    LogCollection &operator = (const LogCollection&) = delete;
+    LogCollection &operator = (LogCollection &&) = delete;
     
 };
 

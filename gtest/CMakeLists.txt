@@ -1,11 +1,6 @@
 project(gtest)
-add_subdirectory(gtest-lib/googletest)
-include_directories(${gtest-lib/googletest/googlemock/include/gmock/gmock.h}/include ${gtest_SOURCE_DIR})
-include_directories(${gmock_SOURCE_DIR}/include ${gmock_SOURCE_DIR})
 
-
-
-add_executable(gtest_run main.cpp
+add_executable(gtest main.cpp
 
         ../client/input/protocol/GetLogsBetweenEbnf.cpp
         ../client/input/protocol/GetLogsBetweenEbnf.h
@@ -88,13 +83,15 @@ if (NOT Boost_FOUND)
     message(FATAL_ERROR "Could not find boost!")
 endif ()
 
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
-target_link_libraries(gtest_run
-        gtest
-        gtest_main
+target_link_libraries(gtest
+        ${GTEST_LIBRARIES}
+        pthread
         )
 
-qt5_use_modules(gtest_run
+qt5_use_modules(gtest
         Core
         Network
         WebSockets

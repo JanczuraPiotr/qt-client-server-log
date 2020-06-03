@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT  qt-client-server-log)
 project(${PROJECT})
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/exe)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_COMPILER_LOADED "${CMAKE_CXX_COMPILER_LOADED} -lz -lm -lrt -ldl")
 
