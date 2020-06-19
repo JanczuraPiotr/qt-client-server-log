@@ -5,7 +5,7 @@
 #ifndef CLIENT_INPUT_GETLOGSBETWEENEBNF
 #define CLIENT_INPUT_GETLOGSBETWEENEBNF
 
-namespace cl::input {
+namespace cl::in {
 
 class GetLogsBetweenEbnf {
 // @work zaprojektować : GetLogsBetweenEbnf

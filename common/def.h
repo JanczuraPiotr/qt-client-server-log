@@ -36,7 +36,8 @@ enum class LogPriority {
 };
 
 enum class NetProtocol {
-    JSON = 1,
+    DEFAULT  = 1,
+    JSON,
     EBNF,
 };
 

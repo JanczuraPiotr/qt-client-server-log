@@ -5,7 +5,7 @@
 #ifndef CLIENT_INPUT_LOGJSON_H
 #define CLIENT_INPUT_LOGJSON_H
 
-namespace cl::input {
+namespace cl::in {
 
 class LogJson {
 public:

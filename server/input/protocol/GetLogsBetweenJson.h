@@ -11,12 +11,12 @@
 
 #include "common/def.h"
 
-namespace sv::input {
+namespace sv::in {
 
 // @work uruchomić możliwość wyboru protokołu
 class GetLogsBetweenJson {
 public:
-//    explicit GetLogsBetweenJson(cm::NetInput input, cm::Index lim);
+//    explicit GetLogsBetweenJson(cm::NetInput in, cm::Index lim);
 //
 //    bool parse();
 //
@@ -24,7 +24,7 @@ public:
 //    QDateTime getBorderLatter();
 //
 //private: // methods
-//    cm::NetInput input;
+//    cm::NetInput in;
 //    cm::Index lim;
 //
 //    QDateTime borderEarlier;

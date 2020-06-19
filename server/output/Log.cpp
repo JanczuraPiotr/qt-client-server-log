@@ -8,7 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-namespace sv::output {
+namespace sv::out {
 
 
 Log::Log(cm::NetProtocol netProtocol)

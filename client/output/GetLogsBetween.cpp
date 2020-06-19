@@ -4,7 +4,7 @@
 
 #include "GetLogsBetween.h"
 
-namespace cl::output {
+namespace cl::out {
 
 GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
         : netProtocol(netProtocol)

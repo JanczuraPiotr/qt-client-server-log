@@ -26,7 +26,7 @@ void Main::getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitL
 {
     model::LogCollection logCollection;
     auto logs = logCollection.getLogsBetween(limitEarlier, limitLatter);
-    sv::output::Log output(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
+    sv::out::Log output(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
     // @task wszystkie odpowiedzi opakować w jsona w którym pod kluczem "data" będą właściwe dane.
     auto jsonString = "{\"data\":" + output.map(logs) + "}";
     emit messageToClient("getLogsBetween|"

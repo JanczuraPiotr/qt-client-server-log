@@ -7,7 +7,7 @@
 
 #include "common/def.h"
 
-namespace cl::output {
+namespace cl::out {
 
 
 class GetLogsBetween {

@@ -5,7 +5,7 @@
 #ifndef CLIENT_OUTPUT_GETLOGSBETWEENEBNF
 #define CLIENT_OUTPUT_GETLOGSBETWEENEBNF
 
-namespace cl::output {
+namespace cl::out {
 
 /* @work : */class GetLogsBetweenEbnf {
         // @work uruchomić możliwość wyboru protokołu

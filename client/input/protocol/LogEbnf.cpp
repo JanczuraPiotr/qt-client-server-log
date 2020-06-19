@@ -7,7 +7,7 @@
 #include <boost/spirit/include/karma.hpp>
 
 
-namespace cl::input {
+namespace cl::in {
 
 LogEBNF::LogEBNF(cm::NetInput input, cm::Index lim)
     : input(input)

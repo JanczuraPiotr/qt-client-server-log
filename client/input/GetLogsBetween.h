@@ -10,7 +10,7 @@
 #include "common/def.h"
 #include "client/model/LogCollection.h"
 
-namespace cl::input {
+namespace cl::in {
 
 
 class GetLogsBetween {

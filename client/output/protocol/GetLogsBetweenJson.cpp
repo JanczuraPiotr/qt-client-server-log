@@ -4,7 +4,7 @@
 
 #include "GetLogsBetweenJson.h"
 
-namespace cl::output {
+namespace cl::out {
 
 GetLogsBetweenJson::GetLogsBetweenJson(cm::NetProtocol netProtocol)
     : netProtocol(netProtocol)

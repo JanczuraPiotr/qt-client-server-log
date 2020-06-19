@@ -18,7 +18,7 @@ TEST_F(Client_Input_Log, test_1) {
             "message": "msg",
             "timestamp": "1970-01-01 00:00:00"
     })";
-    cl::input::Log inputLog(cm::NetProtocol::JSON);
+    cl::in::Log inputLog(cm::NetProtocol::JSON);
     EXPECT_FALSE(inputLog.parse(input, lim)); // ze względu na id == 0
 }
 
@@ -30,7 +30,7 @@ TEST_F(Client_Input_Log, test_2) {
             "message": "msg",
             "timestamp": "1970-01-01 00:00:00"
     })";
-    cl::input::Log inputLog(cm::NetProtocol::JSON);
+    cl::in::Log inputLog(cm::NetProtocol::JSON);
     EXPECT_FALSE(inputLog.parse(input, lim)); // ze względu na id == -1
 }
 
@@ -42,7 +42,7 @@ TEST_F(Client_Input_Log, test_3) {
             "message": "msg",
             "timestamp": "1970-01-01 00:00:00"
     })";
-    cl::input::Log inputLog(cm::NetProtocol::JSON);
+    cl::in::Log inputLog(cm::NetProtocol::JSON);
     EXPECT_FALSE(inputLog.parse(input, lim)); // ze względu na priority == -1. Priorytety mają wartość > 1
 }
 
@@ -54,7 +54,7 @@ TEST_F(Client_Input_Log, test_4) {
             "message": "msg",
             "timestamp": ""
     })";
-    cl::input::Log inputLog(cm::NetProtocol::JSON);
+    cl::in::Log inputLog(cm::NetProtocol::JSON);
     EXPECT_FALSE(inputLog.parse(input, lim));
 }
 
@@ -66,7 +66,7 @@ TEST_F(Client_Input_Log, test_5) {
             "message": "msg",
             "timestamp": "1970-01-01"
     })";
-    cl::input::Log inputLog(cm::NetProtocol::JSON);
+    cl::in::Log inputLog(cm::NetProtocol::JSON);
     EXPECT_FALSE(inputLog.parse(input, lim));
 }
 
@@ -78,7 +78,7 @@ TEST_F(Client_Input_Log, test_6) {
             "message": "msg",
             "timestamp": "00:00:00"
     })";
-    cl::input::Log inputLog(cm::NetProtocol::JSON);
+    cl::in::Log inputLog(cm::NetProtocol::JSON);
     EXPECT_FALSE(inputLog.parse(input, lim));
 }
 

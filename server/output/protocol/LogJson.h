@@ -10,7 +10,7 @@
 #include "common/def.h"
 #include "server/model/LogRecord.h"
 
-namespace sv::output {
+namespace sv::out {
 
 class LogJson {
 //public:

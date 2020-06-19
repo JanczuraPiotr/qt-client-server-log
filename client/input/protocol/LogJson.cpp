@@ -4,6 +4,6 @@
 
 #include "LogJson.h"
 
-namespace cl::input {
+namespace cl::in {
 
 }

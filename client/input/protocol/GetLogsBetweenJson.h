@@ -5,7 +5,7 @@
 #ifndef CLIENT_INPUT_GETLOGSBETWEENJSON
 #define CLIENT_INPUT_GETLOGSBETWEENJSON
 
-namespace cl::input {
+namespace cl::in {
 
 class GetLogsBetweenJson {
 // @work zaprojektować : GetLogsBetweenJson

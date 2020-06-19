@@ -55,7 +55,7 @@ void NetConnection::insertedLog(
             , const cm::Message &message)
 {
     qDebug() << "NetConnection::insertedLog";
-    output::Log log(netProtocol);// @work uruchomić możliwość wyboru protokołu
+    out::Log log(netProtocol);// @work uruchomić możliwość wyboru protokołu
     broadcastLogToNet(log.one(id, dateTime, logPriority, message));
 }
 
@@ -124,7 +124,7 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
     } else {
         if (command == "getLogsBetween") {
-            sv::input::GetLogsBetween input(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
+            sv::in::GetLogsBetween input(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
             if (input.parse(netInput, lim)) {
                 emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
             } else {

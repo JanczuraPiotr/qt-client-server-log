@@ -12,7 +12,7 @@
 #include "common/algorithm/String.h"
 #include "client/input/Log.h"
 
-namespace cl::input {
+namespace cl::in {
 
 GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
         : netProtocol(netProtocol)
@@ -70,8 +70,8 @@ bool GetLogsBetween::parseDateTime()
 
 bool GetLogsBetween::parseJson()
 {
-    // @proposal Zamienić korzystanie z cl::input::Log do parsowania jsona z logami.
-    // Utworzyć klasę parsującą jedną pozycję z logiem i wykorzystać ją ty i w klasie cl::input::Log.
+    // @proposal Zamienić korzystanie z cl::in::Log do parsowania jsona z logami.
+    // Utworzyć klasę parsującą jedną pozycję z logiem i wykorzystać ją ty i w klasie cl::in::Log.
     QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(CORRECT_JSON_START).toUtf8());
     QJsonObject root = jsonDocument.object();
 
@@ -81,7 +81,7 @@ bool GetLogsBetween::parseJson()
             QJsonDocument tmpJson(data[i].toObject());
             QByteArray tmpArray = tmpJson.toJson();
             cm::JsonString tmpString(tmpArray);
-            cl::input::Log inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
+            cl::in::Log inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
             if (!inputLog.parse(tmpString, 0)) {
                 return false;
             }

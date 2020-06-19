@@ -5,7 +5,7 @@
 #ifndef SERVER_INPUT_GETLOGSBETWEENEBNF
 #define SERVER_INPUT_GETLOGSBETWEENEBNF
 
-namespace sv::input {
+namespace sv::in {
 
 // @work uruchomić możliwość wyboru protokołu
 /* @work */ class GetLogsBetweenEbnf {

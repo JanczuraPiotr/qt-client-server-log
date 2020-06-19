@@ -7,10 +7,10 @@
 #include <QDebug>
 #include <utility>
 
-namespace sv::input {
+namespace sv::in {
 //
-//GetLogsBetweenJson::GetLogsBetweenJson(cm::NetInput input, cm::Index lim)
-//    : input(std::move(input))
+//GetLogsBetweenJson::GetLogsBetweenJson(cm::NetInput in, cm::Index lim)
+//    : in(std::move(in))
 //    , lim(lim)
 //    , borderEarlier()
 //    , borderLatter()
@@ -25,22 +25,22 @@ namespace sv::input {
 //    const cm::Index FIRST_LIM_INDEX = lim;
 //    const cm::Index LAST_LIM_INDEX = lim + static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()) + 1;
 //
-//    if (input.length() != CORRECT_INPUT_LONG) {
+//    if (in.length() != CORRECT_INPUT_LONG) {
 //        return false;
 //    }
-//    if (input.at(FIRST_LIM_INDEX) != '|' && input.at(LAST_LIM_INDEX) != '|') {
+//    if (in.at(FIRST_LIM_INDEX) != '|' && in.at(LAST_LIM_INDEX) != '|') {
 //        return false;
 //    }
 //
 //    borderEarlier = QDateTime::fromString(
-//            input.mid(FIRST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()))
+//            in.mid(FIRST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()))
 //            , cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str());
 //    if (!borderEarlier.isValid()) {
 //        return false;
 //    }
 //
 //    borderLatter  = QDateTime::fromString(
-//            input.mid(LAST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()))
+//            in.mid(LAST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()))
 //            , cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str());
 //    if (!borderLatter.isValid()) {
 //        return false;

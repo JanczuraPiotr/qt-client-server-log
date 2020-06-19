@@ -9,7 +9,7 @@
 #include <QString>
 #include <QDebug>
 
-namespace cl::input {
+namespace cl::in {
 
 
 Log::Log(cm::NetProtocol netProtocol)
@@ -23,7 +23,7 @@ Log::Log(cm::NetProtocol netProtocol)
 
 bool Log::parse(const cm::NetInput &input, const cm::Index &lim)
 {
-//    this->input = input;
+//    this->in = in;
 //    this->lim = lim;
     bool result = true;
     QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(lim).toUtf8());

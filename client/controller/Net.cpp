@@ -79,7 +79,7 @@ void Net::onTextMessageReceived(const cm::NetInput &netInput)
         socket_.sendTextMessage(cm::output::ErrorMessage::badCommand(command));
     } else {
         if (command == "log") {
-            cl::input::Log input(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
+            cl::in::Log input(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
             if (input.parse(netInput, lim + 1)) {
                 emit log(input.getId(), input.getTimestamp(), input.getPriority(), input.getMessage());
             } else {
@@ -87,9 +87,9 @@ void Net::onTextMessageReceived(const cm::NetInput &netInput)
                 qDebug() << "// @task obsłużyć błąd struktury danych wejściowych";
             }
         } else if (command == "getLogsBetween") {
-            cl::input::GetLogsBetween input(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
+            cl::in::GetLogsBetween input(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
             if (input.parse(netInput)) {
-                //emit log(input.getId(), inputLog.getTimestamp(), inputLog.getPriority(), inputLog.getMessage());
+                //emit log(in.getId(), inputLog.getTimestamp(), inputLog.getPriority(), inputLog.getMessage());
                 emit logsBetween(input.getBorderEarlier(), input.getBorderLatter(), input.getLogCollection());
             } else {
                 // @task obsłużyć błąd struktury danych wejściowych

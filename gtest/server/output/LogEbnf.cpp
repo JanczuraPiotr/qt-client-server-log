@@ -18,7 +18,7 @@ TEST_F(Server_Output_LogEBNF, one_1)
     cm::LogPriority logPriority = cm::LogPriority::error;
     cm::Message mmessage("msg-1");
 
-    sv::output::LogEBNF logEbnf;
+    sv::out::LogEBNF logEbnf;
     EXPECT_EQ("1|1970-01-01 00:00:00|4|msg-1", logEbnf.one(id, dateTime, logPriority, mmessage));
 
 }

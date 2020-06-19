@@ -54,7 +54,7 @@ add_executable(${CLIENT}
 
         ../server/app/ConfigFile.cpp
         ../server/app/ConfigFile.h
-        )
+        ../server/output/Output.cpp ../server/output/Output.hpp)
 
 qt5_use_modules(${CLIENT}
         Core

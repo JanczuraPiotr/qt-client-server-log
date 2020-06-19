@@ -8,10 +8,11 @@
 #include <QDateTime>
 
 #include "common/def.h"
+#include "Input.hpp"
 
-namespace sv::input {
+namespace sv::in {
 
-/*@work */class GetLogsBetween {
+/*@work */class GetLogsBetween : public Input {
 // @work na podstawie parametrów wiersza poleceń wybrać właściwy protokół
 public:
     explicit GetLogsBetween(cm::NetProtocol netProtocol);// @work uruchomić możliwość wyboru protokołu

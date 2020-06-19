@@ -4,6 +4,6 @@
 
 #include "GetLogsBetweenEbnf.h"
 
-namespace sv::input {
+namespace sv::in {
 
 }

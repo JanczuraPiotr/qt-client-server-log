@@ -8,7 +8,7 @@
 
 namespace karma = boost::spirit::karma;
 
-namespace sv::output {
+namespace sv::out {
 
 
 QString LogEBNF::one(

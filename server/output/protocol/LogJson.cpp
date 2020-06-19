@@ -8,7 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 
-namespace sv::output {
+namespace sv::out {
 
 //QString LogJson::one(
 //        cm::AutoId id

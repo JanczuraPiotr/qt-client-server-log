@@ -10,7 +10,7 @@
 #include "common/def.h"
 #include "server/model/LogRecord.h"
 
-namespace cl::input {
+namespace cl::in {
 
 
 class LogEBNF {

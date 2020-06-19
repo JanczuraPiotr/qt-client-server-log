@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <utility>
 
-namespace sv::input {
+namespace sv::in {
 
 GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
     : netProtocol(netProtocol)

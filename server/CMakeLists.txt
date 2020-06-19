@@ -66,7 +66,7 @@ add_executable(${SERVER} main.cpp
         service/NetConnection.h
         service/Main.cpp
         service/Main.h
-        )
+        input/Input.cpp input/Input.hpp output/Output.cpp output/Output.hpp)
 
 qt5_use_modules(${SERVER}
         Core

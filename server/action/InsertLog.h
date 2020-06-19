@@ -40,10 +40,10 @@ private: // methods
     sv::model::LogCollection logCollection_;
 
 public: // lock
-    InsertLog(const InsertLog &) noexcept = delete;
-    InsertLog(InsertLog &&) noexcept = delete;
-    InsertLog &operator = (const InsertLog&) noexcept = delete;
-    InsertLog &operator = (InsertLog &&) noexcept = delete;
+    InsertLog(const InsertLog &) = delete;
+    InsertLog(InsertLog &&) = delete;
+    InsertLog &operator = (const InsertLog&) = delete;
+    InsertLog &operator = (InsertLog &&) = delete;
 };
 
 }

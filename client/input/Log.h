@@ -9,7 +9,7 @@
 
 #include "common/def.h"
 
-namespace cl::input {
+namespace cl::in {
 // @work na podstawie parametrów wiersza poleceń wybrać właściwy protokół
 // @work uruchomić możliwość wyboru protokołu
 class Log {
