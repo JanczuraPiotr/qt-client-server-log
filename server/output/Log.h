@@ -17,7 +17,7 @@ public:
     explicit Log(cm::NetProtocol netProtocol);// @work uruchomić możliwość wyboru protokołu
     virtual ~Log() = default;
 
-    QString map(model::LogRecord::map records);
+    QString map(data::LogRecord::map records);
     QString one(
             cm::AutoId id
             , const QDateTime &dateTime

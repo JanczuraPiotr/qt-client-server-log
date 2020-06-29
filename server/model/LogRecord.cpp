@@ -4,7 +4,7 @@
 
 #include "LogRecord.h"
 
-namespace sv::model {
+namespace sv::data {
 
 LogRecord::ptr LogRecord::makeShared(const QSqlRecord &rec)
 {

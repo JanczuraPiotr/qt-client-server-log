@@ -24,14 +24,14 @@ Main::Main()
 
 void Main::getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitLatter, cm::TCPPort clientsPort)
 {
-    model::LogCollection logCollection;
+    data::LogCollection logCollection;
     auto logs = logCollection.getLogsBetween(limitEarlier, limitLatter);
     sv::out::Log output(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
     // @task wszystkie odpowiedzi opakować w jsona w którym pod kluczem "data" będą właściwe dane.
     auto jsonString = "{\"data\":" + output.map(logs) + "}";
     emit messageToClient("getLogsBetween|"
-        + cm::algorithm::String::dateTimeInNetCommand(limitEarlier) + "|"
-        + cm::algorithm::String::dateTimeInNetCommand(limitLatter)
+                         + cm::alg::String::dateTimeInNetCommand(limitEarlier) + "|"
+                         + cm::alg::String::dateTimeInNetCommand(limitLatter)
         + jsonString
         , clientsPort);
 }

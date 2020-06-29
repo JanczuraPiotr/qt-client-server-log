@@ -13,24 +13,24 @@
 namespace sv::out {
 
 class LogJson {
-//public:
-//    LogJson() = default;
-//    virtual ~LogJson() = default;
-//
-//    QString map(model::LogRecord::map records);
-//    QString one(
-//            cm::AutoId id
-//            , const QDateTime &dateTime
-//            , cm::LogPriority logPriority
-//            , const cm::Message &message);
-//
-//public: // lock
-//    LogJson(const LogJson &) = delete;
-//    LogJson(LogJson &&) = delete;
-//    LogJson &operator = (const LogJson&) = delete;
-//    LogJson &operator = (LogJson &&) = delete;
-};
-}
+public:
+    LogJson() = default;
+    virtual ~LogJson() = default;
 
+    QString map(data::LogRecord::map records);
+    QString one(
+            cm::AutoId id
+            , const QDateTime &dateTime
+            , cm::LogPriority logPriority
+            , const cm::Message &message);
+
+public: // lock
+    LogJson(const LogJson &) = delete;
+    LogJson(LogJson &&) = delete;
+    LogJson &operator = (const LogJson&) = delete;
+    LogJson &operator = (LogJson &&) = delete;
+};
+
+}
 
 #endif

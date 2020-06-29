@@ -3,6 +3,11 @@ project(${CLIENT})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wpedantic -Wextra -Werror -Wconversion -pedantic-errors -Weffc++ -MMD -MP -MF")
 
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Sql REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Network REQUIRED)
+
 add_executable(${CLIENT}
         main.cpp
 
@@ -54,12 +59,14 @@ add_executable(${CLIENT}
 
         ../server/app/ConfigFile.cpp
         ../server/app/ConfigFile.h
-        ../server/output/Output.cpp ../server/output/Output.hpp)
+        ../server/output/Output.cpp                         ../server/output/Output.hpp
+        )
 
-qt5_use_modules(${CLIENT}
-        Core
-        Network
-        WebSockets
-        Widgets
-        Sql
+target_link_libraries(${CLIENT}
+        ${GTEST_LIBRARIES}
+        pthread
+        Qt::Core
+        Qt::Network
+        Qt::Widgets
+        Qt::Sql
         )

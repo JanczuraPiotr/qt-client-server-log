@@ -32,7 +32,7 @@ QString LogEBNF::one(
     return QString(out.c_str());
 }
 
-QString LogEBNF::map(model::LogRecord::map records)
+QString LogEBNF::map(data::LogRecord::map records)
 {
     std::ignore = records;
 //    for (auto &it : records) {

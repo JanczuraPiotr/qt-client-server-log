@@ -4,7 +4,37 @@
 
 #include "DataFromServerToClient.h"
 
+#include <memory>
+#include <QDebug>
+
 namespace test {
+
+data::LogRecord::ptr LogRecord::makeShared(const QString &timestamp, cm::LogPriority priority, const cm::Message &message)
+{
+    return std::shared_ptr<LogRecord>(
+            new LogRecord(
+                    QDateTime::fromString(timestamp, cm::DATE_TIME_TEMPLATE.c_str())
+                    , priority
+                    , message
+            )
+        );
+}
+
+LogRecord::LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const cm::Message &message)
+    : data::LogRecord(
+            [=](){
+                QSqlRecord rec;
+                rec.append(QSqlField("timestamp",  QVariant::DateTime));
+                rec.append(QSqlField("priority",   QVariant::Int));
+                rec.append(QSqlField("message",    QVariant::TextFormat));
+                rec.setValue("timestamp", timestamp);
+                rec.setValue("priority", static_cast<short>(priority));
+                rec.setValue("message", message);
+                return rec;
+            }())
+{
+
+}
 
 cm::JsonString DataFromServerToClient::getLogsBetweenJson()
 {
@@ -76,5 +106,21 @@ cm::EBNFString DataFromServerToClient::getLogsBetweenEbnf()
 
     return ebnfString;
 }
+
+data::LogRecord::ptr DataFromServerToClient::getLogRecord()
+{
+    data::LogRecord::ptr record = LogRecord::makeShared(
+            "1070-01-01 00:00:01"
+            , cm::LogPriority::ok
+            , "msg-1"
+            );
+    return record;
+}
+
+sv::data::LogRecord::map DataFromServerToClient::getLogMap()
+{
+
+}
+
 
 }

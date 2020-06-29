@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.16
 //
 
-#ifndef SERVER_OUTPUT_LOGJSON
-#define SERVER_OUTPUT_LOGJSON
+#ifndef TEST_SERVER_OUTPUT_LOGJSON
+#define TEST_SERVER_OUTPUT_LOGJSON
 
 #include "gtest/gtest.h"
 

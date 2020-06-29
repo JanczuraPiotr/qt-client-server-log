@@ -120,7 +120,7 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
     // @task logowanie błędu przenieść do obsługi wyjątku
 
     if (lim == cm::IndexInfinity || command.isEmpty()) {
-        sv::model::LogCollection logCollection;
+        sv::data::LogCollection logCollection;
         logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
     } else {
         if (command == "getLogsBetween") {
@@ -128,7 +128,7 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
             if (input.parse(netInput, lim)) {
                 emit getLogsBetween(input.getBorderEarlier(), input.getBorderLatter(), pSender->peerPort());
             } else {
-                sv::model::LogCollection logCollection;
+                sv::data::LogCollection logCollection;
                 logCollection.insert(QDateTime(), cm::LogPriority::error, "bad params for command : getLogsBetween");
             }
 
@@ -139,7 +139,7 @@ void NetConnection::processMessage(const cm::NetInput &netInput)
             startPushingLogs(pSender->peerPort());
             messageToClient("włączyłeś powiadomienia o nowych logach", pSender->peerPort());
         } else {
-            sv::model::LogCollection logCollection;
+            sv::data::LogCollection logCollection;
             logCollection.insert(QDateTime(), cm::LogPriority::error, "bad command");
         }
     }

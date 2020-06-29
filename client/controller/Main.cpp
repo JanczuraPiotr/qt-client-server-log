@@ -16,7 +16,7 @@
 namespace cl::controller {
 
 namespace win = cl::view::window;
-namespace alg = cm::algorithm;
+namespace alg = cm::alg;
 
 Main& Main::instance()
 {
@@ -64,8 +64,8 @@ void Main::log(cm::AutoId logId, const QDateTime &timestamp, cm::LogPriority log
 void Main::loadLogsBetween(const cm::DateTime &earlier, const cm::DateTime &latter)
 {
     cm::NetCommand command("getLogsBetween|" +
-            cm::algorithm::String::dateTimeInNetCommand(earlier) + "|" +
-            cm::algorithm::String::dateTimeInNetCommand(latter));
+                           cm::alg::String::dateTimeInNetCommand(earlier) + "|" +
+                           cm::alg::String::dateTimeInNetCommand(latter));
     emit netCommand(command);
 }
 

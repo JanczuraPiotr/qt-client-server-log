@@ -4,7 +4,7 @@
 
 #include "LogCollection.h"
 
-namespace sv::model {
+namespace sv::data {
 
 LogCollection::LogCollection() noexcept
     : Collection()
@@ -23,7 +23,7 @@ QSqlRecord LogCollection::genericRecord() noexcept
 LogRecord::ptr LogCollection::get(cm::AutoId autoId) noexcept
 {
     std::ignore = autoId;
-    return model::LogRecord::makeShared(genericRecord());
+    return data::LogRecord::makeShared(genericRecord());
 }
 
 cm::AutoId LogCollection::insert(QDateTime timestamp, cm::LogPriority priority, const cm::Message &message)

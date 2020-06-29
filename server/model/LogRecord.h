@@ -11,7 +11,7 @@
 
 #include "common/db/Record.h"
 
-namespace sv::model {
+namespace sv::data {
 
 class LogRecord : public cm::db::Record {
 friend class LogCollection;

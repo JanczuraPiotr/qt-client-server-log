@@ -68,9 +68,14 @@ add_executable(${SERVER} main.cpp
         service/Main.h
         input/Input.cpp input/Input.hpp output/Output.cpp output/Output.hpp)
 
-qt5_use_modules(${SERVER}
-        Core
-        Network
-        WebSockets
-        Sql
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Sql REQUIRED)
+find_package(Qt5Network REQUIRED)
+
+target_link_libraries(${SERVER}
+        ${GTEST_LIBRARIES}
+        pthread
+        Qt5::Core
+        Qt5::Sql
+        Qt5::Network
         )

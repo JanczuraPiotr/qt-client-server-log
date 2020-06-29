@@ -18,7 +18,7 @@ public:
     LogEBNF() = default;
     virtual ~LogEBNF() = default;
 
-    QString map(model::LogRecord::map records);
+    QString map(data::LogRecord::map records);
     QString one(
             cm::AutoId id
             , const QDateTime &dateTime

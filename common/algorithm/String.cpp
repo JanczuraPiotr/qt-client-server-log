@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QDateTime>
 
-namespace cm::algorithm {
+namespace cm::alg {
 
 QString String::condense(const QString &string)
 {

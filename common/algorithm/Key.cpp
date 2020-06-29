@@ -4,7 +4,7 @@
 
 #include "Key.h"
 
-namespace cm::algorithm {
+namespace cm::alg {
 
 cm::Key Key::create(const QString &earlier, const QString &latter)
 {

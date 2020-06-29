@@ -1,6 +1,6 @@
 ## Architektura
 
-Kod dzielony jest na **kontrolery**, **akcje**, **serwisy**, **algorytmy**, **model** (**rekord**, **kolekcja**). Akcje i serwisy to **operatorzy**. Podział ma swoje odzwierciedlenie w strukturze katalogów. Katalog common nie ma narzuconej struktury ale częściowo może pokrywać się ze strukturą katalogów server i client.
+Kod dzielony jest na **kontrolery**, **akcje**, **serwisy**, **algorytmy**, **data** (**rekord**, **kolekcja**). Akcje i serwisy to **operatorzy**. Podział ma swoje odzwierciedlenie w strukturze katalogów. Katalog common nie ma narzuconej struktury ale częściowo może pokrywać się ze strukturą katalogów server i client.
 Kontroler może rozpoczynać swoje działanie na danych wejściowych a także wysyłać te dane na zewnątrz aplikacji. Analizę danych wejściowych wykonują **wejścia**. Przygotowanie danych wyjściowych wykonują **wyjścia**.
 Podział kodu odzwierciedlony jest w przestrzeni nazw.
 Podstawowym "narzędziem" pracy kontrolera jest **sygnał**. Swoje zadania realizuje po otrzymaniu sygnału a jeżeli scenariusz tego wymaga wysyłają odpowiednie sygnały z powiadomieniami. Sygnały realizowane są metodą connect biblioteki QT.
@@ -51,32 +51,28 @@ Parametry : ...
 #### Wiadomości automatycznie generowane przez server
 Struktura :
 
-```
-"type|{data}"
-```
+``"type|{data}"``
+
 Cały komunikat może składać się tylko z tokenów oddzielonych znakiem "|". Pierwszy token to zawsze jest nazwą typu wiadomości a pozostałe i ich ilość zależą od typu :
 
-```
-"type|parametr0|parametr1|parametr..."
-```
+``"type|parametr0|parametr1|parametr..."``
 
 #### Komunikaty, odpowiedzi i żądania.
 Format odpowiedzi na odebrane żądanie podobny jest do wiadomości automatycznie generowanych przez serwer ale typ odpowiedzi ma tą samą nazwę co zapytanie oraz parametry:
 
 żądanie:
-```
-"getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12"
-```
+
+``"getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12"``
+
 odpowiedź:
-```
-"getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12{logi wygenerowane przed datą z zapytania}"
-```
+
+``"getLogsBetween|2011-11-11-11-11-11|2011-11-11-12-12-12{logi wygenerowane przed datą z zapytania}"``
 
 #### Komendy
 
-``` stopPushingLogs```  - klient wyłącza automatyczne wysyłanie nowych logów przez serwer do siebie
+``stopPushingLogs``  - klient wyłącza automatyczne wysyłanie nowych logów przez serwer do siebie
 
-```startPushingLogs``` - klient włącza automatyczne wysyłanie nowych logów przez serwer do siebie
+``startPushingLogs`` - klient włącza automatyczne wysyłanie nowych logów przez serwer do siebie
 
 ### Protokół EBNF
 

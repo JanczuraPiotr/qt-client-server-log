@@ -15,7 +15,7 @@
 #include "common/db/Collection.h"
 #include "server/model/LogRecord.h"
 
-namespace sv::model {
+namespace sv::data {
 
 class LogRecord;
 class LogCollection : public cm::db::Collection {

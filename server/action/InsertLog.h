@@ -37,7 +37,7 @@ private: // methods
     cm::Message message_;
     cm::AutoId id_;
 
-    sv::model::LogCollection logCollection_;
+    sv::data::LogCollection logCollection_;
 
 public: // lock
     InsertLog(const InsertLog &) = delete;

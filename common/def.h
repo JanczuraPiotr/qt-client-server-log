@@ -29,6 +29,7 @@ typedef QString DateTime; // Data i godzina w formie tekstowej według wzorca DA
 typedef QString NetInput;
 
 enum class LogPriority {
+    none = 0,
     ok = 1, // @task usunąć LogPriority::ok
     info,
     warning,

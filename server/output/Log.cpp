@@ -32,7 +32,7 @@ QString Log::one(
     return doc.toJson();
 }
 
-QString Log::map(model::LogRecord::map records)
+QString Log::map(data::LogRecord::map records)
 {
     QJsonArray jsonArray;
 
