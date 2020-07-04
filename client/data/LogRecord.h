@@ -13,7 +13,7 @@
 
 #include "common/def.h"
 
-namespace cl::model {
+namespace cl::data {
 
 class LogRecord {
     friend class LogCollection;

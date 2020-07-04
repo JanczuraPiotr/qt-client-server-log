@@ -9,15 +9,13 @@
 
 namespace cl::out {
 
-/*@work */ class GetLogsBetweenJson {
+class GetLogsBetweenJson {
 public:
-    // @work uruchomić możliwość wyboru protokołu
-    explicit GetLogsBetweenJson(cm::NetProtocol netProtocol);
+    explicit GetLogsBetweenJson();
 
     cm::JsonString command(const cm::DateTime &earlier, const cm::DateTime &latter);
 
 private: // attributes
-    cm::NetProtocol netProtocol;
 
 public: // lock
     GetLogsBetweenJson(const GetLogsBetweenJson &) = delete;

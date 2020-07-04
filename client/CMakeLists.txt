@@ -25,10 +25,10 @@ add_executable(${CLIENT}
         input/Log.cpp
         input/Log.h
 
-        model/LogCollection.cpp
-        model/LogCollection.h
-        model/LogRecord.cpp
-        model/LogRecord.h
+        data/LogCollection.cpp
+        data/LogCollection.h
+        data/LogRecord.cpp
+        data/LogRecord.h
 
         output/protocol/GetLogsBetweenEbnf.cpp
         output/protocol/GetLogsBetweenEbnf.h
@@ -60,7 +60,7 @@ add_executable(${CLIENT}
         ../server/app/ConfigFile.cpp
         ../server/app/ConfigFile.h
         ../server/output/Output.cpp                         ../server/output/Output.hpp
-        )
+        ../common/data/entity/Log.cpp ../common/data/entity/Log.hpp ../common/data/Data.cpp ../common/data/Data.hpp ../common/data/record/Log.cpp ../common/data/record/Log.hpp)
 
 target_link_libraries(${CLIENT}
         ${GTEST_LIBRARIES}

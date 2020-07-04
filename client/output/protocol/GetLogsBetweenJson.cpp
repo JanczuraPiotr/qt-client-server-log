@@ -4,19 +4,26 @@
 
 #include "GetLogsBetweenJson.h"
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+
 namespace cl::out {
 
-GetLogsBetweenJson::GetLogsBetweenJson(cm::NetProtocol netProtocol)
-    : netProtocol(netProtocol)
+GetLogsBetweenJson::GetLogsBetweenJson()
 {
 
 }
 
 cm::JsonString GetLogsBetweenJson::command(const cm::DateTime &earlier, const cm::DateTime &latter)
 {
-    cm::JsonString jsonString("getLogsBetween|" + earlier + "|" + latter);
+    QJsonObject obj;
+    obj["command"]      = "getLogsBetween";
+    obj["timeEarlier"]  = earlier;
+    obj["timeLatter"]   = latter;
 
-    return jsonString;
+    QJsonDocument doc(obj);
+    return doc.toJson();
 }
 
 }

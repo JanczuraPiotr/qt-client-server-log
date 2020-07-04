@@ -20,11 +20,11 @@ GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
         , lim(CORRECT_DATA_START)
         , borderEarlier()
         , borderLatter()
-        , logCollection(cl::model::LogCollection::makeShared())
+        , logCollection(cl::data::LogCollection::makeShared())
 {
 }
 
-cl::model::LogCollection::ptr GetLogsBetween::getLogCollection() {
+cl::data::LogCollection::ptr GetLogsBetween::getLogCollection() {
     return logCollection;
 }
 
@@ -70,29 +70,29 @@ bool GetLogsBetween::parseDateTime()
 
 bool GetLogsBetween::parseJson()
 {
-    // @proposal Zamienić korzystanie z cl::in::Log do parsowania jsona z logami.
-    // Utworzyć klasę parsującą jedną pozycję z logiem i wykorzystać ją ty i w klasie cl::in::Log.
-    QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(CORRECT_JSON_START).toUtf8());
-    QJsonObject root = jsonDocument.object();
-
-    for (auto &rootKey : root.keys()) {
-        QJsonArray data = root.value(rootKey).toArray();
-        for (cm::Index i = 0; i < data.size(); ++i) {
-            QJsonDocument tmpJson(data[i].toObject());
-            QByteArray tmpArray = tmpJson.toJson();
-            cm::JsonString tmpString(tmpArray);
-            cl::in::Log inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
-            if (!inputLog.parse(tmpString, 0)) {
-                return false;
-            }
-            logCollection->insert(
-                    inputLog.getId()
-                    , inputLog.getTimestamp()
-                    , inputLog.getPriority()
-                    , inputLog.getMessage()
-                    );
-        }
-    }
+//    // @proposal Zamienić korzystanie z cl::in::Log do parsowania jsona z logami.
+//    // Utworzyć klasę parsującą jedną pozycję z logiem i wykorzystać ją ty i w klasie cl::in::Log.
+//    QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(CORRECT_JSON_START).toUtf8());
+//    QJsonObject root = jsonDocument.object();
+//
+//    for (auto &rootKey : root.keys()) {
+//        QJsonArray data = root.value(rootKey).toArray();
+//        for (cm::Index i = 0; i < data.size(); ++i) {
+//            QJsonDocument tmpJson(data[i].toObject());
+//            QByteArray tmpArray = tmpJson.toJson();
+//            cm::JsonString tmpString(tmpArray);
+//            cl::in::Log inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
+//            if (!inputLog.parse(tmpString, 0)) {
+//                return false;
+//            }
+//            logCollection->insert(
+//                    inputLog.getId()
+//                    , inputLog.getTimestamp()
+//                    , inputLog.getPriority()
+//                    , inputLog.getMessage()
+//                    );
+//        }
+//    }
 
     return true;
 }

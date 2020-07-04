@@ -11,7 +11,6 @@ namespace cm::alg {
 
 QString String::condense(const QString &string)
 {
-    // @task Pomijać usuwanie znaków białych w stringach wewnątrz jsona
     QString str =string.simplified();
     return str.replace(" ", "");
 }

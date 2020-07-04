@@ -48,10 +48,10 @@ add_executable(${SERVER} main.cpp
         input/GetLogsBetween.cpp
         input/GetLogsBetween.h
 
-        model/LogCollection.cpp
-        model/LogCollection.h
-        model/LogRecord.cpp
-        model/LogRecord.h
+        data/LogCollection.cpp
+        data/LogCollection.h
+        data/LogRecord.cpp
+        data/LogRecord.h
 
         output/protocol/LogJson.cpp
         output/protocol/LogJson.h

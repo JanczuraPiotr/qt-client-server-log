@@ -5,14 +5,14 @@
 
 #include <QDebug>
 
-#include "gtest/tools-and-fakes/DataFromServerToClient.h"
+#include "gtest/tools-and-fakes/ResponseFromServerToClient.hpp"
 #include "server/output/protocol/LogJson.h"
 
 namespace test {
 
 TEST_F(Server_Output_LogJson, one_1)
 {
-    auto record(test::DataFromServerToClient::getLogRecord());
+    auto record(test::ResponseFromServerToClient::getLogRecord());
     sv::out::LogJson out;
     auto jsonString = out.one(record->id(), record->timestamp(), record->priority(), record->message());
 

@@ -4,7 +4,7 @@
 
 #include "GetLogsBetweenEbnf.h"
 
-#include "gtest/tools-and-fakes/DataFromServerToClient.h"
+#include "gtest/tools-and-fakes/ResponseFromServerToClient.hpp"
 
 #include <QDebug>
 
@@ -15,8 +15,8 @@ namespace test {
 TEST_F(Client_Input_GetLogsBetweenEbnf, correct_input)
 {
     EXPECT_TRUE(false);
-//    cl::in::GetLogsBetweenJson in(alg::String::condense(test::DataFromServerToClient::getLogsBetweenJson()), 14);
-//    cl::in::GetLogsBetweenJson in(test::DataFromServerToClient::getLogsBetweenEbnf());
+//    cl::in::GetLogsBetweenJson in(alg::String::condense(test::ResponseFromServerToClient::getLogsBetweenJson()), 14);
+//    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenEbnf());
 //
 //    EXPECT_TRUE(in.parse());
 //    EXPECT_EQ(in.getBorderEarlier().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-00-00-00");

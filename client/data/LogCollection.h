@@ -10,9 +10,9 @@
 #include <QDateTime>
 
 #include "common/def.h"
-#include "client/model/LogRecord.h"
+#include "client/data/LogRecord.h"
 
-namespace cl::model {
+namespace cl::data {
 
 class LogRecord;
 class LogCollection {

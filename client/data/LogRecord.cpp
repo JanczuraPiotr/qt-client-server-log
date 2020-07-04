@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QSqlField>
 
-namespace cl::model{
+namespace cl::data{
 
 LogRecord::ptr LogRecord::makeShared(
         cm::AutoId logId

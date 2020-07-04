@@ -12,9 +12,8 @@
 namespace cl::in {
 
 
-Log::Log(cm::NetProtocol netProtocol)
-    : netProtocol(netProtocol)
-    , timestamp(QDateTime::fromString("1970-01-01 00:00:00", cm::DATE_TIME_TEMPLATE.c_str()))
+Log::Log()
+    : timestamp(QDateTime::fromString("1970-01-01 00:00:00", cm::DATE_TIME_TEMPLATE.c_str()))
     , id(0)
     , priority(cm::LogPriority::none)
     , message("")

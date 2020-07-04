@@ -8,7 +8,7 @@
 #include <QDateTime>
 
 #include "common/def.h"
-#include "server/model/LogRecord.h"
+#include "server/data/LogRecord.h"
 
 namespace cl::in {
 

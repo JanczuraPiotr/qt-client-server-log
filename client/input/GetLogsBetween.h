@@ -8,12 +8,13 @@
 #include <QDateTime>
 
 #include "common/def.h"
-#include "client/model/LogCollection.h"
+#include "client/data/LogCollection.h"
+#include "client/input/Input.hpp"
 
 namespace cl::in {
 
 
-class GetLogsBetween {
+class GetLogsBetween : public Input {
 // @work na podstawie parametrów wiersza poleceń wybrać właściwy protokół
 // @work uruchomić możliwość wyboru protokołu
 public:
@@ -24,7 +25,7 @@ public:
 
     QDateTime getBorderEarlier();
     QDateTime getBorderLatter();
-    cl::model::LogCollection::ptr getLogCollection();
+    cl::data::LogCollection::ptr getLogCollection();
 
 private: // const
     // getLogsBetween|yyyy-MM-dd-hh-mm-ss|yyyy-MM-dd-hh-mm-ss{...}"
@@ -43,7 +44,7 @@ private: // attributes
     QDateTime borderEarlier;
     QDateTime borderLatter;
 
-    cl::model::LogCollection::ptr logCollection;
+    cl::data::LogCollection::ptr logCollection;
 
 public: // lock
     GetLogsBetween() = delete;

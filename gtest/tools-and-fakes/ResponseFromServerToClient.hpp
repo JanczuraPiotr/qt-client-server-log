@@ -2,10 +2,10 @@
 // Created by piotr@janczura.pl on 2020.01.08
 //
 
-#ifndef TEST_DATAFROMSERVERTOCLIENT_H
-#define TEST_DATAFROMSERVERTOCLIENT_H
+#ifndef TEST_RESPONSE_FROMSERVER_TO_CLIENT
+#define TEST_RESPONSE_FROMSERVER_TO_CLIENT
 
-#include "../../server/model/LogRecord.h"
+#include "../../server/data/LogRecord.h"
 #include "common/def.h"
 
 namespace test {
@@ -23,9 +23,12 @@ protected:
     LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const cm::Message &message);
 };
 
-class DataFromServerToClient {
+
+class ResponseFromServerToClient {
 public:
+    static cm::JsonString getLogBetweenJson();
     static cm::JsonString getLogsBetweenJson();
+
     static cm::JsonString getLogsBetweenEbnf();
     static data::LogRecord::ptr getLogRecord();
     static data::LogRecord::map getLogMap();

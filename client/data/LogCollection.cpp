@@ -5,7 +5,7 @@
 #include "LogCollection.h"
 #include <QDebug>
 
-namespace cl::model {
+namespace cl::data {
 
 LogCollection::ptr LogCollection::makeShared() {
     return std::shared_ptr<LogCollection>(new LogCollection());

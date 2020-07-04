@@ -8,8 +8,8 @@ add_executable(gtest main.cpp
         ../client/input/protocol/LogJson.cpp                ../client/input/protocol/LogJson.h
         ../client/input/GetLogsBetween.cpp                  ../client/input/GetLogsBetween.h
         ../client/input/Log.cpp                             ../client/input/Log.h
-        ../client/model/LogCollection.cpp                   ../client/model/LogCollection.h
-        ../client/model/LogRecord.cpp                       ../client/model/LogRecord.h
+        ../client/data/LogCollection.cpp ../client/data/LogCollection.h
+        ../client/data/LogRecord.cpp ../client/data/LogRecord.h
         ../client/output/protocol/GetLogsBetweenEbnf.cpp    ../client/output/protocol/GetLogsBetweenEbnf.h
         ../client/output/protocol/GetLogsBetweenJson.cpp    ../client/output/protocol/GetLogsBetweenJson.h
         ../client/output/GetLogsBetween.cpp                 ../client/output/GetLogsBetween.h
@@ -23,7 +23,7 @@ add_executable(gtest main.cpp
         ../server/input/protocol/GetLogsBetweenJson.cpp     ../server/input/protocol/GetLogsBetweenJson.h
         ../server/input/GetLogsBetween.cpp                  ../server/input/GetLogsBetween.h
 
-        ../server/model/LogRecord.cpp                       ../server/model/LogRecord.h
+        ../server/data/LogRecord.cpp ../server/data/LogRecord.h
 
         ../server/output/Output.cpp                         ../server/output/Output.hpp
         ../server/output/protocol/LogJson.cpp               ../server/output/protocol/LogJson.h
@@ -41,10 +41,11 @@ add_executable(gtest main.cpp
 
         server/input/GetLogsBetweenEbnf.cpp                 server/input/GetLogsBetweenEbnf.h
         server/input/GetLogsBetweenJson.cpp                 server/input/GetLogsBetweenJson.h
-        server/output/protocol/LogEbnf.cpp server/output/protocol/LogEbnf.h
-        server/output/protocol/LogJson.cpp server/output/protocol/LogJson.h
+        server/output/protocol/LogEbnf.cpp                  server/output/protocol/LogEbnf.h
+        server/output/protocol/LogJson.cpp                  server/output/protocol/LogJson.h
 
-        tools-and-fakes/DataFromServerToClient.cpp          tools-and-fakes/DataFromServerToClient.h
+        tools-and-fakes/ResponseFromServerToClient.cpp      tools-and-fakes/ResponseFromServerToClient.hpp
+        tools-and-fakes/RequestFromClientToServer.cpp       tools-and-fakes/RequestFromClientToServer.hpp
 
         )
 

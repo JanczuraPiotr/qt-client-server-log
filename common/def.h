@@ -20,13 +20,13 @@ typedef quint16 TCPPort;
 typedef QString ColumnName;
 typedef std::map<ColumnName, QVariant> Params;
 typedef QString Message;
-typedef QString JsonString;
+typedef QString JsonString; // String zawierający JSON
 typedef QString EBNFString;
 typedef QString NetCommand;
 typedef QList<QStandardItem *> TextRow;
 typedef QString DateTime; // Data i godzina w formie tekstowej według wzorca DATE_TIME_TEMPLATE
 
-typedef QString NetInput;
+typedef QString NetInput; // Napis odebrany z połączenia sieciowego
 
 enum class LogPriority {
     none = 0,

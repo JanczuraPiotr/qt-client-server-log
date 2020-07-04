@@ -2,7 +2,7 @@
 // Created by piotr@janczura.pl on 2020.01.08
 //
 
-#include "DataFromServerToClient.h"
+#include "ResponseFromServerToClient.hpp"
 
 #include <memory>
 #include <QDebug>
@@ -36,9 +36,38 @@ LogRecord::LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const
 
 }
 
-cm::JsonString DataFromServerToClient::getLogsBetweenJson()
+cm::JsonString ResponseFromServerToClient::getLogBetweenJson()
 {
-    static cm::JsonString jsonString = R"(getLogsBetween|1970-01-01-00-00-00|1970-01-01-01-00-00{
+    static cm::JsonString jsonString = R"(
+        {
+            "response" : {
+                "cmd": "getLogsBetween",
+                "from": "1970-01-01-00-00-00",
+                "to": "1970-01-01-01-00-00"
+            },
+            "data":[
+                {
+                    "id": "1",
+                    "message": "msg-1",
+                    "priority": "1",
+                    "timestamp": "1070-01-01 00:00:01"
+                }
+            ]
+        }
+    )";
+
+    return jsonString;
+}
+
+cm::JsonString ResponseFromServerToClient::getLogsBetweenJson()
+{
+    static cm::JsonString jsonString = R"(
+        {
+            "response" : {
+                "cmd": "getLogsBetween",
+                "from": "1970-01-01-00-00-00",
+                "to": "1970-01-01-01-00-00"
+            },
             "data":[
                 {
                     "id": "1",
@@ -70,7 +99,8 @@ cm::JsonString DataFromServerToClient::getLogsBetweenJson()
 
     return jsonString;
 }
-cm::EBNFString DataFromServerToClient::getLogsBetweenEbnf()
+
+cm::EBNFString ResponseFromServerToClient::getLogsBetweenEbnf()
 {
     // @work zaprojektować format komunikatu w kodowaniu EBNF
     static cm::EBNFString ebnfString;
@@ -107,7 +137,7 @@ cm::EBNFString DataFromServerToClient::getLogsBetweenEbnf()
     return ebnfString;
 }
 
-data::LogRecord::ptr DataFromServerToClient::getLogRecord()
+data::LogRecord::ptr ResponseFromServerToClient::getLogRecord()
 {
     data::LogRecord::ptr record = LogRecord::makeShared(
             "1070-01-01 00:00:01"
@@ -117,7 +147,7 @@ data::LogRecord::ptr DataFromServerToClient::getLogRecord()
     return record;
 }
 
-sv::data::LogRecord::map DataFromServerToClient::getLogMap()
+sv::data::LogRecord::map ResponseFromServerToClient::getLogMap()
 {
 
 }

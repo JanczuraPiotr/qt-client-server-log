@@ -4,6 +4,7 @@
 
 #include "GetLogsBetween.h"
 
+
 namespace cl::out {
 
 GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
@@ -14,9 +15,6 @@ GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
 
 QString GetLogsBetween::command(const cm::DateTime &earlier, const cm::DateTime &latter)
 {
-    cm::JsonString jsonString("getLogsBetween|" + earlier + "|" + latter);
-
-    return jsonString;
 }
 
 }

@@ -4,20 +4,29 @@
 
 #include "GetLogsBetweenJson.h"
 
-#include "client/output/GetLogsBetween.h"
+#include <QDebug>
+
+#include "client/output/protocol/GetLogsBetweenJson.h"
+#include "common/algorithm/String.h"
 #include "common/def.h"
+
+#include "gtest/tools-and-fakes/RequestFromClientToServer.hpp"
+
 
 namespace test {
 
-// @task Do czasu opracowania systemu wyjątków zakładam "szczęśliwą ścieżkę" - rozbudować testy o błędne dane wejściowe.
-TEST_F(Client_Output_GetLogsBetween, test_1)
+TEST_F(Client_Output_GetLogsBetweenJson, test_1)
 {
-    EXPECT_TRUE(false);
-//    cm::DateTime earlier("2011-11-11 11:11:11");
-//    cm::DateTime latter("2012-12-12 12:12:12");
-//    cl::out::GetLogsBetween output(cm::NetProtocol::JSON);
-//
-//    EXPECT_EQ(output.command(earlier, latter), "getLogsBetween|2011-11-11 11:11:11|2012-12-12 12:12:12");
+    cm::DateTime earlier("1970-01-01 00:00:00");
+    cm::DateTime latter("1970-01-01 01:00:00");
+
+    cl::out::GetLogsBetweenJson output;
+
+    auto command = cm::alg::String::condense(output.command(earlier, latter));
+    auto test    = cm::alg::String::condense(test::RequestFromClientToServer::getLogsBetweenJson());
+
+
+    EXPECT_EQ(command, test);
 }
 
 }

@@ -17,7 +17,7 @@ cl::view::table::Logs::Logs(QWidget *parent)
 void cl::view::table::Logs::initColumns()
 {
     // @task Tworzenie nagłówka przenieść do metody statycznej klasy LogsRecord - dla zachowania spójności między kolejnością nazw pól rekordu a kolejnością wartości pól rekordu
-//    model = new QStandardItemModel();
+//    data = new QStandardItemModel();
     QStandardItem *id = new QStandardItem(tr("ID"));
     model.setHorizontalHeaderItem(COL_ID_IX, id);
     QStandardItem *time = new QStandardItem(tr("Czas"));
