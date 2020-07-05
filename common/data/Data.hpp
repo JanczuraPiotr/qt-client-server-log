@@ -6,7 +6,7 @@
 #define COMMON_DATA_DATA
 
 
-namespace data {
+namespace cm::data {
 
 typedef unsigned long AutoId;
 

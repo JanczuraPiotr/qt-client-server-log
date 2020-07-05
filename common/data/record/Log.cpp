@@ -4,18 +4,28 @@
 
 #include "Log.hpp"
 
-namespace data::record {
+namespace cm::data::record {
 
-Log::Log(AutoId id, const entity::Log &log)
+Log::ptr Log::create(AutoId id, entity::Log::ptr log)
+{
+    return std::shared_ptr<Log>(new Log(id, log));
+}
+
+Log::ptr Log::create(AutoId id, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
+{
+    return std::shared_ptr<Log>(new Log(id, timestamp, logPriority, message));
+}
+
+Log::Log(AutoId id, entity::Log::ptr &log)
     : id_(id)
     , log_(log)
 {
 
 }
 
-Log::Log(AutoId id, QDateTime timestamp, cm::LogPriority logPriority, cm::Message message)
+Log::Log(AutoId id, const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
     : id_(id)
-    , log_(std::move(timestamp), logPriority, std::move(message))
+    , log_(entity::Log::create(timestamp, logPriority, message))
 {
 
 }
@@ -27,17 +37,17 @@ AutoId Log::id() const
 
 QDateTime Log::timestamp() const
 {
-    return log_.timestamp();
+    return log_->timestamp();
 }
 
 cm::LogPriority Log::logPriority() const
 {
-    return log_.logPriority();
+    return log_->logPriority();
 }
 
 cm::Message Log::message() const
 {
-    return log_.message();
+    return log_->message();
 }
 
 

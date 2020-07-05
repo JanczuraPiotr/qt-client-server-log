@@ -15,6 +15,7 @@
 
 namespace cl::data {
 
+// @work przenieść do common i ujednolicić z sv::data::LogRecord
 class LogRecord {
     friend class LogCollection;
 public:

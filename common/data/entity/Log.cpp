@@ -6,22 +6,33 @@
 
 #include <utility>
 
-namespace data::entity {
+namespace cm::data::entity {
 
-Log::Log(QDateTime timestamp, cm::LogPriority logPriority, cm::Message message)
-    : timestamp_(std::move(timestamp))
+Log::ptr Log::create()
+{
+    return std::shared_ptr<Log>(new Log());
+}
+
+Log::ptr Log::create(const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
+{
+    return std::shared_ptr<Log>(new Log(timestamp, logPriority, message));
+}
+
+
+Log::Log(const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message)
+    : timestamp_(timestamp)
     , logPriority_(logPriority)
-    , message_(std::move(message))
+    , message_(message)
 {
 
 }
 
-Log::Log(const Log& other)
-{
-    timestamp_ = other.timestamp_;
-    logPriority_ = other.logPriority_;
-    message_ = other.message_;
-}
+//Log::Log(const Log& other)
+//{
+//    timestamp_ = other.timestamp_;
+//    logPriority_ = other.logPriority_;
+//    message_ = other.message_;
+//}
 
 void Log::timestamp(const QDateTime &dateTime)
 {

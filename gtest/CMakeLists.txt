@@ -17,6 +17,10 @@ add_executable(gtest main.cpp
         ../common/algorithm/String.cpp                      ../common/algorithm/String.h
         ../common/algorithm/Key.cpp                         ../common/algorithm/Key.h
         ../common/db/Record.cpp                             ../common/db/Record.h
+        ../common/data/Data.cpp                             ../common/data/Data.hpp
+        ../common/data/entity/Log.cpp                       ../common/data/entity/Log.hpp
+        ../common/data/record/Log.cpp                       ../common/data/record/Log.hpp
+
 
         ../server/input/Input.cpp                           ../server/input/Input.hpp
         ../server/input/protocol/GetLogsBetweenEbnf.cpp     ../server/input/protocol/GetLogsBetweenEbnf.h

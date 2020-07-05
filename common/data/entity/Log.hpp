@@ -11,7 +11,7 @@
 #include "common/data/Data.hpp"
 
 
-namespace data::entity {
+namespace cm::data::entity {
 
 /// \brief Pojedyncza informacja
 class Log {
@@ -19,13 +19,9 @@ public:
     typedef std::shared_ptr<Log> ptr;
     typedef std::multimap<QDateTime,Log> list;
 
-    Log(QDateTime timestamp, cm::LogPriority logPriority, cm::Message message);
+    static ptr create();
+    static ptr create(const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message);
 
-    Log() = default;
-    Log(const Log& other);
-    Log(Log&&) = delete;
-    Log &operator = (Log&) = delete;
-    Log &&operator = (Log&&) = delete;
     virtual ~Log() = default;
 
     void timestamp(const QDateTime &dateTime);
@@ -40,6 +36,16 @@ protected:
     QDateTime timestamp_;
     cm::LogPriority logPriority_;
     cm::Message message_;
+
+private: // locks
+    Log() = default;
+    Log(const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message);
+
+    Log(const Log& other) = delete;
+    Log(Log&&) = delete;
+    Log &operator = (Log&) = delete;
+    Log &&operator = (Log&&) = delete;
+
 };
 
 }

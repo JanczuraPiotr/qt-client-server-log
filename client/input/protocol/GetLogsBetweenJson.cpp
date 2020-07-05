@@ -20,6 +20,11 @@ GetLogsBetweenJson::GetLogsBetweenJson(cm::JsonString jsonString)
 
 }
 
+cl::data::LogCollection::ptr GetLogsBetweenJson::logCollection()
+{
+    return logCollection_;
+}
+
 bool GetLogsBetweenJson::parse()
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonString_.toUtf8());
@@ -50,57 +55,57 @@ bool GetLogsBetweenJson::parse()
     return true;
 }
 
-bool GetLogsBetweenJson::parseLog(const cm::JsonString &jsonLog)
+rec::Log::ptr GetLogsBetweenJson::parseLog(const cm::JsonString &jsonLog)
 {
-    bool result = true;
+    ent::Log::ptr entLog = ent::Log::create();
+
     QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonLog.toUtf8());
     qDebug() << __FILE__ << __LINE__ << cm::alg::String::condense(jsonLog);
 
     QJsonObject root = jsonDocument.object();
-//    // @proposal : Ze względu na parsowanie pojedynczego logu przez tą klasę i GetLogsBetweenJson przenieść do osobnej klasy.
-//    // Uważam, że wzajemne wywoływanie klas tego samego poziomu jest błędem.
     if ( ! root.empty()) {
-//
-//        if (root["timestamp"].toString().size() == static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.size())) {
-//            if (root["timestamp"].isUndefined() || root["timestamp"].isNull()) {
-//                // @task wyjątek na brak log.timestamp
-//                result = false;
-//            }
-//            timestamp = root["timestamp"].toVariant().toDateTime();
-//            result = timestamp.isValid();
-//        } else {
-//            result = false;
-//        }
-//
-//        if (root["id"].isUndefined() || root["id"].isNull()) {
-//            result = false;
-//            // @task wyjątek na brak log.id
-//        }
-//        id = static_cast<cm::AutoId>(root["id"].toVariant().toUInt());
-//        if (id < 1) {
-//            result = false;
-//        }
-//
-//        if (root["priority"].isUndefined() || root["priority"].isNull()) {
-//            // @task wyjątek na brak log.message
-//            result = false;
-//        }
-//        priority = static_cast<cm::LogPriority>(root["priority"].toVariant().toInt());
-//        if (priority < cm::LogPriority::ok) {
-//            result = false;
-//        }
-//
-//        if (root["message"].isUndefined() || root["message"].isNull()) {
-//            // @task wyjątek na brak log.message
-//            result = false;
-//        }
-//        message = root["message"].toString();
-//
+
+        if (root["timestamp"].toString().size() == static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.size())) {
+            if (root["timestamp"].isUndefined() || root["timestamp"].isNull()) {
+                // @task wyjątek na brak log.timestamp
+                result = false;
+            }
+            timestamp = root["timestamp"].toVariant().toDateTime();
+            result = timestamp.isValid();
+        } else {
+            result = false;
+        }
+
+        if (root["id"].isUndefined() || root["id"].isNull()) {
+            result = false;
+            // @task wyjątek na brak log.id
+        }
+        id = static_cast<cm::AutoId>(root["id"].toVariant().toUInt());
+        if (id < 1) {
+            result = false;
+        }
+
+        if (root["priority"].isUndefined() || root["priority"].isNull()) {
+            // @task wyjątek na brak log.message
+            result = false;
+        }
+        priority = static_cast<cm::LogPriority>(root["priority"].toVariant().toInt());
+        if (priority < cm::LogPriority::ok) {
+            result = false;
+        }
+
+        if (root["message"].isUndefined() || root["message"].isNull()) {
+            // @task wyjątek na brak log.message
+            result = false;
+        }
+        message = root["message"].toString();
+
+
     } else {
         // @task wyjątek na brak danych w odebranym jsonie
         result = false;
     }
-    return result;
+    return ;
 
 }
 

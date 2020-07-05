@@ -12,7 +12,7 @@
 #include "common/db/Record.h"
 
 namespace sv::data {
-
+// @work przenieść do common i ujednolicić z cl::data::LogRecord
 class LogRecord : public cm::db::Record {
 friend class LogCollection;
 public:
