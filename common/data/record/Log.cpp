@@ -4,10 +4,12 @@
 
 #include "Log.hpp"
 
-namespace cm::data::record {
+namespace data::record {
 
 Log::ptr Log::create(AutoId id, entity::Log::ptr log)
 {
+//    class shared : public Log {};
+//    return std::make_shared<shared>(id, log);
     return std::shared_ptr<Log>(new Log(id, log));
 }
 
@@ -33,6 +35,10 @@ Log::Log(AutoId id, const QDateTime &timestamp, cm::LogPriority logPriority, con
 AutoId Log::id() const
 {
     return id_;
+}
+
+bool Log::isOk() {
+    return log_->isOk() && id_ > 0;
 }
 
 QDateTime Log::timestamp() const

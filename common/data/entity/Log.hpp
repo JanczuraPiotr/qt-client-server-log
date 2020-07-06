@@ -11,7 +11,7 @@
 #include "common/data/Data.hpp"
 
 
-namespace cm::data::entity {
+namespace data::entity {
 
 /// \brief Pojedyncza informacja
 class Log {
@@ -23,6 +23,8 @@ public:
     static ptr create(const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Message &message);
 
     virtual ~Log() = default;
+
+    bool isOk();
 
     void timestamp(const QDateTime &dateTime);
     void logPriority(cm::LogPriority logPriority);

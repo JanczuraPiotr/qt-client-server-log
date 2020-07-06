@@ -42,15 +42,15 @@ cm::JsonString ResponseFromServerToClient::getLogBetweenJson()
         {
             "response" : {
                 "cmd": "getLogsBetween",
-                "from": "1970-01-01-00-00-00",
-                "to": "1970-01-01-01-00-00"
+                "from": "1970-01-01 00:00:00",
+                "to": "1970-01-01 01:00:00"
             },
             "data":[
                 {
                     "id": "1",
                     "message": "msg-1",
                     "priority": "1",
-                    "timestamp": "1070-01-01 00:00:01"
+                    "timestamp": "1970-01-01 00:00:01"
                 }
             ]
         }
@@ -65,26 +65,26 @@ cm::JsonString ResponseFromServerToClient::getLogsBetweenJson()
         {
             "response" : {
                 "cmd": "getLogsBetween",
-                "from": "1970-01-01-00-00-00",
-                "to": "1970-01-01-01-00-00"
+                "from": "1970-01-01 00:00:00",
+                "to": "1970-01-01 01:00:00"
             },
             "data":[
                 {
                     "id": "1",
                     "message": "msg-1",
                     "priority": "1",
-                    "timestamp": "1070-01-01 00:00:01"
+                    "timestamp": "1970-01-01 00:00:01"
                 },
                 {
                     "id": "2",
                     "message": "msg-2",
-                    "priority": "1",
+                    "priority": "2",
                     "timestamp": "1970-01-01 00:00:02"
                 },
                 {
                     "id": "3",
                     "message": "msg-3",
-                    "priority": "1",
+                    "priority": "3",
                     "timestamp": "1970-01-01 00:00:03"
                 },
                 {

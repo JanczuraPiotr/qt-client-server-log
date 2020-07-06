@@ -6,7 +6,7 @@
 
 #include <utility>
 
-namespace cm::data::entity {
+namespace data::entity {
 
 Log::ptr Log::create()
 {
@@ -25,6 +25,11 @@ Log::Log(const QDateTime &timestamp, cm::LogPriority logPriority, const cm::Mess
     , message_(message)
 {
 
+}
+
+bool Log::isOk()
+{
+    return (timestamp_.isValid() && !message_.isEmpty());
 }
 
 //Log::Log(const Log& other)

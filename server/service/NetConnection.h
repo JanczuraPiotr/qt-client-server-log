@@ -6,7 +6,8 @@
 #define SERVER_SERVICE_NETCONNECTION
 
 #include <QObject>
-#include <QtWebSockets>
+//#include <QtWebSockets>
+#include <QtWebSockets/QtWebSockets>
 #include <QDateTime>
 
 #include "common/def.h"

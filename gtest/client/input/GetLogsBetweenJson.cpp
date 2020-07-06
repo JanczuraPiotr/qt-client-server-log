@@ -3,35 +3,62 @@
 //
 #include "GetLogsBetweenJson.h"
 
-#include "gtest/tools-and-fakes/ResponseFromServerToClient.hpp"
-
 #include <QDebug>
+
+#include "gtest/tools-and-fakes/ResponseFromServerToClient.hpp"
 
 #include "client/input/protocol/GetLogsBetweenJson.h"
 #include "common/algorithm/String.h"
+#include "common/data/record/Log.hpp"
 
+namespace rec = data::record;
+namespace ent = data::entity;
 
 namespace test {
 
-TEST_F(Client_Input_GetLogsBetweenJson, correct_input)
+TEST_F(Client_Input_GetLogsBetweenJson, correct_input_one)
 {
-    qDebug() << cm::alg::String::condense(test::ResponseFromServerToClient::getLogsBetweenJson());
-    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson());
-    in.parse();
+    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogBetweenJson());
 
-//
-//    EXPECT_TRUE(input.parse(test::ResponseFromServerToClient::getLogsBetweenJson()));
-//    EXPECT_EQ(input.getBorderEarlier().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-00-00-00");
-//    EXPECT_EQ(input.getBorderLatter().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-01-00-00");
-//    EXPECT_EQ(input.getLogCollection()->size(), 4);
-//    EXPECT_EQ(input.getLogCollection()->getById(1)->getMessage(), "msg-1");
-//    EXPECT_EQ(input.getLogCollection()->getById(4)->getMessage(), "msg-4");
-//    EXPECT_EQ(
-//            input.getLogCollection()->getById(1)->getTmestamp().toString(cm::DATE_TIME_TEMPLATE.c_str())
-//            , "1070-01-01 00:00:01");
-//    EXPECT_EQ(
-//            input.getLogCollection()->getById(4)->getTmestamp().toString(cm::DATE_TIME_TEMPLATE.c_str())
-//            , "1970-01-01 00:00:04");
+    EXPECT_TRUE(in.parse());
+    rec::Log::map map = in.logMap();
+    EXPECT_EQ(in.fromMoment(), "1970-01-01 00:00:00");
+    EXPECT_EQ(in.toMoment(), "1970-01-01 01:00:00");
+
+    EXPECT_EQ(map.size(), 1);
+    EXPECT_ANY_THROW(map.at(0));
+    EXPECT_ANY_THROW(map.at(2));
+
+    EXPECT_EQ(map[1]->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:01");
+    EXPECT_EQ(map[1]->message(), "msg-1");
+    EXPECT_EQ(map[1]->logPriority(), cm::LogPriority::ok);
+}
+
+TEST_F(Client_Input_GetLogsBetweenJson, correct_input_many)
+{
+    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson());
+
+    EXPECT_TRUE(in.parse());
+    rec::Log::map map = in.logMap();
+    EXPECT_EQ(in.fromMoment(), "1970-01-01 00:00:00");
+    EXPECT_EQ(in.toMoment(), "1970-01-01 01:00:00");
+
+    EXPECT_EQ(map.size(), 4);
+    EXPECT_ANY_THROW(map.at(0));
+    EXPECT_ANY_THROW(map.at(5));
+
+    EXPECT_EQ(map[1]->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:01");
+    EXPECT_EQ(map[1]->message(), "msg-1");
+    EXPECT_EQ(map[1]->logPriority(), cm::LogPriority::ok);
+    EXPECT_EQ(map[2]->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:02");
+    EXPECT_EQ(map[2]->message(), "msg-2");
+    EXPECT_EQ(map[2]->logPriority(), cm::LogPriority::info);
+    EXPECT_EQ(map[3]->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:03");
+    EXPECT_EQ(map[3]->message(), "msg-3");
+    EXPECT_EQ(map[3]->logPriority(), cm::LogPriority::warning);
+    EXPECT_EQ(map[4]->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:04");
+    EXPECT_EQ(map[4]->message(), "msg-4");
+    EXPECT_EQ(map[4]->logPriority(), cm::LogPriority::error);
 }
 
 }

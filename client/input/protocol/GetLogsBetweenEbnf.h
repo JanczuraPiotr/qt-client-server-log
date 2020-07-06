@@ -5,7 +5,12 @@
 #ifndef CLIENT_INPUT_GETLOGSBETWEENEBNF
 #define CLIENT_INPUT_GETLOGSBETWEENEBNF
 
+#include "common/data/record/Log.hpp"
+
 namespace cl::in {
+
+namespace rec = data::record;
+namespace ent = data::entity;
 
 class GetLogsBetweenEbnf {
 // @work zaprojektować : GetLogsBetweenEbnf

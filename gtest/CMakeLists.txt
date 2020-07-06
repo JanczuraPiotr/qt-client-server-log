@@ -38,8 +38,6 @@ add_executable(gtest main.cpp
 
         client/input/GetLogsBetweenEbnf.cpp                 client/input/GetLogsBetweenEbnf.h
         client/input/GetLogsBetweenJson.cpp                 client/input/GetLogsBetweenJson.h
-        client/input/LogEbnf.cpp                            client/input/LogEbnf.h
-        client/input/LogJson.cpp                            client/input/LogJson.h
         client/output/GetLogsBetweenJson.cpp                client/output/GetLogsBetweenJson.h
         client/output/GetLogsBetweenEbnf.cpp                client/output/GetLogsBetweenEbnf.h
 

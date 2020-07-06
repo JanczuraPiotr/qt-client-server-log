@@ -19,10 +19,19 @@ GetLogsBetweenJson::GetLogsBetweenJson(cm::JsonString jsonString)
 {
 
 }
-
-cl::data::LogCollection::ptr GetLogsBetweenJson::logCollection()
+QString GetLogsBetweenJson::fromMoment()
 {
-    return logCollection_;
+    return fromMoment_;
+}
+
+QString GetLogsBetweenJson::toMoment()
+{
+    return toMoment_;
+}
+
+rec::Log::map GetLogsBetweenJson::logMap()
+{
+    return logMap_;
 }
 
 bool GetLogsBetweenJson::parse()
@@ -31,36 +40,30 @@ bool GetLogsBetweenJson::parse()
     QJsonObject root = jsonDocument.object();
 
     for (auto &rootKey : root.keys()) {
-        QJsonArray data = root.value(rootKey).toArray();
-        for (cm::Index i = 0; i < data.size(); ++i) {
-            QJsonDocument tmpJson(data[i].toObject());
-            QByteArray tmpArray = tmpJson.toJson();
-            cm::JsonString tmpString(tmpArray);
-            qDebug() << __FILE__ << __LINE__ << cm::alg::String::condense(tmpString);
-            parseLog(tmpString);
-
-//            cl::in::Log inputLog(); // @work uruchomić możliwość wyboru protokołu
-//            if (!inputLog.parse(tmpString, 0)) {
-//                return false;
-//            }
-//            logCollection_->insert(
-//                    inputLog.getId()
-//                    , inputLog.getTimestamp()
-//                    , inputLog.getPriority()
-//                    , inputLog.getMessage()
-//            );
+        if (rootKey == "data") {
+            QJsonArray data = root.value(rootKey).toArray();
+            for (cm::Index i = 0; i < data.size(); ++i) {
+                QJsonDocument tmpJson(data[i].toObject());
+                QByteArray tmpArray = tmpJson.toJson();
+                cm::JsonString tmpString(tmpArray);
+                rec::Log::ptr recLog = parseLog(tmpString);
+                if (recLog->isOk()) {
+                    logMap_.insert(std::make_pair(recLog->id(), recLog));
+                }
+            }
+        } else if (rootKey == "response") {
+            QJsonObject response = root.value(rootKey).toObject();
+            fromMoment_ = response["from"].toString();
+            toMoment_ = response["to"].toString();
         }
     }
-
     return true;
 }
 
 rec::Log::ptr GetLogsBetweenJson::parseLog(const cm::JsonString &jsonLog)
 {
     ent::Log::ptr entLog = ent::Log::create();
-
     QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonLog.toUtf8());
-    qDebug() << __FILE__ << __LINE__ << cm::alg::String::condense(jsonLog);
 
     QJsonObject root = jsonDocument.object();
     if ( ! root.empty()) {
@@ -68,44 +71,33 @@ rec::Log::ptr GetLogsBetweenJson::parseLog(const cm::JsonString &jsonLog)
         if (root["timestamp"].toString().size() == static_cast<cm::Index>(cm::DATE_TIME_TEMPLATE.size())) {
             if (root["timestamp"].isUndefined() || root["timestamp"].isNull()) {
                 // @task wyjątek na brak log.timestamp
-                result = false;
+            } else {
+                entLog->timestamp(root["timestamp"].toVariant().toDateTime());
             }
-            timestamp = root["timestamp"].toVariant().toDateTime();
-            result = timestamp.isValid();
-        } else {
-            result = false;
         }
 
+        data::AutoId id = data::EMPTY_ID;
         if (root["id"].isUndefined() || root["id"].isNull()) {
-            result = false;
             // @task wyjątek na brak log.id
-        }
-        id = static_cast<cm::AutoId>(root["id"].toVariant().toUInt());
-        if (id < 1) {
-            result = false;
+        } else {
+            id = static_cast<cm::AutoId>(root["id"].toVariant().toUInt());
         }
 
         if (root["priority"].isUndefined() || root["priority"].isNull()) {
             // @task wyjątek na brak log.message
-            result = false;
-        }
-        priority = static_cast<cm::LogPriority>(root["priority"].toVariant().toInt());
-        if (priority < cm::LogPriority::ok) {
-            result = false;
+        } else {
+            entLog->logPriority(static_cast<cm::LogPriority>(root["priority"].toVariant().toInt()));
         }
 
         if (root["message"].isUndefined() || root["message"].isNull()) {
             // @task wyjątek na brak log.message
-            result = false;
+        } else {
+            entLog->message(root["message"].toString());
         }
-        message = root["message"].toString();
 
-
-    } else {
-        // @task wyjątek na brak danych w odebranym jsonie
-        result = false;
+        return rec::Log::create(id, entLog);
     }
-    return ;
+    return rec::Log::create(0, {});
 
 }
 
