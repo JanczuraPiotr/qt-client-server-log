@@ -32,13 +32,6 @@ bool Log::isOk()
     return (timestamp_.isValid() && !message_.isEmpty());
 }
 
-//Log::Log(const Log& other)
-//{
-//    timestamp_ = other.timestamp_;
-//    logPriority_ = other.logPriority_;
-//    message_ = other.message_;
-//}
-
 void Log::timestamp(const QDateTime &dateTime)
 {
     timestamp_ = dateTime;

@@ -9,6 +9,7 @@
 #include "client/data/LogCollection.h"
 #include "common/data/Data.hpp"
 #include "common/data/record/Log.hpp"
+#include "common/data/entity/Interval.hpp"
 
 namespace cl::in {
 
@@ -21,8 +22,7 @@ public:
     explicit GetLogsBetweenJson(cm::JsonString jsonString);
     virtual ~GetLogsBetweenJson() = default;
 
-    QString fromMoment();
-    QString toMoment();
+    ent::Interval::ptr interval();
 
     bool parse();
     rec::Log::map logMap();
@@ -33,8 +33,7 @@ protected: // methods
 private: // attributes
     const cm::JsonString jsonString_; ///< String który powinien zawierać kolekcję logów
     rec::Log::map logMap_;            ///< Kolekcja logów na podstawie jsonString_;
-    QString fromMoment_;              ///< Początkowa granica czasu wyszukiwania.
-    QString toMoment_;                ///< Końcowa granica czasu wyszukiwania.
+    ent::Interval::ptr interval_;
 
 public: // locks
     GetLogsBetweenJson(GetLogsBetweenJson&) = delete;

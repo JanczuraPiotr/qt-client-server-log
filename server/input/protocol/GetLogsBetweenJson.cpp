@@ -4,61 +4,35 @@
 
 #include "GetLogsBetweenJson.h"
 
-#include <QDebug>
 #include <utility>
 
+#include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+
 namespace sv::in {
-//
-//GetLogsBetweenJson::GetLogsBetweenJson(cm::NetInput in, cm::Index lim)
-//    : in(std::move(in))
-//    , lim(lim)
-//    , borderEarlier()
-//    , borderLatter()
-//{
-//
-//}
-//
-//bool GetLogsBetweenJson::parse()
-//{
-//    // getLogsBetween|yyyy-MM-dd-hh-mm-ss|yyyy-MM-dd-hh-mm-ss"
-//    const cm::Index CORRECT_INPUT_LONG = 54;
-//    const cm::Index FIRST_LIM_INDEX = lim;
-//    const cm::Index LAST_LIM_INDEX = lim + static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()) + 1;
-//
-//    if (in.length() != CORRECT_INPUT_LONG) {
-//        return false;
-//    }
-//    if (in.at(FIRST_LIM_INDEX) != '|' && in.at(LAST_LIM_INDEX) != '|') {
-//        return false;
-//    }
-//
-//    borderEarlier = QDateTime::fromString(
-//            in.mid(FIRST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()))
-//            , cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str());
-//    if (!borderEarlier.isValid()) {
-//        return false;
-//    }
-//
-//    borderLatter  = QDateTime::fromString(
-//            in.mid(LAST_LIM_INDEX + 1, static_cast<cm::Index>(cm::DATE_TIME_IN_COMMAND_TEMPLATE.length()))
-//            , cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str());
-//    if (!borderLatter.isValid()) {
-//        return false;
-//    }
-//
-//    return true;
-//}
-//
-//QDateTime GetLogsBetweenJson::getBorderEarlier()
-//{
-//    return borderEarlier;
-//}
-//
-//QDateTime GetLogsBetweenJson::getBorderLatter()
-//{
-//    return borderLatter;
-//}
-//
+
+GetLogsBetweenJson::GetLogsBetweenJson(cm::NetInput in)
+    : in_(std::move(in))
+    , interval_(data::entity::Interval::create())
+{
+
+}
+
+data::entity::Interval::ptr GetLogsBetweenJson::interval()
+{
+    return interval_;
+}
+
+bool GetLogsBetweenJson::parse()
+{
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(in_.toUtf8());
+    QJsonObject root = jsonDocument.object();
+    interval_->timeFrom(QDateTime::fromString(root["timeFrom"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
+    interval_->timeTo(QDateTime::fromString(root["timeTo"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
+    return true;
+}
 
 
 }

@@ -26,8 +26,12 @@ protected:
 
 class ResponseFromServerToClient {
 public:
-    static cm::JsonString getLogBetweenJson();
-    static cm::JsonString getLogsBetweenJson();
+    /// \brief W odpowiedzi na zapytanie server odsyła pustą listę
+    static cm::JsonString getLogsBetweenJson_Empty();
+    /// \brief W odpowiedzi na zapytanie server odsyła jeden rekord
+    static cm::JsonString getLogsBetweenJson_One();
+    /// \brief W odpowiedzi na zapytanie server odsyła wiele reklordów
+    static cm::JsonString getLogsBetweenJson_Many();
 
     static cm::JsonString getLogsBetweenEbnf();
     static data::LogRecord::ptr getLogRecord();

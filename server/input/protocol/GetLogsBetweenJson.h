@@ -10,32 +10,29 @@
 
 
 #include "common/def.h"
+#include "common/data/entity/Interval.hpp"
 
 namespace sv::in {
 
-// @work uruchomić możliwość wyboru protokołu
 class GetLogsBetweenJson {
 public:
-//    explicit GetLogsBetweenJson(cm::NetInput in, cm::Index lim);
-//
-//    bool parse();
-//
-//    QDateTime getBorderEarlier();
-//    QDateTime getBorderLatter();
-//
-//private: // methods
-//    cm::NetInput in;
-//    cm::Index lim;
-//
-//    QDateTime borderEarlier;
-//    QDateTime borderLatter;
-//
-//public: // lock
-//    GetLogsBetweenJson(const GetLogsBetweenJson &) = delete;
-//    GetLogsBetweenJson(GetLogsBetweenJson &&) = delete;
-//    GetLogsBetweenJson &operator = (const GetLogsBetweenJson&) = delete;
-//    GetLogsBetweenJson &operator = (GetLogsBetweenJson &&) = delete;
+    explicit GetLogsBetweenJson(cm::NetInput in);
+
+    bool parse();
+
+    data::entity::Interval::ptr interval();
+
+private: // methods
+    cm::NetInput in_;
+    data::entity::Interval::ptr interval_;
+
+public: // lock
+    GetLogsBetweenJson(const GetLogsBetweenJson &) = delete;
+    GetLogsBetweenJson(GetLogsBetweenJson &&) = delete;
+    GetLogsBetweenJson &operator = (const GetLogsBetweenJson&) = delete;
+    GetLogsBetweenJson &operator = (GetLogsBetweenJson &&) = delete;
 };
+
 }
 
 

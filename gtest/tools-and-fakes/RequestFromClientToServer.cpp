@@ -11,8 +11,8 @@ cm::JsonString RequestFromClientToServer::getLogsBetweenJson()
     static cm::JsonString jsonString = R"(
         {
             "command": "getLogsBetween",
-            "timeEarlier": "1970-01-01 00:00:00",
-            "timeLatter": "1970-01-01 01:00:00"
+            "timeFrom": "1970-01-01 00:00:00",
+            "timeTo": "1970-01-01 01:00:00"
         }
     )";
 

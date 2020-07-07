@@ -30,6 +30,7 @@ add_executable(${SERVER} main.cpp
         ../common/exception/general.cpp
         ../common/exception/general.h
 
+        ../common/data/entity/Interval.cpp                  ../common/data/entity/Interval.hpp
         ../common/output/ErrorMessage.cpp
         ../common/output/ErrorMessage.h
 
@@ -41,6 +42,7 @@ add_executable(${SERVER} main.cpp
         app/SignalBus.cpp
         app/SignalBus.h
 
+        input/Input.cpp                                     input/Input.hpp
         input/protocol/GetLogsBetweenEbnf.cpp
         input/protocol/GetLogsBetweenEbnf.h
         input/protocol/GetLogsBetweenJson.cpp
@@ -53,6 +55,8 @@ add_executable(${SERVER} main.cpp
         data/LogRecord.cpp
         data/LogRecord.h
 
+
+        output/Output.cpp                                   output/Output.hpp
         output/protocol/LogJson.cpp
         output/protocol/LogJson.h
         output/protocol/LogEbnf.cpp
@@ -66,7 +70,7 @@ add_executable(${SERVER} main.cpp
         service/NetConnection.h
         service/Main.cpp
         service/Main.h
-        input/Input.cpp input/Input.hpp output/Output.cpp output/Output.hpp)
+        )
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Sql REQUIRED)

@@ -8,8 +8,8 @@ add_executable(gtest main.cpp
         ../client/input/protocol/LogJson.cpp                ../client/input/protocol/LogJson.h
         ../client/input/GetLogsBetween.cpp                  ../client/input/GetLogsBetween.h
         ../client/input/Log.cpp                             ../client/input/Log.h
-        ../client/data/LogCollection.cpp ../client/data/LogCollection.h
-        ../client/data/LogRecord.cpp ../client/data/LogRecord.h
+        ../client/data/LogCollection.cpp                    ../client/data/LogCollection.h
+        ../client/data/LogRecord.cpp                        ../client/data/LogRecord.h
         ../client/output/protocol/GetLogsBetweenEbnf.cpp    ../client/output/protocol/GetLogsBetweenEbnf.h
         ../client/output/protocol/GetLogsBetweenJson.cpp    ../client/output/protocol/GetLogsBetweenJson.h
         ../client/output/GetLogsBetween.cpp                 ../client/output/GetLogsBetween.h
@@ -20,6 +20,7 @@ add_executable(gtest main.cpp
         ../common/data/Data.cpp                             ../common/data/Data.hpp
         ../common/data/entity/Log.cpp                       ../common/data/entity/Log.hpp
         ../common/data/record/Log.cpp                       ../common/data/record/Log.hpp
+        ../common/data/entity/Interval.cpp                  ../common/data/entity/Interval.hpp
 
 
         ../server/input/Input.cpp                           ../server/input/Input.hpp
@@ -27,7 +28,7 @@ add_executable(gtest main.cpp
         ../server/input/protocol/GetLogsBetweenJson.cpp     ../server/input/protocol/GetLogsBetweenJson.h
         ../server/input/GetLogsBetween.cpp                  ../server/input/GetLogsBetween.h
 
-        ../server/data/LogRecord.cpp ../server/data/LogRecord.h
+        ../server/data/LogRecord.cpp                        ../server/data/LogRecord.h
 
         ../server/output/Output.cpp                         ../server/output/Output.hpp
         ../server/output/protocol/LogJson.cpp               ../server/output/protocol/LogJson.h

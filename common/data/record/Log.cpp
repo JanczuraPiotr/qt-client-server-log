@@ -37,7 +37,8 @@ AutoId Log::id() const
     return id_;
 }
 
-bool Log::isOk() {
+bool Log::isOk()
+{
     return log_->isOk() && id_ > 0;
 }
 

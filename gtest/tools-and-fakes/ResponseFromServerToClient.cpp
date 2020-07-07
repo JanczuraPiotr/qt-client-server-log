@@ -36,7 +36,24 @@ LogRecord::LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const
 
 }
 
-cm::JsonString ResponseFromServerToClient::getLogBetweenJson()
+cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_Empty()
+{
+    static cm::JsonString jsonString = R"(
+        {
+            "response" : {
+                "cmd": "getLogsBetween",
+                "from": "1970-01-01 00:00:00",
+                "to": "1970-01-01 01:00:00"
+            },
+            "data":[
+            ]
+        }
+    )";
+
+    return jsonString;
+}
+
+cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_One()
 {
     static cm::JsonString jsonString = R"(
         {
@@ -59,7 +76,7 @@ cm::JsonString ResponseFromServerToClient::getLogBetweenJson()
     return jsonString;
 }
 
-cm::JsonString ResponseFromServerToClient::getLogsBetweenJson()
+cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_Many()
 {
     static cm::JsonString jsonString = R"(
         {

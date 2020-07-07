@@ -16,14 +16,32 @@ namespace ent = data::entity;
 
 namespace test {
 
-TEST_F(Client_Input_GetLogsBetweenJson, correct_input_one)
+TEST_F(Client_Input_GetLogsBetweenJson, correct_input_empty)
 {
-    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogBetweenJson());
+    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson_Empty());
 
     EXPECT_TRUE(in.parse());
     rec::Log::map map = in.logMap();
-    EXPECT_EQ(in.fromMoment(), "1970-01-01 00:00:00");
-    EXPECT_EQ(in.toMoment(), "1970-01-01 01:00:00");
+
+    ent::Interval::ptr interval = in.interval();
+    EXPECT_TRUE(interval->isOk());
+    EXPECT_EQ(interval->timeFrom().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:00");
+    EXPECT_EQ(interval->timeTo().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 01:00:00");
+
+    EXPECT_EQ(map.size(), 0);
+}
+
+TEST_F(Client_Input_GetLogsBetweenJson, correct_input_one)
+{
+    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson_One());
+
+    EXPECT_TRUE(in.parse());
+    rec::Log::map map = in.logMap();
+
+    ent::Interval::ptr interval = in.interval();
+    EXPECT_TRUE(interval->isOk());
+    EXPECT_EQ(interval->timeFrom().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:00");
+    EXPECT_EQ(interval->timeTo().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 01:00:00");
 
     EXPECT_EQ(map.size(), 1);
     EXPECT_ANY_THROW(map.at(0));
@@ -36,12 +54,15 @@ TEST_F(Client_Input_GetLogsBetweenJson, correct_input_one)
 
 TEST_F(Client_Input_GetLogsBetweenJson, correct_input_many)
 {
-    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson());
+    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson_Many());
 
     EXPECT_TRUE(in.parse());
     rec::Log::map map = in.logMap();
-    EXPECT_EQ(in.fromMoment(), "1970-01-01 00:00:00");
-    EXPECT_EQ(in.toMoment(), "1970-01-01 01:00:00");
+
+    ent::Interval::ptr interval = in.interval();
+    EXPECT_TRUE(interval->isOk());
+    EXPECT_EQ(interval->timeFrom().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:00");
+    EXPECT_EQ(interval->timeTo().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 01:00:00");
 
     EXPECT_EQ(map.size(), 4);
     EXPECT_ANY_THROW(map.at(0));

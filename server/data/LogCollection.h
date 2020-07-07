@@ -13,7 +13,7 @@
 
 #include "common/def.h"
 #include "common/db/Collection.h"
-#include "server/model/LogRecord.h"
+#include "server/data/LogRecord.h"
 
 namespace sv::data {
 

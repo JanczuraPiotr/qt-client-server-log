@@ -16,17 +16,15 @@ namespace cl::in {
 
 GetLogsBetweenJson::GetLogsBetweenJson(cm::JsonString jsonString)
     : jsonString_(std::move(jsonString))
+    , interval_(ent::Interval::create())
 {
 
 }
-QString GetLogsBetweenJson::fromMoment()
-{
-    return fromMoment_;
-}
 
-QString GetLogsBetweenJson::toMoment()
+
+ent::Interval::ptr GetLogsBetweenJson::interval()
 {
-    return toMoment_;
+    return interval_;
 }
 
 rec::Log::map GetLogsBetweenJson::logMap()
@@ -53,8 +51,8 @@ bool GetLogsBetweenJson::parse()
             }
         } else if (rootKey == "response") {
             QJsonObject response = root.value(rootKey).toObject();
-            fromMoment_ = response["from"].toString();
-            toMoment_ = response["to"].toString();
+            interval_->timeFrom(QDateTime::fromString(root["timeFrom"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
+            interval_->timeTo(QDateTime::fromString(root["timeTo"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
         }
     }
     return true;

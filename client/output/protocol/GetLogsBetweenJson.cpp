@@ -18,9 +18,10 @@ GetLogsBetweenJson::GetLogsBetweenJson()
 cm::JsonString GetLogsBetweenJson::command(const cm::DateTime &earlier, const cm::DateTime &latter)
 {
     QJsonObject obj;
-    obj["command"]      = "getLogsBetween";
-    obj["timeEarlier"]  = earlier;
-    obj["timeLatter"]   = latter;
+
+    obj["command"]  = "getLogsBetween";
+    obj["timeFrom"] = earlier;
+    obj["timeTo"]   = latter;
 
     QJsonDocument doc(obj);
     return doc.toJson();

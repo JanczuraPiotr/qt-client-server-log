@@ -19,8 +19,8 @@ TEST_F(Client_Input_GetLogsBetweenEbnf, correct_input)
 //    cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenEbnf());
 //
 //    EXPECT_TRUE(in.parse());
-//    EXPECT_EQ(in.getBorderEarlier().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-00-00-00");
-//    EXPECT_EQ(in.getBorderLatter().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-01-00-00");
+//    EXPECT_EQ(in.timeFrom().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-00-00-00");
+//    EXPECT_EQ(in.timeTo().toString(cm::DATE_TIME_IN_COMMAND_TEMPLATE.c_str()), "1970-01-01-01-00-00");
 //    EXPECT_EQ(in.getLogCollection()->size(), 4);
 //    EXPECT_EQ(in.getLogCollection()->getById(1)->getMessage(), "msg-1");
 //    EXPECT_EQ(in.getLogCollection()->getById(4)->getMessage(), "msg-4");
