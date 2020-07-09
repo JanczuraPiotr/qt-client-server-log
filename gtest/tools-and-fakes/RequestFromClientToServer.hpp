@@ -14,6 +14,7 @@ class RequestFromClientToServer {
 public:
 
     static cm::JsonString getLogsBetweenJson();
+    static cm::JsonString getLogById();
 
 };
 

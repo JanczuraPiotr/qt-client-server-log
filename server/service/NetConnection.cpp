@@ -10,7 +10,7 @@
 #include "server/app/ConfigFile.h"
 #include "server/model/LogCollection.h"
 #include "server/input/GetLogsBetween.h"
-#include "server/output/Log.h"
+#include "server/output/GetLogsBetween.h"
 
 
 namespace sv::service {
@@ -55,7 +55,7 @@ void NetConnection::insertedLog(
             , const cm::Message &message)
 {
     qDebug() << "NetConnection::insertedLog";
-    out::Log log(netProtocol);// @work uruchomić możliwość wyboru protokołu
+    out::GetLogsBetween log(netProtocol);// @work uruchomić możliwość wyboru protokołu
     broadcastLogToNet(log.one(id, dateTime, logPriority, message));
 }
 

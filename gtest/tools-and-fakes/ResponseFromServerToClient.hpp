@@ -26,6 +26,7 @@ protected:
 
 class ResponseFromServerToClient {
 public:
+    static cm::JsonString getLogById();
     /// \brief W odpowiedzi na zapytanie server odsyła pustą listę
     static cm::JsonString getLogsBetweenJson_Empty();
     /// \brief W odpowiedzi na zapytanie server odsyła jeden rekord

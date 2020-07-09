@@ -27,50 +27,34 @@ add_executable(${SERVER} main.cpp
         ../common/db/Structure.cpp
         ../common/db/Structure.h
 
-        ../common/exception/general.cpp
-        ../common/exception/general.h
+        ../common/exception/general.cpp                     ../common/exception/general.h
 
         ../common/data/entity/Interval.cpp                  ../common/data/entity/Interval.hpp
-        ../common/output/ErrorMessage.cpp
-        ../common/output/ErrorMessage.h
+        ../common/output/ErrorMessage.cpp                   ../common/output/ErrorMessage.h
 
-        action/InsertLog.cpp
-        action/InsertLog.h
+        action/InsertLog.cpp                                action/InsertLog.h
 
-        app/ConfigFile.cpp
-        app/ConfigFile.h
-        app/SignalBus.cpp
-        app/SignalBus.h
+        app/ConfigFile.cpp                                  app/ConfigFile.h
+        app/SignalBus.cpp                                   app/SignalBus.h
 
         input/Input.cpp                                     input/Input.hpp
-        input/protocol/GetLogsBetweenEbnf.cpp
-        input/protocol/GetLogsBetweenEbnf.h
-        input/protocol/GetLogsBetweenJson.cpp
-        input/protocol/GetLogsBetweenJson.h
-        input/GetLogsBetween.cpp
-        input/GetLogsBetween.h
+        input/protocol/GetLogsBetweenEbnf.cpp               input/protocol/GetLogsBetweenEbnf.h
+        input/protocol/GetLogsBetweenJson.cpp               input/protocol/GetLogsBetweenJson.h
+        input/GetLogsBetween.cpp                            input/GetLogsBetween.h
 
-        data/LogCollection.cpp
-        data/LogCollection.h
-        data/LogRecord.cpp
-        data/LogRecord.h
+        data/LogCollection.cpp                              data/LogCollection.h
+        data/LogRecord.cpp                                  data/LogRecord.h
 
 
         output/Output.cpp                                   output/Output.hpp
-        output/protocol/LogJson.cpp
-        output/protocol/LogJson.h
-        output/protocol/LogEbnf.cpp
-        output/protocol/LogEbnf.h
-        output/Log.cpp
-        output/Log.h
+        output/protocol/GetLogsBetweenJson.cpp              output/protocol/GetLogsBetweenJson.h
+        output/protocol/GetLogsBetweenEbnf.cpp              output/protocol/GetLogsBetweenEbnf.h
+        output/GetLogsBetween.cpp output/GetLogsBetween.h
 
-        service/FakeEvent.cpp
-        service/FakeEvent.h
-        service/NetConnection.cpp
-        service/NetConnection.h
-        service/Main.cpp
-        service/Main.h
-        )
+        service/FakeEvent.cpp                               service/FakeEvent.h
+        service/NetConnection.cpp                           service/NetConnection.h
+        service/Main.cpp                                    service/Main.h
+        input/protocol/GetRecordJson.cpp input/protocol/GetRecordJson.hpp)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Sql REQUIRED)

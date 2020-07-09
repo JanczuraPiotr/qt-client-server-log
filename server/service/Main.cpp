@@ -8,7 +8,7 @@
 
 #include "common/algorithm/String.h"
 #include "server/model/LogCollection.h"
-#include "server/output/Log.h"
+#include "server/output/GetLogsBetween.h"
 
 namespace sv::service {
 
@@ -26,7 +26,7 @@ void Main::getLogsBetween(const QDateTime &limitEarlier, const QDateTime &limitL
 {
     data::LogCollection logCollection;
     auto logs = logCollection.getLogsBetween(limitEarlier, limitLatter);
-    sv::out::Log output(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
+    sv::out::GetLogsBetween output(cm::NetProtocol::JSON);// @work uruchomić możliwość wyboru protokołu
     // @task wszystkie odpowiedzi opakować w jsona w którym pod kluczem "data" będą właściwe dane.
     auto jsonString = "{\"data\":" + output.map(logs) + "}";
     emit messageToClient("getLogsBetween|"

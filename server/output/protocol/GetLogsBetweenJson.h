@@ -12,10 +12,10 @@
 
 namespace sv::out {
 
-class LogJson {
+class GetLogsBetweenJson {
 public:
-    LogJson() = default;
-    virtual ~LogJson() = default;
+    GetLogsBetweenJson() = default;
+    virtual ~GetLogsBetweenJson() = default;
 
     QString map(data::LogRecord::map records);
     QString one(
@@ -25,10 +25,10 @@ public:
             , const cm::Message &message);
 
 public: // lock
-    LogJson(const LogJson &) = delete;
-    LogJson(LogJson &&) = delete;
-    LogJson &operator = (const LogJson&) = delete;
-    LogJson &operator = (LogJson &&) = delete;
+    GetLogsBetweenJson(const GetLogsBetweenJson &) = delete;
+    GetLogsBetweenJson(GetLogsBetweenJson &&) = delete;
+    GetLogsBetweenJson &operator = (const GetLogsBetweenJson&) = delete;
+    GetLogsBetweenJson &operator = (GetLogsBetweenJson &&) = delete;
 };
 
 }

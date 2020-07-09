@@ -36,6 +36,28 @@ LogRecord::LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const
 
 }
 
+cm::JsonString ResponseFromServerToClient::getLogById()
+{
+    static cm::JsonString jsonString = R"(
+        {
+            "header" : {
+                "cmd": "getLogById",
+                "logId" : "123"
+            },
+            "data": {
+                    "id": "123",
+                    "message": "msg-1",
+                    "priority": "1",
+                    "timestamp": "1970-01-01 10:20:30"
+            }
+        }
+    )";
+
+    return jsonString;
+
+}
+
+
 cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_Empty()
 {
     static cm::JsonString jsonString = R"(

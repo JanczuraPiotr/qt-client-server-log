@@ -70,8 +70,8 @@ bool GetLogsBetween::parseDateTime()
 
 bool GetLogsBetween::parseJson()
 {
-//    // @proposal Zamienić korzystanie z cl::in::Log do parsowania jsona z logami.
-//    // Utworzyć klasę parsującą jedną pozycję z logiem i wykorzystać ją ty i w klasie cl::in::Log.
+//    // @proposal Zamienić korzystanie z cl::in::GetLogsBetween do parsowania jsona z logami.
+//    // Utworzyć klasę parsującą jedną pozycję z logiem i wykorzystać ją ty i w klasie cl::in::GetLogsBetween.
 //    QJsonDocument jsonDocument = QJsonDocument::fromJson(input.mid(CORRECT_JSON_START).toUtf8());
 //    QJsonObject root = jsonDocument.object();
 //
@@ -81,7 +81,7 @@ bool GetLogsBetween::parseJson()
 //            QJsonDocument tmpJson(data[i].toObject());
 //            QByteArray tmpArray = tmpJson.toJson();
 //            cm::JsonString tmpString(tmpArray);
-//            cl::in::Log inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
+//            cl::in::GetLogsBetween inputLog(cm::NetProtocol::JSON); // @work uruchomić możliwość wyboru protokołu
 //            if (!inputLog.parse(tmpString, 0)) {
 //                return false;
 //            }

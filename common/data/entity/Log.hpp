@@ -28,6 +28,7 @@ public:
 
     void timestamp(const QDateTime &dateTime);
     void logPriority(cm::LogPriority logPriority);
+    void logPriority(unsigned logPriority);
     void message(const cm::Message &message);
 
     [[nodiscard]] QDateTime timestamp() const ;

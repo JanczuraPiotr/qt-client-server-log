@@ -2,7 +2,7 @@
 // Created by piotr@janczura.pl on 2020.01.16
 //
 
-#include "LogEbnf.h"
+#include "GetLogsBetweenEbnf.h"
 
 #include <boost/spirit/include/karma.hpp>
 
@@ -11,7 +11,7 @@ namespace karma = boost::spirit::karma;
 namespace sv::out {
 
 
-QString LogEBNF::one(
+QString GetLogsBetweenEbnf::one(
         cm::AutoId id
         , const QDateTime &dateTime
         , cm::LogPriority logPriority
@@ -32,7 +32,7 @@ QString LogEBNF::one(
     return QString(out.c_str());
 }
 
-QString LogEBNF::map(data::LogRecord::map records)
+QString GetLogsBetweenEbnf::map(data::LogRecord::map records)
 {
     std::ignore = records;
 //    for (auto &it : records) {

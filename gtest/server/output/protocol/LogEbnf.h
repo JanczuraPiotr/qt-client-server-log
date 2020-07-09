@@ -9,7 +9,7 @@
 
 namespace test {
 
-class Server_Output_LogEBNF : public ::testing::Test {
+class Server_Output_LogEbnf : public ::testing::Test {
 
 };
 

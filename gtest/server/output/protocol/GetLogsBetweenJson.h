@@ -9,7 +9,7 @@
 
 namespace test {
 
-class Server_Output_LogJson : public ::testing::Test {
+class Server_Output_GetLogsBetweenJson : public ::testing::Test {
 
 };
 

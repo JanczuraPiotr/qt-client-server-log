@@ -1,8 +1,8 @@
 //
-// Created by piotr@janczura.pl on 2020.01.16
+// Created by piotr@janczura.pl on 2019.11.19
 //
 
-#include "LogJson.h"
+#include "GetLogsBetween.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -10,7 +10,14 @@
 
 namespace sv::out {
 
-QString LogJson::one(
+
+GetLogsBetween::GetLogsBetween(cm::NetProtocol netProtocol)
+    : netProtocol(netProtocol)
+{
+
+}
+
+QString GetLogsBetween::one(
         cm::AutoId id
         , const QDateTime &dateTime
         , cm::LogPriority logPriority
@@ -25,7 +32,7 @@ QString LogJson::one(
     return doc.toJson();
 }
 
-QString LogJson::map(data::LogRecord::map records)
+QString GetLogsBetween::map(data::LogRecord::map records)
 {
     QJsonArray jsonArray;
 

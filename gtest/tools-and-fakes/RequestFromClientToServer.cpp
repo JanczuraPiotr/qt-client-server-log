@@ -16,9 +16,19 @@ cm::JsonString RequestFromClientToServer::getLogsBetweenJson()
         }
     )";
 
-return jsonString;
+    return jsonString;
 }
 
+cm::JsonString RequestFromClientToServer::getLogById()
+{
+    static cm::JsonString jsonString = R"(
+        {
+            "command": "getLogById",
+            "recId": "123"
+        }
+    )";
 
+    return jsonString;
+}
 
 }

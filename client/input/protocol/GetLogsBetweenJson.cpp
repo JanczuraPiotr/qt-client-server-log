@@ -21,7 +21,6 @@ GetLogsBetweenJson::GetLogsBetweenJson(cm::JsonString jsonString)
 
 }
 
-
 ent::Interval::ptr GetLogsBetweenJson::interval()
 {
     return interval_;

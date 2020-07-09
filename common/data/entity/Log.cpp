@@ -42,6 +42,11 @@ void Log::logPriority(cm::LogPriority logPriority)
     logPriority_ = logPriority;
 }
 
+void Log::logPriority(unsigned logPriority)
+{
+    logPriority_ = static_cast<cm::LogPriority>(logPriority);
+}
+
 void Log::message(const cm::Message &message)
 {
     message_ = message;

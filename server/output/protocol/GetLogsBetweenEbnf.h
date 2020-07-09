@@ -13,10 +13,10 @@
 namespace sv::out {
 
 // @work uruchomić możliwość wyboru protokołu
-class LogEBNF {
+class GetLogsBetweenEbnf {
 public:
-    LogEBNF() = default;
-    virtual ~LogEBNF() = default;
+    GetLogsBetweenEbnf() = default;
+    virtual ~GetLogsBetweenEbnf() = default;
 
     QString map(data::LogRecord::map records);
     QString one(
@@ -26,10 +26,10 @@ public:
             , const cm::Message &message);
 
 public: // lock
-    LogEBNF(const LogEBNF &) = delete;
-    LogEBNF(LogEBNF &&) = delete;
-    LogEBNF &operator = (const LogEBNF&) = delete;
-    LogEBNF &operator = (LogEBNF &&) = delete;
+    GetLogsBetweenEbnf(const GetLogsBetweenEbnf &) = delete;
+    GetLogsBetweenEbnf(GetLogsBetweenEbnf &&) = delete;
+    GetLogsBetweenEbnf &operator = (const GetLogsBetweenEbnf&) = delete;
+    GetLogsBetweenEbnf &operator = (GetLogsBetweenEbnf &&) = delete;
 
 };
 

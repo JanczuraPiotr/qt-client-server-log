@@ -12,10 +12,10 @@
 
 namespace sv::out {
 // @work na podstawie parametrów wiersza poleceń wybrać właściwy mechanizm
-class Log {
+class GetLogsBetween {
 public:
-    explicit Log(cm::NetProtocol netProtocol);// @work uruchomić możliwość wyboru protokołu
-    virtual ~Log() = default;
+    explicit GetLogsBetween(cm::NetProtocol netProtocol);// @work uruchomić możliwość wyboru protokołu
+    virtual ~GetLogsBetween() = default;
 
     QString map(data::LogRecord::map records);
     QString one(
@@ -28,10 +28,10 @@ private: //attributes
     cm::NetProtocol netProtocol;
 
 public: // lock
-    Log(const Log &) = delete;
-    Log(Log &&) = delete;
-    Log &operator = (const Log&) = delete;
-    Log &operator = (Log &&) = delete;
+    GetLogsBetween(const GetLogsBetween &) = delete;
+    GetLogsBetween(GetLogsBetween &&) = delete;
+    GetLogsBetween &operator = (const GetLogsBetween&) = delete;
+    GetLogsBetween &operator = (GetLogsBetween &&) = delete;
 };
 
 
