@@ -8,7 +8,11 @@
 #include <QDateTime>
 
 #include "common/def.h"
-#include "server/data/LogRecord.h"
+#include "common/data/record/Log.hpp"
+
+namespace d = data;
+namespace e = d::entity;
+namespace r = d::record;
 
 namespace sv::out {
 
@@ -17,7 +21,7 @@ public:
     GetLogsBetweenJson() = default;
     virtual ~GetLogsBetweenJson() = default;
 
-    QString map(data::LogRecord::map records);
+    QString map(r::Log::map records);
     QString one(
             cm::AutoId id
             , const QDateTime &dateTime

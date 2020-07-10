@@ -17,7 +17,7 @@ namespace sv::in {
 class GetLogsBetweenJson {
 public:
     explicit GetLogsBetweenJson(cm::NetInput in);
-
+    virtual ~GetLogsBetweenJson() = default;
     bool parse();
 
     data::entity::Interval::ptr interval();

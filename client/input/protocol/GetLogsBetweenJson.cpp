@@ -49,9 +49,10 @@ bool GetLogsBetweenJson::parse()
                 }
             }
         } else if (rootKey == "response") {
+
             QJsonObject response = root.value(rootKey).toObject();
-            interval_->timeFrom(QDateTime::fromString(root["timeFrom"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
-            interval_->timeTo(QDateTime::fromString(root["timeTo"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
+            interval_->timeFrom(QDateTime::fromString(response["timeFrom"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
+            interval_->timeTo(QDateTime::fromString(response["timeTo"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
         }
     }
     return true;

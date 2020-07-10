@@ -5,7 +5,7 @@
 #ifndef TEST_SERVER_OUTPUT_LOGJSON
 #define TEST_SERVER_OUTPUT_LOGJSON
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 namespace test {
 

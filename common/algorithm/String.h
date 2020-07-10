@@ -8,7 +8,7 @@
 #include <QString>
 #include <common/def.h>
 
-namespace cm::alg {
+namespace alg {
 
 class String {
 public:

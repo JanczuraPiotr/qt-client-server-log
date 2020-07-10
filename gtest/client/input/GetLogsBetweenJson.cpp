@@ -18,12 +18,15 @@ namespace test {
 
 TEST_F(Client_Input_GetLogsBetweenJson, correct_input_empty)
 {
+    qDebug() << __FILE__ << __LINE__ << test::ResponseFromServerToClient::getLogsBetweenJson_Empty();
     cl::in::GetLogsBetweenJson in(test::ResponseFromServerToClient::getLogsBetweenJson_Empty());
 
     EXPECT_TRUE(in.parse());
     rec::Log::map map = in.logMap();
 
     ent::Interval::ptr interval = in.interval();
+    qDebug() << __FILE__ << __LINE__ << interval->timeFrom();
+    qDebug() << __FILE__ << __LINE__ << interval->timeTo();
     EXPECT_TRUE(interval->isOk());
     EXPECT_EQ(interval->timeFrom().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 00:00:00");
     EXPECT_EQ(interval->timeTo().toString(cm::DATE_TIME_TEMPLATE.c_str()), "1970-01-01 01:00:00");

@@ -29,6 +29,7 @@ add_executable(gtest main.cpp
         ../server/input/Input.cpp                           ../server/input/Input.hpp
         ../server/input/protocol/GetLogsBetweenEbnf.cpp     ../server/input/protocol/GetLogsBetweenEbnf.h
         ../server/input/protocol/GetLogsBetweenJson.cpp     ../server/input/protocol/GetLogsBetweenJson.h
+        ../server/input/protocol/GetLogRecordJson.cpp       ../server/input/protocol/GetLogRecordJson.h
         ../server/input/GetLogsBetween.cpp                  ../server/input/GetLogsBetween.h
 
         ../server/data/LogRecord.cpp                        ../server/data/LogRecord.h
@@ -36,6 +37,7 @@ add_executable(gtest main.cpp
         ../server/output/Output.cpp                         ../server/output/Output.hpp
         ../server/output/protocol/GetLogsBetweenJson.cpp    ../server/output/protocol/GetLogsBetweenJson.h
         ../server/output/protocol/GetLogsBetweenEbnf.cpp    ../server/output/protocol/GetLogsBetweenEbnf.h
+        ../server/output/protocol/GetLogRecordJson.cpp      ../server/output/protocol/GetLogRecordJson.h
 
 
         common/algorithm/IntervalKey.cpp                    common/algorithm/IntervalKey.h
@@ -49,8 +51,10 @@ add_executable(gtest main.cpp
 
         server/input/GetLogsBetweenEbnf.cpp                 server/input/GetLogsBetweenEbnf.h
         server/input/GetLogsBetweenJson.cpp                 server/input/GetLogsBetweenJson.h
+        server/input/GetLogRecordJson.cpp                   server/input/GetLogRecordJson.h
         server/output/protocol/LogEbnf.cpp                  server/output/protocol/LogEbnf.h
         server/output/protocol/GetLogsBetweenJson.cpp       server/output/protocol/GetLogsBetweenJson.h
+        server/output/protocol/GetLogRecordJson.cpp         server/output/protocol/GetLogRecordJson.hpp
 
         tools-and-fakes/ResponseFromServerToClient.cpp      tools-and-fakes/ResponseFromServerToClient.hpp
         tools-and-fakes/RequestFromClientToServer.cpp       tools-and-fakes/RequestFromClientToServer.hpp

@@ -7,12 +7,12 @@
 #include <QDebug>
 #include <QDateTime>
 
-namespace cm::alg {
+namespace alg {
 
 QString String::condense(const QString &string)
 {
     QString str =string.simplified();
-    return str.replace(" ", "");
+    return str.replace(" ", "").replace("\n", "");
 }
 
 QString String::dateTimeInNetCommand(const cm::DateTime &dateTime) {

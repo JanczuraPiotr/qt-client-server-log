@@ -25,7 +25,7 @@ QString GetLogsBetweenJson::one(
     return doc.toJson();
 }
 
-QString GetLogsBetweenJson::map(data::LogRecord::map records)
+QString GetLogsBetweenJson::map(r::Log::map records)
 {
     QJsonArray jsonArray;
 
@@ -33,7 +33,7 @@ QString GetLogsBetweenJson::map(data::LogRecord::map records)
         QJsonObject row;
         row["id"]        = QString::number(it.second->id());
         row["timestamp"] = it.second->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str());
-        row["priority"]  = QString::number(static_cast<int>(it.second->priority()));
+        row["priority"]  = QString::number(static_cast<int>(it.second->logPriority()));
         row["message"]   = it.second->message();
         jsonArray.append(row);
     }

@@ -8,40 +8,40 @@
 #include <QDebug>
 
 namespace test {
-
-data::LogRecord::ptr LogRecord::makeShared(const QString &timestamp, cm::LogPriority priority, const cm::Message &message)
-{
-    return std::shared_ptr<LogRecord>(
-            new LogRecord(
-                    QDateTime::fromString(timestamp, cm::DATE_TIME_TEMPLATE.c_str())
-                    , priority
-                    , message
-            )
-        );
-}
-
-LogRecord::LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const cm::Message &message)
-    : data::LogRecord(
-            [=](){
-                QSqlRecord rec;
-                rec.append(QSqlField("timestamp",  QVariant::DateTime));
-                rec.append(QSqlField("priority",   QVariant::Int));
-                rec.append(QSqlField("message",    QVariant::TextFormat));
-                rec.setValue("timestamp", timestamp);
-                rec.setValue("priority", static_cast<short>(priority));
-                rec.setValue("message", message);
-                return rec;
-            }())
-{
-
-}
+//
+//data::LogRecord::ptr LogRecord::makeShared(const QString &timestamp, cm::LogPriority priority, const cm::Message &message)
+//{
+//    return std::shared_ptr<LogRecord>(
+//            new LogRecord(
+//                    QDateTime::fromString(timestamp, cm::DATE_TIME_TEMPLATE.c_str())
+//                    , priority
+//                    , message
+//            )
+//        );
+//}
+//
+//LogRecord::LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const cm::Message &message)
+//    : data::LogRecord(
+//            [=](){
+//                QSqlRecord rec;
+//                rec.append(QSqlField("timestamp",  QVariant::DateTime));
+//                rec.append(QSqlField("priority",   QVariant::Int));
+//                rec.append(QSqlField("message",    QVariant::TextFormat));
+//                rec.setValue("timestamp", timestamp);
+//                rec.setValue("priority", static_cast<short>(priority));
+//                rec.setValue("message", message);
+//                return rec;
+//            }())
+//{
+//
+//}
 
 cm::JsonString ResponseFromServerToClient::getLogById()
 {
     static cm::JsonString jsonString = R"(
         {
             "header" : {
-                "cmd": "getLogById",
+                "command": "getLogById",
                 "logId" : "123"
             },
             "data": {
@@ -63,9 +63,9 @@ cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_Empty()
     static cm::JsonString jsonString = R"(
         {
             "response" : {
-                "cmd": "getLogsBetween",
-                "from": "1970-01-01 00:00:00",
-                "to": "1970-01-01 01:00:00"
+                "command": "getLogsBetween",
+                "timeFrom": "1970-01-01 00:00:00",
+                "timeTo": "1970-01-01 01:00:00"
             },
             "data":[
             ]
@@ -80,9 +80,9 @@ cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_One()
     static cm::JsonString jsonString = R"(
         {
             "response" : {
-                "cmd": "getLogsBetween",
-                "from": "1970-01-01 00:00:00",
-                "to": "1970-01-01 01:00:00"
+                "command": "getLogsBetween",
+                "timeFrom": "1970-01-01 00:00:00",
+                "timeTo": "1970-01-01 01:00:00"
             },
             "data":[
                 {
@@ -103,9 +103,9 @@ cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_Many()
     static cm::JsonString jsonString = R"(
         {
             "response" : {
-                "cmd": "getLogsBetween",
-                "from": "1970-01-01 00:00:00",
-                "to": "1970-01-01 01:00:00"
+                "command": "getLogsBetween",
+                "timeFrom": "1970-01-01 00:00:00",
+                "timeTo": "1970-01-01 01:00:00"
             },
             "data":[
                 {
@@ -137,6 +137,18 @@ cm::JsonString ResponseFromServerToClient::getLogsBetweenJson_Many()
     )";
 
     return jsonString;
+}
+
+r::Log::map ResponseFromServerToClient::getLogsBetweenMap_Many()
+{
+    r::Log::map map;
+
+    map.insert(std::make_pair(1, r::Log::create(1, QDateTime::fromString("1970-01-01 00:00:01", cm::DATE_TIME_TEMPLATE.c_str()), cm::LogPriority::ok, "msg-1")));
+    map.insert(std::make_pair(2, r::Log::create(2, QDateTime::fromString("1970-01-01 00:00:02", cm::DATE_TIME_TEMPLATE.c_str()), cm::LogPriority::info, "msg-2")));
+    map.insert(std::make_pair(3, r::Log::create(3, QDateTime::fromString("1970-01-01 00:00:03", cm::DATE_TIME_TEMPLATE.c_str()), cm::LogPriority::warning, "msg-2")));
+    map.insert(std::make_pair(4, r::Log::create(4, QDateTime::fromString("1970-01-01 00:00:04", cm::DATE_TIME_TEMPLATE.c_str()), cm::LogPriority::error, "msg-4")));
+
+    return map;
 }
 
 cm::EBNFString ResponseFromServerToClient::getLogsBetweenEbnf()
@@ -176,19 +188,20 @@ cm::EBNFString ResponseFromServerToClient::getLogsBetweenEbnf()
     return ebnfString;
 }
 
-data::LogRecord::ptr ResponseFromServerToClient::getLogRecord()
+r::Log::ptr ResponseFromServerToClient::getLogRecord()
 {
-    data::LogRecord::ptr record = LogRecord::makeShared(
-            "1070-01-01 00:00:01"
+    r::Log::ptr record = r::Log::create(
+            1
+            , QDateTime::fromString("1070-01-01 00:00:01", cm::DATE_TIME_TEMPLATE.c_str())
             , cm::LogPriority::ok
             , "msg-1"
             );
     return record;
 }
 
-sv::data::LogRecord::map ResponseFromServerToClient::getLogMap()
+r::Log::map ResponseFromServerToClient::getLogMap()
 {
-
+    return {};
 }
 
 

@@ -11,56 +11,41 @@ find_package(Qt5Network REQUIRED)
 add_executable(${CLIENT}
         main.cpp
 
-        controller/Main.cpp
-        controller/Main.h
-        controller/Net.cpp
-        controller/Net.h
+        controller/Main.cpp                                 controller/Main.h
+        controller/Net.cpp                                  controller/Net.h
 
-        input/protocol/GetLogsBetweenEbnf.cpp
-        input/protocol/GetLogsBetweenEbnf.h
-        input/protocol/GetLogsBetweenJson.cpp
-        input/protocol/GetLogsBetweenJson.h
-        input/GetLogsBetween.cpp
-        input/GetLogsBetween.h
-        input/Log.cpp
-        input/Log.h
+        input/protocol/GetLogsBetweenEbnf.cpp               input/protocol/GetLogsBetweenEbnf.h
+        input/protocol/GetLogsBetweenJson.cpp               input/protocol/GetLogsBetweenJson.h
+        input/GetLogsBetween.cpp                            input/GetLogsBetween.h
+        input/Log.cpp                                       input/Log.h
 
-        data/LogCollection.cpp
-        data/LogCollection.h
-        data/LogRecord.cpp
-        data/LogRecord.h
+        data/LogCollection.cpp                              data/LogCollection.h
+        data/LogRecord.cpp                                  data/LogRecord.h
 
-        output/protocol/GetLogsBetweenEbnf.cpp
-        output/protocol/GetLogsBetweenEbnf.h
-        output/protocol/GetLogsBetweenJson.cpp
-        output/protocol/GetLogsBetweenJson.h
-        output/GetLogsBetween.cpp
-        output/GetLogsBetween.h
+        output/protocol/GetLogRecordJson.cpp                output/protocol/GetLogRecordJson.hpp
+        output/protocol/GetLogsBetweenEbnf.cpp              output/protocol/GetLogsBetweenEbnf.h
+        output/protocol/GetLogsBetweenJson.cpp              output/protocol/GetLogsBetweenJson.h
+        output/GetLogsBetween.cpp                           output/GetLogsBetween.h
 
-        view/dialogs/LogsBetween.cpp
-        view/dialogs/LogsBetween.h
-        view/table/Logs.cpp
-        view/table/Logs.h
-        view/windows/Logs.cpp
-        view/windows/Logs.h
-        view/MainWindow.cpp
-        view/MainWindow.h
+        view/dialogs/LogsBetween.cpp                        view/dialogs/LogsBetween.h
+        view/table/Logs.cpp                                 view/table/Logs.h
+        view/windows/Logs.cpp                               view/windows/Logs.h
+        view/MainWindow.cpp                                 view/MainWindow.h
 
-        ../common/algorithm/Key.cpp
-        ../common/algorithm/Key.h
-        ../common/algorithm/String.cpp
-        ../common/algorithm/String.h
-        ../common/exception/general.cpp
-        ../common/exception/general.h
+        ../common/algorithm/Key.cpp                         ../common/algorithm/Key.h
+        ../common/algorithm/String.cpp                      ../common/algorithm/String.h
+        ../common/data/Data.cpp                             ../common/data/Data.hpp
+        ../common/data/entity/Log.cpp                       ../common/data/entity/Log.hpp
+        ../common/data/entity/Interval.cpp                  ../common/data/entity/Interval.hpp
+        ../common/data/record/Log.cpp                       ../common/data/record/Log.hpp
+        ../common/exception/general.cpp                     ../common/exception/general.h
 
-        ../common/output/ErrorMessage.cpp
-        ../common/output/ErrorMessage.h
-        ../common/def.h
+        ../common/output/ErrorMessage.cpp                   ../common/output/ErrorMessage.h
+                                                            ../common/def.h
 
-        ../server/app/ConfigFile.cpp
-        ../server/app/ConfigFile.h
+        ../server/app/ConfigFile.cpp                        ../server/app/ConfigFile.h
         ../server/output/Output.cpp                         ../server/output/Output.hpp
-        ../common/data/entity/Log.cpp ../common/data/entity/Log.hpp ../common/data/Data.cpp ../common/data/Data.hpp ../common/data/record/Log.cpp ../common/data/record/Log.hpp ../common/data/entity/Interval.cpp ../common/data/entity/Interval.hpp output/protocol/GetLogRecordJson.cpp output/protocol/GetLogRecordJson.hpp)
+        )
 
 target_link_libraries(${CLIENT}
         ${GTEST_LIBRARIES}
