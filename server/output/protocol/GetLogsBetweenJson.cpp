@@ -44,12 +44,10 @@ QString GetLogsBetweenJson::map(
         , const QDateTime &timeTo
         , const r::Log::map &records)
 {
-
     QJsonObject header;
     header["command"]   = command;
     header["timeFrom"]  = timeFrom.toString(cm::DATE_TIME_TEMPLATE.c_str());
     header["timeTo"]    = timeTo.toString(cm::DATE_TIME_TEMPLATE.c_str());
-
 
     QJsonArray data;
 

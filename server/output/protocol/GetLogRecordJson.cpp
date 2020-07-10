@@ -13,12 +13,19 @@ namespace sv::out {
 
 cm::JsonString GetLogRecordJson::command(r::Log::ptr rLog)
 {
-    QJsonObject root;
+    QJsonObject header;
+    header["command"] = "getLogById";
+    header["logId"]   = "1";
 
-    root["id"] = QString::number(rLog->id());
-    root["timestamp"] = rLog->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str());
-    root["priority"] = QString::number(static_cast<int>(rLog->logPriority()));
-    root["message"] = rLog->message();
+    QJsonObject data;
+    data["id"] = QString::number(rLog->id());
+    data["timestamp"] = rLog->timestamp().toString(cm::DATE_TIME_TEMPLATE.c_str());
+    data["priority"] = QString::number(static_cast<int>(rLog->logPriority()));
+    data["message"] = rLog->message();
+
+    QJsonObject root;
+    root["header"]      = header;
+    root["data"]        = data;
 
     QJsonDocument doc(root);
     return doc.toJson();

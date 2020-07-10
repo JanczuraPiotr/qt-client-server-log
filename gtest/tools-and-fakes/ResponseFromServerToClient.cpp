@@ -10,19 +10,30 @@
 namespace test {
 
 
+r::Log::ptr ResponseFromServerToClient::getLogRecord()
+{
+    r::Log::ptr record = r::Log::create(
+            1
+            , QDateTime::fromString("1970-01-01 00:00:01", cm::DATE_TIME_TEMPLATE.c_str())
+            , cm::LogPriority::ok
+            , "msg-1"
+    );
+    return record;
+}
+
 cm::JsonString ResponseFromServerToClient::getLogById()
 {
     static cm::JsonString jsonString = R"(
         {
-            "header" : {
-                "command": "getLogById",
-                "logId" : "1"
-            },
             "data": {
                     "id": "1",
                     "message": "msg-1",
                     "priority": "1",
-                    "timestamp": "1970-01-01 10:20:30"
+                    "timestamp": "1970-01-01 00:00:01"
+            },
+            "header" : {
+                "command": "getLogById",
+                "logId" : "1"
             }
         }
     )";
@@ -160,17 +171,6 @@ cm::EBNFString ResponseFromServerToClient::getLogsBetweenEbnf()
 //    )";
 
     return ebnfString;
-}
-
-r::Log::ptr ResponseFromServerToClient::getLogRecord()
-{
-    r::Log::ptr record = r::Log::create(
-            1
-            , QDateTime::fromString("1970-01-01 00:00:01", cm::DATE_TIME_TEMPLATE.c_str())
-            , cm::LogPriority::ok
-            , "msg-1"
-            );
-    return record;
 }
 
 r::Log::map ResponseFromServerToClient::getLogMap()
