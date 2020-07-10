@@ -11,8 +11,8 @@ namespace alg {
 
 QString String::condense(const QString &string)
 {
-    QString str =string.simplified();
-    return str.replace(" ", "").replace("\n", "");
+    QString str = string.simplified();
+    return str.replace(" ", "").replace("\n", "").replace("\t", "");
 }
 
 QString String::dateTimeInNetCommand(const cm::DateTime &dateTime) {

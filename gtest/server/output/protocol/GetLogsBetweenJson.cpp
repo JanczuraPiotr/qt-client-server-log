@@ -6,6 +6,7 @@
 #include <QDebug>
 
 #include "gtest/tools-and-fakes/ResponseFromServerToClient.hpp"
+
 #include "common/algorithm/String.h"
 #include "server/output/protocol/GetLogsBetweenJson.h"
 
@@ -13,24 +14,30 @@ namespace test {
 
 TEST_F(Server_Output_GetLogsBetweenJson, one_1)
 {
-    auto record(test::ResponseFromServerToClient::getLogRecord());
-    sv::out::GetLogsBetweenJson out;
-    auto jsonString = out.one(record->id(), record->timestamp(), record->logPriority(), record->message());
+    QString command("getLogsBetween");
+    QDateTime timeFrom(QDateTime::fromString("1970-01-01 00:00:00", cm::DATE_TIME_TEMPLATE.c_str()));
+    QDateTime timeTo(QDateTime::fromString("1970-01-01 01:00:00", cm::DATE_TIME_TEMPLATE.c_str()));
 
-    EXPECT_EQ(jsonString.replace('\n',"").replace(' ', "").replace('\\', ""), R"({"id":"1","message":"msg-1","priority":"1","timestamp":"1070-01-0100:00:01"})");
+    auto record = test::ResponseFromServerToClient::getLogRecord();
+    sv::out::GetLogsBetweenJson out;
+    auto response = out.one(command, timeFrom, timeTo, record);
+    auto templ    = test::ResponseFromServerToClient::getLogsBetweenJson_One();
+
+    EXPECT_EQ(alg::String::condense(response), alg::String::condense(templ));
 }
 
 TEST_F(Server_Output_GetLogsBetweenJson, map_1)
 {
     QString command("getLogsBetween");
     QDateTime timeFrom(QDateTime::fromString("1970-01-01 00:00:00", cm::DATE_TIME_TEMPLATE.c_str()));
-    QDateTime toFrom(QDateTime::fromString("1970-01-01 10:00:0", cm::DATE_TIME_TEMPLATE.c_str()));
+    QDateTime timeTo(QDateTime::fromString("1970-01-01 01:00:00", cm::DATE_TIME_TEMPLATE.c_str()));
+
+    auto records = test::ResponseFromServerToClient::getLogsBetweenMap_Many();
     sv::out::GetLogsBetweenJson out;
+    auto response = out.map(command, timeFrom, timeTo, records);
+    auto templ    = test::ResponseFromServerToClient::getLogsBetweenJson_Many();
 
-
-    EXPECT_EQ(alg::String::condense(ResponseFromServerToClient::getLogsBetweenJson_Many())
-            , alg::String::condense(out.map(test::ResponseFromServerToClient::getLogsBetweenMap_Many()))
-            );
+    EXPECT_EQ(alg::String::condense(response), alg::String::condense(templ));
 }
 
 }

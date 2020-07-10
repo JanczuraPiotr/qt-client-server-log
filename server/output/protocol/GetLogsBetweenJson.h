@@ -21,12 +21,8 @@ public:
     GetLogsBetweenJson() = default;
     virtual ~GetLogsBetweenJson() = default;
 
-    QString map(r::Log::map records);
-    QString one(
-            cm::AutoId id
-            , const QDateTime &dateTime
-            , cm::LogPriority logPriority
-            , const cm::Message &message);
+    QString map(const QString &command, const QDateTime &timeFrom, const QDateTime &timeTo, const r::Log::map &records);
+    QString one(const QString &command, const QDateTime &timeFrom, const QDateTime &timeTo, const r::Log::ptr &record);
 
 public: // lock
     GetLogsBetweenJson(const GetLogsBetweenJson &) = delete;

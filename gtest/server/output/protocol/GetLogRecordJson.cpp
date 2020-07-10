@@ -5,6 +5,7 @@
 #include "GetLogRecordJson.hpp"
 #include <QDebug>
 #include "gtest/tools-and-fakes/ResponseFromServerToClient.hpp"
+#include "common/algorithm/String.h"
 #include "server/output/protocol/GetLogRecordJson.h"
 
 
@@ -19,7 +20,7 @@ TEST_F(Server_Output_GetLogRecordJson, command)
     r::Log::ptr record = test::ResponseFromServerToClient::getLogRecord();
     sv::out::GetLogRecordJson out;
     auto jsonString = out.command(record);
-    EXPECT_EQ(jsonString.replace('\n',"").replace(' ', "").replace('\\', ""), R"({"id":"1","message":"msg-1","priority":"1","timestamp":"1070-01-0100:00:01"})");
+    EXPECT_EQ(alg::String::condense(jsonString), alg::String::condense(test::ResponseFromServerToClient::getLogById()));
 }
 
 

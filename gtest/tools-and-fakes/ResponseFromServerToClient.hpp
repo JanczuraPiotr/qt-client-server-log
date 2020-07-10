@@ -13,18 +13,6 @@ namespace e = d::entity;
 namespace r = d::record;
 
 namespace test {
-//
-//// @work Zły projekt, klasa powinna dać się testować bez modyfikacji za pomocą dziedziczenia.
-//class LogRecord : public r::Log {
-//public:
-//    static ptr makeShared(const QString &timestamp, cm::LogPriority priority, const cm::Message &message);
-//
-//    ~LogRecord() override = default;
-//
-//protected:
-//    LogRecord(const QDateTime &timestamp, cm::LogPriority priority, const cm::Message &message);
-//};
-
 
 class ResponseFromServerToClient {
 public:

@@ -48,7 +48,7 @@ bool GetLogsBetweenJson::parse()
                     logMap_.insert(std::make_pair(recLog->id(), recLog));
                 }
             }
-        } else if (rootKey == "response") {
+        } else if (rootKey == "header") {
 
             QJsonObject response = root.value(rootKey).toObject();
             interval_->timeFrom(QDateTime::fromString(response["timeFrom"].toString(), cm::DATE_TIME_TEMPLATE.c_str()));
