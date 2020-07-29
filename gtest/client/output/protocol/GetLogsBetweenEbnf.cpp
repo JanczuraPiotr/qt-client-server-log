@@ -3,7 +3,7 @@
 //
 
 #include "GetLogsBetweenEbnf.h"
-#include "../client/output/protocol/GetLogsBetweenJson.h"
+#include "client/output/protocol/GetLogsBetweenJson.h"
 
 namespace test {
 

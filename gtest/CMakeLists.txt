@@ -42,24 +42,29 @@ add_executable(gtest main.cpp
 
         common/algorithm/IntervalKey.cpp                    common/algorithm/IntervalKey.h
 
-        client/input/GetLogRecordJson.cpp                   client/input/GetLogRecordJson.hpp
-        client/input/GetLogsBetweenEbnf.cpp                 client/input/GetLogsBetweenEbnf.h
-        client/input/GetLogsBetweenJson.cpp                 client/input/GetLogsBetweenJson.h
-        client/output/GetLogRecordJson.cpp                  client/output/GetLogRecordJson.hpp
-        client/output/GetLogsBetweenJson.cpp                client/output/GetLogsBetweenJson.h
-        client/output/GetLogsBetweenEbnf.cpp                client/output/GetLogsBetweenEbnf.h
+        client/input/protocol/GetLogRecordEbnf.cpp          client/input/protocol/GetLogRecordEbnf.hpp
+        client/input/protocol/GetLogRecordJson.cpp          client/input/protocol/GetLogRecordJson.hpp
+        client/input/protocol/GetLogsBetweenEbnf.cpp        client/input/protocol/GetLogsBetweenEbnf.h
+        client/input/protocol/GetLogsBetweenJson.cpp        client/input/protocol/GetLogsBetweenJson.h
+        client/output/protocol/GetLogRecordEbnf.cpp         client/output/protocol/GetLogRecordEbnf.hpp
+        client/output/protocol/GetLogRecordJson.cpp         client/output/protocol/GetLogRecordJson.hpp
+        client/output/protocol/GetLogsBetweenEbnf.cpp       client/output/protocol/GetLogsBetweenEbnf.h
+        client/output/protocol/GetLogsBetweenJson.cpp       client/output/protocol/GetLogsBetweenJson.h
 
-        server/input/GetLogsBetweenEbnf.cpp                 server/input/GetLogsBetweenEbnf.h
-        server/input/GetLogsBetweenJson.cpp                 server/input/GetLogsBetweenJson.h
-        server/input/GetLogRecordJson.cpp                   server/input/GetLogRecordJson.h
-        server/output/protocol/LogEbnf.cpp                  server/output/protocol/LogEbnf.h
+        server/input/protocol/GetLogRecordEbnf.cpp          server/input/protocol/GetLogRecordEbnf.hpp
+        server/input/protocol/GetLogRecordJson.cpp          server/input/protocol/GetLogRecordJson.h
+        server/input/protocol/GetLogsBetweenEbnf.cpp        server/input/protocol/GetLogsBetweenEbnf.h
+        server/input/protocol/GetLogsBetweenJson.cpp        server/input/protocol/GetLogsBetweenJson.h
+        server/output/protocol/GetLogRecordEbnf.cpp         server/output/protocol/GetLogRecordEbnf.hpp
         server/output/protocol/GetLogsBetweenJson.cpp       server/output/protocol/GetLogsBetweenJson.h
+        server/output/protocol/GetLogRecordEbnf.cpp         server/output/protocol/GetLogRecordEbnf.hpp
         server/output/protocol/GetLogRecordJson.cpp         server/output/protocol/GetLogRecordJson.hpp
+        server/output/protocol/LogEbnf.cpp                  server/output/protocol/LogEbnf.h
 
         tools-and-fakes/ResponseFromServerToClient.cpp      tools-and-fakes/ResponseFromServerToClient.hpp
         tools-and-fakes/RequestFromClientToServer.cpp       tools-and-fakes/RequestFromClientToServer.hpp
 
-        )
+        client/input/protocol/GetLogRecordEbnf.cpp client/input/protocol/GetLogRecordEbnf.hpp)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)

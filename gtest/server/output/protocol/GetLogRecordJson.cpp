@@ -15,7 +15,7 @@ namespace e = d::entity;
 
 namespace test {
 
-TEST_F(Server_Output_GetLogRecordJson, command)
+TEST_F(Server_Output_GetLogRecordJson, correct_get_log_by_id)
 {
     r::Log::ptr record = test::ResponseFromServerToClient::getLogRecord();
     sv::out::GetLogRecordJson out;
