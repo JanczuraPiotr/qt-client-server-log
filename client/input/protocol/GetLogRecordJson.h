@@ -2,8 +2,8 @@
 // Created by piotr@janczura.pl on 2020.01.16
 //
 
-#ifndef CLIENT_INPUT_LOGJSON_H
-#define CLIENT_INPUT_LOGJSON_H
+#ifndef CLIENT_INPUT_GETLOGRECORDJSON
+#define CLIENT_INPUT_GETLOGRECORDJSON
 
 #include "common/def.h"
 #include "common/data/entity/Log.hpp"

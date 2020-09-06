@@ -11,7 +11,7 @@ namespace test {
 
 TEST_F(Client_Input_GetLogRecordJson, correct_get_log_by_id)
 {
-    cl::in::GetLogRecordJson in(test::ResponseFromServerToClient::getLogById());
+    cl::in::GetLogRecordJson in(test::ResponseFromServerToClient::getLogByIdJson());
     EXPECT_TRUE(in.parse());
 
     auto rec = in.record();

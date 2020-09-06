@@ -64,7 +64,7 @@ add_executable(gtest main.cpp
         tools-and-fakes/ResponseFromServerToClient.cpp      tools-and-fakes/ResponseFromServerToClient.hpp
         tools-and-fakes/RequestFromClientToServer.cpp       tools-and-fakes/RequestFromClientToServer.hpp
 
-        client/input/protocol/GetLogRecordEbnf.cpp client/input/protocol/GetLogRecordEbnf.hpp)
+        client/input/protocol/GetLogRecordEbnf.cpp client/input/protocol/GetLogRecordEbnf.hpp ../client/input/protocol/GetLogRecordEbnf.cpp ../client/input/protocol/GetLogRecordEbnf.hpp)
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Widgets REQUIRED)

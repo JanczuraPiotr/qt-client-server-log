@@ -21,7 +21,7 @@ r::Log::ptr ResponseFromServerToClient::getLogRecord()
     return record;
 }
 
-cm::JsonString ResponseFromServerToClient::getLogById()
+cm::JsonString ResponseFromServerToClient::getLogByIdJson()
 {
     static cm::JsonString jsonString = R"(
         {
@@ -40,6 +40,15 @@ cm::JsonString ResponseFromServerToClient::getLogById()
 
     return jsonString;
 
+}
+
+cm::JsonString ResponseFromServerToClient::getLogByIdEbnf()
+{
+    static cm::JsonString jsonString = R"(
+        {"getLogById","1","1","msg-1","1","1970-01-01 00:00:01"}
+    )";
+
+    return jsonString;
 }
 
 

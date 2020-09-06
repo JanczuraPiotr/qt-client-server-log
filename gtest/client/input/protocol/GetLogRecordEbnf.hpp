@@ -10,7 +10,7 @@
 namespace test {
 
 
-class Client_Input_GetLogRecordEbnf : public ::testing::Test{
+class Client_Input_GetLogRecordEbnf : public ::testing::Test {
 
 };
 

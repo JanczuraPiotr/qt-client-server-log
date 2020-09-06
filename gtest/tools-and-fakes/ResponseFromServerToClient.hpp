@@ -16,7 +16,8 @@ namespace test {
 
 class ResponseFromServerToClient {
 public:
-    static cm::JsonString getLogById();
+    static cm::JsonString getLogByIdJson();
+    static cm::JsonString getLogByIdEbnf();
     /// \brief W odpowiedzi na zapytanie server odsyła pustą listę
     static cm::JsonString getLogsBetweenJson_Empty();
     /// \brief W odpowiedzi na zapytanie server odsyła jeden rekord
